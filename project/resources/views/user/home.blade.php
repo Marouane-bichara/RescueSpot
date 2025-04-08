@@ -211,271 +211,136 @@
             <div class="flex flex-col lg:flex-row gap-8">
                 <!-- Left Column - Main Content -->
                 <div class="w-full lg:w-3/4 space-y-8">
-                    <!-- Recently Reported Animals -->
-                    <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
-                        <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
-                            <h2 class="text-lg font-bold text-gray-800">Animaux récemment signalés</h2>
-                            <div class="flex space-x-2">
-                                <button class="py-1 px-3 text-sm rounded-md bg-blue-100 text-blue-700 hover:bg-blue-200">Tous</button>
-                                <button class="py-1 px-3 text-sm rounded-md text-gray-700 hover:bg-gray-100">Urgents</button>
-                                <button class="py-1 px-3 text-sm rounded-md text-gray-700 hover:bg-gray-100">En attente</button>
-                            </div>
-                        </div>
-                        
-                        <!-- Reports Grid -->
-                        <div class="p-6 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
-                            <!-- Animal Card 1 -->
-                            <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 transition transform hover:shadow-md hover:-translate-y-1">
-                                <div class="relative">
-                                    <img src="/api/placeholder/400/250" alt="Animal signalé" class="w-full h-48 object-cover">
-                                    <div class="absolute top-3 left-3 bg-red-500 text-white text-xs px-2 py-1 rounded-full">Urgent</div>
-                                    <div class="absolute top-3 right-3 bg-blue-500 text-white text-xs px-2 py-1 rounded-full">Il y a 2h</div>
-                                </div>
-                                <div class="p-4">
-                                    <div class="flex justify-between items-start mb-2">
-                                        <h3 class="font-semibold text-gray-800">Chien blessé</h3>
-                                        <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">En attente</span>
-                                    </div>
-                                    <p class="text-sm text-gray-600 mb-3">Trouvé près du parc central, boite légèrement et semble avoir faim.</p>
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-sm"><i class="fas fa-map-marker-alt text-gray-500 mr-1"></i> Saint-Denis</span>
-                                        <button class="text-blue-600 hover:text-blue-800 text-sm font-medium">Voir détails</button>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Animal Card 2 -->
-                            <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 transition transform hover:shadow-md hover:-translate-y-1">
-                                <div class="relative">
-                                    <img src="/api/placeholder/400/250" alt="Animal signalé" class="w-full h-48 object-cover">
-                                    <div class="absolute top-3 right-3 bg-blue-500 text-white text-xs px-2 py-1 rounded-full">Il y a 5h</div>
-                                </div>
-                                <div class="p-4">
-                                    <div class="flex justify-between items-start mb-2">
-                                        <h3 class="font-semibold text-gray-800">Chaton abandonné</h3>
-                                        <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Pris en charge</span>
-                                    </div>
-                                    <p class="text-sm text-gray-600 mb-3">Trouvé dans un carton derrière le supermarché, très jeune.</p>
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-sm"><i class="fas fa-map-marker-alt text-gray-500 mr-1"></i> Montreuil</span>
-                                        <button class="text-blue-600 hover:text-blue-800 text-sm font-medium">Voir détails</button>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Animal Card 3 -->
-                            <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 transition transform hover:shadow-md hover:-translate-y-1">
-                                <div class="relative">
-                                    <img src="/api/placeholder/400/250" alt="Animal signalé" class="w-full h-48 object-cover">
-                                    <div class="absolute top-3 right-3 bg-blue-500 text-white text-xs px-2 py-1 rounded-full">Il y a 1j</div>
-                                </div>
-                                <div class="p-4">
-                                    <div class="flex justify-between items-start mb-2">
-                                        <h3 class="font-semibold text-gray-800">Chat errant</h3>
-                                        <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">En cours</span>
-                                    </div>
-                                    <p class="text-sm text-gray-600 mb-3">Chat adulte noir et blanc très maigre, semblant affamé.</p>
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-sm"><i class="fas fa-map-marker-alt text-gray-500 mr-1"></i> Paris 15e</span>
-                                        <button class="text-blue-600 hover:text-blue-800 text-sm font-medium">Voir détails</button>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Animal Card 4 -->
-                            <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 transition transform hover:shadow-md hover:-translate-y-1">
-                                <div class="relative">
-                                    <img src="/api/placeholder/400/250" alt="Animal signalé" class="w-full h-48 object-cover">
-                                    <div class="absolute top-3 right-3 bg-blue-500 text-white text-xs px-2 py-1 rounded-full">Il y a 2j</div>
-                                </div>
-                                <div class="p-4">
-                                    <div class="flex justify-between items-start mb-2">
-                                        <h3 class="font-semibold text-gray-800">Chien sans collier</h3>
-                                        <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Pris en charge</span>
-                                    </div>
-                                    <p class="text-sm text-gray-600 mb-3">Chien de taille moyenne, amical mais semblant perdu.</p>
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-sm"><i class="fas fa-map-marker-alt text-gray-500 mr-1"></i> Nanterre</span>
-                                        <button class="text-blue-600 hover:text-blue-800 text-sm font-medium">Voir détails</button>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Animal Card 5 (only on larger screens) -->
-                            <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 transition transform hover:shadow-md hover:-translate-y-1">
-                                <div class="relative">
-                                    <img src="/api/placeholder/400/250" alt="Animal signalé" class="w-full h-48 object-cover">
-                                    <div class="absolute top-3 right-3 bg-blue-500 text-white text-xs px-2 py-1 rounded-full">Il y a 3j</div>
-                                </div>
-                                <div class="p-4">
-                                    <div class="flex justify-between items-start mb-2">
-                                        <h3 class="font-semibold text-gray-800">Lapins abandonnés</h3>
-                                        <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Pris en charge</span>
-                                    </div>
-                                    <p class="text-sm text-gray-600 mb-3">Deux lapins abandonnés dans une boîte près d'une école.</p>
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-sm"><i class="fas fa-map-marker-alt text-gray-500 mr-1"></i> Lyon 3e</span>
-                                        <button class="text-blue-600 hover:text-blue-800 text-sm font-medium">Voir détails</button>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Animal Card 6 (only on larger screens) -->
-                            <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 transition transform hover:shadow-md hover:-translate-y-1">
-                                <div class="relative">
-                                    <img src="/api/placeholder/400/250" alt="Animal signalé" class="w-full h-48 object-cover">
-                                    <div class="absolute top-3 right-3 bg-blue-500 text-white text-xs px-2 py-1 rounded-full">Il y a 3j</div>
-                                </div>
-                                <div class="p-4">
-                                    <div class="flex justify-between items-start mb-2">
-                                        <h3 class="font-semibold text-gray-800">Chatte et chatons</h3>
-                                        <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">En cours</span>
-                                    </div>
-                                    <p class="text-sm text-gray-600 mb-3">Chatte avec trois chatons trouvés dans un hangar abandonné.</p>
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-sm"><i class="fas fa-map-marker-alt text-gray-500 mr-1"></i> Marseille</span>
-                                        <button class="text-blue-600 hover:text-blue-800 text-sm font-medium">Voir détails</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="px-6 py-4 border-t border-gray-200 text-center">
-                            <a href="#" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium">
-                                Voir tous les signalements
-                                <i class="fas fa-chevron-right ml-2 text-xs"></i>
-                            </a>
-                        </div>
+<div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+    <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+        <h2 class="text-lg font-bold text-gray-800">Recently reported animals</h2>
+        <div class="flex space-x-2">
+            <button class="py-1 px-3 text-sm rounded-md bg-blue-100 text-blue-700 hover:bg-blue-200">All</button>
+            <button class="py-1 px-3 text-sm rounded-md text-gray-700 hover:bg-gray-100">Urgent</button>
+            <button class="py-1 px-3 text-sm rounded-md text-gray-700 hover:bg-gray-100">Pending</button>
+        </div>
+    </div>
+    
+    <div class="p-6 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+        @forelse ($reports as $report)
+            {{-- Animal Card --}}
+            <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 transition transform hover:shadow-md hover:-translate-y-1">
+                <div class="relative">
+                    <img src="{{ asset('storage/' . $report->photo) }}" alt="Reported animal" class="w-full h-48 object-cover">
+                    @if($report->status == 'urgent')
+                        <div class="absolute top-3 left-3 bg-red-500 text-white text-xs px-2 py-1 rounded-full">Urgent</div>
+                    @endif
+                    <div class="absolute top-3 right-3 bg-blue-500 text-white text-xs px-2 py-1 rounded-full">{{ \Carbon\Carbon::parse($report->reportDate)->diffForHumans() }}</div>
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="font-semibold text-gray-800">Reported Animal</h3>
+                        <span class="bg-{{ $report->status == 'pending' ? 'yellow' : ($report->status == 'processed' ? 'green' : 'blue') }}-100 
+                              text-{{ $report->status == 'pending' ? 'yellow' : ($report->status == 'processed' ? 'green' : 'blue') }}-800 
+                              text-xs px-2 py-1 rounded-full">
+                            {{ ucfirst($report->status) }}
+                        </span>
                     </div>
+                    <p class="text-sm text-gray-600 mb-3">{{ Str::limit($report->description, 100) }}</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm"><i class="fas fa-map-marker-alt text-gray-500 mr-1"></i> {{ $report->location }}</span>
+                        <a href="" class="text-blue-600 hover:text-blue-800 text-sm font-medium">View details</a>
+                    </div>
+                </div>
+            </div>
+        @empty
+            <div class="col-span-full p-6 text-center">
+                <div class="inline-flex items-center justify-center bg-gray-100 rounded-full p-6 mb-4">
+                    <i class="fas fa-paw text-gray-400 text-4xl"></i>
+                </div>
+                <h3 class="text-lg font-medium text-gray-800 mb-2">No reported animals yet</h3>
+                <p class="text-gray-600 mb-4">There are currently no reported animals in the system.</p>
+                <a href="" class="inline-flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                    <i class="fas fa-plus mr-2"></i>
+                    Report an animal
+                </a>
+            </div>
+        @endforelse
+    </div>
+    
+    <div class="px-6 py-4 border-t border-gray-200 text-center">
+        <a href="" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium">
+            View all reports
+            <i class="fas fa-chevron-right ml-2 text-xs"></i>
+        </a>
+    </div>
+</div>
 
-                    <!-- Available for Adoption -->
-                    <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
-                        <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
-                            <h2 class="text-lg font-bold text-gray-800">Disponibles à l'adoption</h2>
-                            <div class="flex items-center">
-                                <button class="p-1 rounded text-gray-700 hover:bg-gray-100 mr-2">
-                                    <i class="fas fa-filter"></i>
-                                </button>
-                                <a href="#" class="text-blue-600 hover:text-blue-800 text-sm font-medium">Voir tous</a>
+<div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+    <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+        <h2 class="text-lg font-bold text-gray-800">Available for adoption</h2>
+        <div class="flex items-center">
+            <button class="p-1 rounded text-gray-700 hover:bg-gray-100 mr-2">
+                <i class="fas fa-filter"></i>
+            </button>
+            <a href="" class="text-blue-600 hover:text-blue-800 text-sm font-medium">View all</a>
+        </div>
+    </div>
+    
+    <div class="p-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            @forelse ($readyAnimals as $animal)
+                {{-- Adoption Card --}}
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 group transition transform hover:shadow-md hover:-translate-y-1">
+                    <div class="relative">
+                        <!-- <img src="{{ asset('storage/' . $animal->photoAnimal) }}" alt="Animal for adoption" class="w-full h-48 object-cover"> -->
+                        <div class="absolute top-3 right-3 bg-green-500 text-white text-xs px-2 py-1 rounded-full">Available</div>
+                        <button class="absolute top-3 left-3 bg-white rounded-full p-2 text-red-500 shadow hover:bg-red-500 hover:text-white transition">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-semibold text-gray-800">{{ $animal->name }}</h3>
+                            <div class="flex space-x-1">
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-gray-300"></i>
                             </div>
                         </div>
-                        
-                        <div class="p-6">
-                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                                <!-- Adoption Card 1 -->
-                                <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 group transition transform hover:shadow-md hover:-translate-y-1">
-                                    <div class="relative">
-                                        <img src="/api/placeholder/400/250" alt="Animal à adopter" class="w-full h-48 object-cover">
-                                        <div class="absolute top-3 right-3 bg-green-500 text-white text-xs px-2 py-1 rounded-full">Disponible</div>
-                                        <button class="absolute top-3 left-3 bg-white rounded-full p-2 text-red-500 shadow hover:bg-red-500 hover:text-white transition">
-                                            <i class="far fa-heart"></i>
-                                        </button>
-                                    </div>
-                                    <div class="p-4">
-                                        <div class="flex justify-between items-start mb-2">
-                                            <h3 class="font-semibold text-gray-800">Léo</h3>
-                                            <div class="flex space-x-1">
-                                                <i class="fas fa-star text-yellow-400"></i>
-                                                <i class="fas fa-star text-yellow-400"></i>
-                                                <i class="fas fa-star text-yellow-400"></i>
-                                                <i class="fas fa-star text-yellow-400"></i>
-                                                <i class="fas fa-star text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                        <div class="flex space-x-2 mb-2 text-xs">
-                                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Chien</span>
-                                            <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full">2 ans</span>
-                                            <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full">Sociable</span>
-                                        </div>
-                                        <p class="text-sm text-gray-600 mb-3">Très affectueux et joueur, s'entend bien avec les enfants.</p>
-                                        <div class="flex justify-between items-center">
-                                            <span class="text-sm"><i class="fas fa-map-marker-alt text-gray-500 mr-1"></i> Paris</span>
-                                            <button class="bg-blue-600 hover:bg-blue-700 text-white py-1.5 px-3 rounded-lg text-sm transition-colors">
-                                                Voir sa fiche
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Adoption Card 2 -->
-                                <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 group transition transform hover:shadow-md hover:-translate-y-1">
-                                    <div class="relative">
-                                        <img src="/api/placeholder/400/250" alt="Animal à adopter" class="w-full h-48 object-cover">
-                                        <div class="absolute top-3 right-3 bg-green-500 text-white text-xs px-2 py-1 rounded-full">Disponible</div>
-                                        <button class="absolute top-3 left-3 bg-white rounded-full p-2 text-red-500 shadow hover:bg-red-500 hover:text-white transition">
-                                            <i class="far fa-heart"></i>
-                                        </button>
-                                    </div>
-                                    <div class="p-4">
-                                        <div class="flex justify-between items-start mb-2">
-                                            <h3 class="font-semibold text-gray-800">Mina</h3>
-                                            <div class="flex space-x-1">
-                                                <i class="fas fa-star text-yellow-400"></i>
-                                                <i class="fas fa-star text-yellow-400"></i>
-                                                <i class="fas fa-star text-yellow-400"></i>
-                                                <i class="fas fa-star text-yellow-400"></i>
-                                                <i class="fas fa-star-half-alt text-yellow-400"></i>
-                                            </div>
-                                        </div>
-                                        <div class="flex space-x-2 mb-2 text-xs">
-                                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Chat</span>
-                                            <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full">1 an</span>
-                                            <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">Calme</span>
-                                        </div>
-                                        <p class="text-sm text-gray-600 mb-3">Calme et indépendante, aime se faire caresser.</p>
-                                        <div class="flex justify-between items-center">
-                                            <span class="text-sm"><i class="fas fa-map-marker-alt text-gray-500 mr-1"></i> Lyon</span>
-                                            <button class="bg-blue-600 hover:bg-blue-700 text-white py-1.5 px-3 rounded-lg text-sm transition-colors">
-                                                Voir sa fiche
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Adoption Card 3 -->
-                                <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 group transition transform hover:shadow-md hover:-translate-y-1">
-                                    <div class="relative">
-                                        <img src="/api/placeholder/400/250" alt="Animal à adopter" class="w-full h-48 object-cover">
-                                        <div class="absolute top-3 right-3 bg-green-500 text-white text-xs px-2 py-1 rounded-full">Disponible</div>
-                                        <button class="absolute top-3 left-3 bg-white rounded-full p-2 text-red-500 shadow hover:bg-red-500 hover:text-white transition">
-                                            <i class="far fa-heart"></i>
-                                        </button>
-                                    </div>
-                                    <div class="p-4">
-                                        <div class="flex justify-between items-start mb-2">
-                                            <h3 class="font-semibold text-gray-800">Max</h3>
-                                            <div class="flex space-x-1">
-                                                <i class="fas fa-star text-yellow-400"></i>
-                                                <i class="fas fa-star text-yellow-400"></i>
-                                                <i class="fas fa-star text-yellow-400"></i>
-                                                <i class="fas fa-star text-yellow-400"></i>
-                                                <i class="fas fa-star text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                        <div class="flex space-x-2 mb-2 text-xs">
-                                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Chien</span>
-                                            <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full">4 ans</span>
-                                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full">Énergique</span>
-                                        </div>
-                                        <p class="text-sm text-gray-600 mb-3">Énergique et très sociable avec les autres animaux.</p>
-                                        <div class="flex justify-between items-center">
-                                            <span class="text-sm"><i class="fas fa-map-marker-alt text-gray-500 mr-1"></i> Marseille</span>
-                                            <button class="bg-blue-600 hover:bg-blue-700 text-white py-1.5 px-3 rounded-lg text-sm transition-colors">
-                                                Voir sa fiche
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="flex space-x-2 mb-2 text-xs">
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full">{{ $animal->species }}</span>
+                            <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full">{{ $animal->age }} years</span>
+                            <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full">{{ $animal->breed }}</span>
                         </div>
-                        
-                        <div class="px-6 py-4 border-t border-gray-200 text-center">
-                            <a href="#" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium">
-                                Voir tous les animaux à l'adoption
-                                <i class="fas fa-chevron-right ml-2 text-xs"></i>
+                        <p class="text-sm text-gray-600 mb-3">{{ $animal->shelters ? $animal->shelters->description ?? 'Very affectionate and playful animal' : 'Very affectionate and playful animal' }}</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm">
+                                <i class="fas fa-map-marker-alt text-gray-500 mr-1"></i> 
+                                {{ $animal->shelters ? $animal->shelters->location ?? 'Unknown' : 'Unknown' }}
+                            </span>
+                            <a href="" class="bg-blue-600 hover:bg-blue-700 text-white py-1.5 px-3 rounded-lg text-sm transition-colors">
+                                View profile
                             </a>
                         </div>
                     </div>
+                </div>
+            @empty
+                <div class="col-span-full p-6 text-center">
+                    <div class="inline-flex items-center justify-center bg-gray-100 rounded-full p-6 mb-4">
+                        <i class="fas fa-home text-gray-400 text-4xl"></i>
+                    </div>
+                    <h3 class="text-lg font-medium text-gray-800 mb-2">No animals available for adoption</h3>
+                    <p class="text-gray-600 mb-4">Check back soon for more animals needing forever homes.</p>
+                    <a href="" class="inline-flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                        <i class="fas fa-bell mr-2"></i>
+                        Get notified
+                    </a>
+                </div>
+            @endforelse
+        </div>
+    </div>
+    
+    <div class="px-6 py-4 border-t border-gray-200 text-center">
+    </div>
+</div>
                 </div>
 
                 <!-- Right Column - Sidebar -->

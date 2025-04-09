@@ -3,7 +3,9 @@
 namespace App\Models;
 
 use App\Models\Reports;
+use App\Models\Messages;
 use App\Models\Shelters;
+use App\Models\Adoptions;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -56,6 +58,33 @@ class User extends Authenticatable
     }
     public function shelter()
     {
-        return $this->hasOne(Shelters::class); // A user has one shelter (if that's the case)
+        return $this->hasOne(Shelters::class); 
+    }
+
+
+    public function sentMessages()
+    {
+        return $this->hasMany(Messages::class, 'sender_id');
+    }
+
+    public function receivedMessages()
+    {
+        return $this->hasMany(Messages::class, 'receiver_id');
+    }
+
+
+    public function adoptions()
+    {
+        return $this->hasMany(Adoptions::class, 'adopterId');
+    }
+
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'followers', 'followed_id', 'follower_id');
+    }
+
+    public function followedUsers()
+    {
+        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'followed_id');
     }
 }

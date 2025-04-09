@@ -34,5 +34,6 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanc
 
 
 Route::prefix('user')->middleware(['auth', 'user.role'])->name('user.')->group(function () {
-    Route::get('/HomeUser', [UsersController::class, 'index'])->name('HomeUser');
+    Route::get('/HomeUser', [UsersController::class, 'indexHome'])->name('HomeUser');
+    Route::get('/Profile', [UsersController::class, 'indexProfile'])->name('Profile');
 }); 

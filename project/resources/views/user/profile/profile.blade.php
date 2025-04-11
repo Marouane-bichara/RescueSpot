@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>RescueSpot - Profile</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -264,7 +265,7 @@
             <!-- Background Image -->
             <div id="background-photo" 
          class="h-64 md:h-80 bg-cover bg-center relative" 
-         style="background-image: url('{{ $userinfo->backgroundPhoto ? asset('storage/' . $userinfo->backgroundPhoto) : asset('images/backgrounddesfaultimage.jpg') }}');">
+         style="background-image: url('{{ $userinfo->backgroundProfile ? asset('storage/' . $userinfo->backgroundProfile) : asset('images/backgrounddesfaultimage.jpg') }}');">
     </div>
 
     <!-- Change Background Photo Button -->
@@ -377,10 +378,10 @@
                                         <div class="flex">
                                             <span class="w-32 text-gray-500"><i class="fas fa-heart mr-2"></i>Status:</span>
                                                 <span id="profile-relationship" class="text-gray-700">
-                                                    @if ($userinfo->relationship == null)
+                                                    @if ($userinfo->relationship_status == null)
                                                         Not specified
                                                     @else
-                                                        {{ $userinfo->relationship }}
+                                                        {{ $userinfo->relationship_status }}
                                                     @endif
                                                 </span>
                                         </div>
@@ -509,114 +510,165 @@
                         </div>
                         
                         <!-- Profile Edit Form -->
-                        <div id="profile-edit-section" class="hidden">
-                            <div class="flex justify-between items-center mb-4">
-                                <h2 class="text-2xl font-bold text-gray-800">Edit Profile</h2>
-                                <div class="flex space-x-2">
-                                    <button id="cancel-edit-btn" class="bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 px-4 rounded-lg shadow-sm flex items-center transition">
-                                        <i class="fas fa-times mr-2"></i>
-                                        Cancel
-                                    </button>
-                                    <button id="save-profile-btn" class="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white py-2 px-4 rounded-lg shadow-md flex items-center transition">
-                                        <i class="fas fa-save mr-2"></i>
-                                        Save Changes
-                                    </button>
-                                </div>
-                            </div>
-                            
-                            <form id="edit-profile-form" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <h3 class="text-lg font-semibold text-gray-700 mb-3">Personal Information</h3>
-                                    
-                                    <div class="mb-4">
-                                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-                                        <input type="text" id="name" name="name" value="Jane Doe" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                    </div>
-                                    
-                                    <div class="mb-4">
-                                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                                        <input type="email" id="email" name="email" value="jane.doe@example.com" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" disabled>
-                                        <p class="text-xs text-gray-500 mt-1">Email cannot be changed</p>
-                                    </div>
-                                    
-                                    <div class="mb-4">
-                                        <label for="birthday" class="block text-sm font-medium text-gray-700 mb-1">Birthday</label>
-                                        <input type="date" id="birthday" name="birthday" value="1990-01-15" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                    </div>
-                                    
-                                    <div class="mb-4">
-                                        <label for="relationship_status" class="block text-sm font-medium text-gray-700 mb-1">Relationship Status</label>
-                                        <select id="relationship_status" name="relationship_status" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                            <option value="Single">Single</option>
-                                            <option value="In a Relationship">In a Relationship</option>
-                                            <option value="Married">Married</option>
-                                            <option value="Prefer not to say">Prefer not to say</option>
-                                        </select>
-                                    </div>
-                                    
-                                    <div class="mb-4">
-                                        <label for="bio" class="block text-sm font-medium text-gray-700 mb-1">Bio</label>
-                                        <textarea id="bio" name="bio" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">Animal lover and passionate about animal rescue. I've been a volunteer at local shelters for over 5 years and have adopted 3 rescues of my own.</textarea>
-                                    </div>
-                                </div>
-                                
-                                <div>
-                                    <h3 class="text-lg font-semibold text-gray-700 mb-3">Contact Information</h3>
-                                    
-                                    <div class="mb-4">
-                                        <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
-                                        <input type="tel" id="phone" name="phone" value="(123) 456-7890" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                    </div>
-                                    
-                                    <div class="mb-4">
-                                        <label for="address" class="block text-sm font-medium text-gray-700 mb-1">Address</label>
-                                        <input type="text" id="address" name="address" value="123 Rescue Street" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                    </div>
-                                    
-                                    <div class="mb-4">
-                                        <label for="city" class="block text-sm font-medium text-gray-700 mb-1">City</label>
-                                        <input type="text" id="city" name="city" value="Animal City" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                    </div>
-                                    
-                                    <div class="mb-4">
-                                        <label for="country" class="block text-sm font-medium text-gray-700 mb-1">Country</label>
-                                        <input type="text" id="country" name="country" value="United States" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                    </div>
-                                    
-                                    <h3 class="text-lg font-semibold text-gray-700 mt-6 mb-3">Social Media Links</h3>
-                                    
-                                    <div class="grid grid-cols-2 gap-4">
-                                        <div class="mb-4">
-                                            <label for="facebook" class="block text-sm font-medium text-gray-700 mb-1">
-                                                <i class="fab fa-facebook-f text-blue-600 mr-2"></i>Facebook
-                                            </label>
-                                            <input type="url" id="facebook" name="facebook" placeholder="Facebook profile URL" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                        </div>
-                                        
-                                        <div class="mb-4">
-                                            <label for="twitter" class="block text-sm font-medium text-gray-700 mb-1">
-                                                <i class="fab fa-twitter text-blue-400 mr-2"></i>Twitter
-                                            </label>
-                                            <input type="url" id="twitter" name="twitter" placeholder="Twitter profile URL" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                        </div>
-                                        
-                                        <div class="mb-4">
-                                            <label for="instagram" class="block text-sm font-medium text-gray-700 mb-1">
-                                                <i class="fab fa-instagram text-pink-600 mr-2"></i>Instagram
-                                            </label>
-                                            <input type="url" id="instagram" name="instagram" placeholder="Instagram profile URL" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                        </div>
-                                        
-                                        <div class="mb-4">
-                                            <label for="linkedin" class="block text-sm font-medium text-gray-700 mb-1">
-                                                <i class="fab fa-linkedin-in text-blue-700 mr-2"></i>LinkedIn
-                                            </label>
-                                            <input type="url" id="linkedin" name="linkedin" placeholder="LinkedIn profile URL" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
+<div id="profile-edit-section" class="hidden">
+    <div class="flex justify-between items-center mb-4">
+        <h2 class="text-2xl font-bold text-gray-800">Edit Profile</h2>
+        <div class="flex space-x-2">
+            <button id="cancel-edit-btn" class="bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 px-4 rounded-lg shadow-sm flex items-center transition">
+                <i class="fas fa-times mr-2"></i>
+                Cancel
+            </button>
+            <button id="save-profile-btn" type="submit" form="edit-profile-form" class="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white py-2 px-4 rounded-lg shadow-md flex items-center transition">
+                <i class="fas fa-save mr-2"></i>
+                Save Changes
+            </button>
+        </div>
+    </div>
+    
+    <form id="edit-profile-form" action="{{ route('user.editProfile') }}" method="POST" enctype="multipart/form-data" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        @csrf
+        <div>
+            <h3 class="text-lg font-semibold text-gray-700 mb-3">Profile Images</h3>
+            
+            <!-- Profile Photo Upload -->
+            <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Profile Photo</label>
+                <div class="flex items-center space-x-4">
+                    <div class="relative group h-24 w-24">
+                        <img id="profile-photo-preview" 
+                             src="{{ $userinfo->profilePhoto ? asset('storage/' . $userinfo->profilePhoto) : asset('images/defaultImageProfile.jpg') }}" 
+                             alt="Profile Photo" 
+                             class="h-24 w-24 rounded-full border-2 border-gray-300 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <label for="profile_photo" class="cursor-pointer text-white p-2">
+                                <i class="fas fa-camera text-xl"></i>
+                            </label>
                         </div>
+                    </div>
+                    <div>
+                        <input type="file" id="profile_photo" name="profilePhoto" class="hidden" accept="image/*" onchange="previewProfilePhoto(this)">
+                        <label for="profilePhoto" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg shadow-sm text-sm cursor-pointer inline-block">
+                            <i class="fas fa-upload mr-1"></i> Choose Photo
+                        </label>
+                        <p class="text-xs text-gray-500 mt-1">JPG, PNG or GIF (Max. 2MB)</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Background Photo Upload -->
+            <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Background Image</label>
+                <div class="relative bg-gray-100 rounded-lg overflow-hidden h-32 mb-2">
+                    <img id="background-photo-preview" 
+                         src="{{ $userinfo->backgroundProfile ? asset('storage/' . $userinfo->backgroundProfile) : asset('images/backgrounddesfaultimage.jpg') }}" 
+                         alt="Background" 
+                         class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                        <label for="background_photo" class="cursor-pointer text-white p-2">
+                            <i class="fas fa-camera text-2xl"></i>
+                        </label>
+                    </div>
+                </div>
+                <div>
+                    <input type="file" id="background_photo" name="backgroundProfile" class="hidden" accept="image/*" onchange="previewBackgroundPhoto(this)">
+                    <label for="backgroundProfile" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg shadow-sm text-sm cursor-pointer inline-block">
+                        <i class="fas fa-upload mr-1"></i> Choose Background
+                    </label>
+                    <p class="text-xs text-gray-500 mt-1">JPG, PNG or GIF (Max. 2MB)</p>
+                </div>
+            </div>
+
+            <h3 class="text-lg font-semibold text-gray-700 mb-3">Personal Information</h3>
+            
+            <div class="mb-4">
+                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                <input type="text" id="name" name="name" value="{{ $userinfo->name }}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            
+            <div class="mb-4">
+                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                <input type="email" id="email" name="email" value="{{ $userinfo->email }}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-100" readonly disabled>
+                <p class="text-xs text-gray-500 mt-1">Email cannot be changed</p>
+            </div>
+            
+            <div class="mb-4">
+                <label for="birthday" class="block text-sm font-medium text-gray-700 mb-1">Birthday</label>
+                <input type="date" id="birthday" name="birthday" value="{{ $userinfo->birthday }}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            
+            <div class="mb-4">
+                <label for="relationship" class="block text-sm font-medium text-gray-700 mb-1">Relationship Status</label>
+                <select id="relationship" name="relationship_status" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="Single" {{ $userinfo->relationship == 'Single' ? 'selected' : '' }}>Single</option>
+                    <option value="In a Relationship" {{ $userinfo->relationship == 'In a Relationship' ? 'selected' : '' }}>In a Relationship</option>
+                    <option value="Married" {{ $userinfo->relationship == 'Married' ? 'selected' : '' }}>Married</option>
+                    <option value="Prefer not to say" {{ $userinfo->relationship == 'Prefer not to say' ? 'selected' : '' }}>Prefer not to say</option>
+                </select>
+            </div>
+            
+            <div class="mb-4">
+                <label for="bio" class="block text-sm font-medium text-gray-700 mb-1">Bio</label>
+                <textarea id="bio" name="bio" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">{{ $userinfo->bio }}</textarea>
+            </div>
+        </div>
+        
+        <div>
+            <h3 class="text-lg font-semibold text-gray-700 mb-3">Contact Information</h3>
+            
+            <div class="mb-4">
+                <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                <input type="tel" id="phone" name="phone" value="{{ $userinfo->phone }}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            
+            <div class="mb-4">
+                <label for="address" class="block text-sm font-medium text-gray-700 mb-1">Address</label>
+                <input type="text" id="address" name="address" value="{{ $userinfo->address }}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            
+            <div class="mb-4">
+                <label for="city" class="block text-sm font-medium text-gray-700 mb-1">City</label>
+                <input type="text" id="city" name="city" value="{{ $userinfo->city }}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            
+            <div class="mb-4">
+                <label for="country" class="block text-sm font-medium text-gray-700 mb-1">Country</label>
+                <input type="text" id="country" name="country" value="{{ $userinfo->country }}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            
+            <h3 class="text-lg font-semibold text-gray-700 mt-6 mb-3">Social Media Links</h3>
+            
+            <div class="grid grid-cols-2 gap-4">
+                <div class="mb-4">
+                    <label for="facebook" class="block text-sm font-medium text-gray-700 mb-1">
+                        <i class="fab fa-facebook-f text-blue-600 mr-2"></i>Facebook
+                    </label>
+                    <input type="url" id="facebook" name="facebook" value="{{ $userinfo->facebook }}" placeholder="Facebook profile URL" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                
+                <div class="mb-4">
+                    <label for="twitter" class="block text-sm font-medium text-gray-700 mb-1">
+                        <i class="fab fa-twitter text-blue-400 mr-2"></i>Twitter
+                    </label>
+                    <input type="url" id="twitter" name="twitter" value="{{ $userinfo->twitter }}" placeholder="Twitter profile URL" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                
+                <div class="mb-4">
+                    <label for="instagram" class="block text-sm font-medium text-gray-700 mb-1">
+                        <i class="fab fa-instagram text-pink-600 mr-2"></i>Instagram
+                    </label>
+                    <input type="url" id="instagram" name="instagram" value="{{ $userinfo->instagram }}" placeholder="Instagram profile URL" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                
+                <div class="mb-4">
+                    <label for="linkedin" class="block text-sm font-medium text-gray-700 mb-1">
+                        <i class="fab fa-linkedin-in text-blue-700 mr-2"></i>LinkedIn
+                    </label>
+                    <input type="url" id="linkedin" name="linkedin" value="{{ $userinfo->linkedin }}" placeholder="LinkedIn profile URL" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
                     </div>
                     
                     <!-- Reports Tab Content -->
@@ -625,62 +677,35 @@
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             <!-- Example Report Card 1 -->
-                            <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 transition transform hover:shadow-md hover:-translate-y-1">
-                                <div class="relative">
-                                    <img src="/api/placeholder/400/250" alt="Reported animal" class="w-full h-48 object-cover">
-                                    <div class="absolute top-3 left-3 bg-red-500 text-white text-xs px-2 py-1 rounded-full">Urgent</div>
-                                    <div class="absolute top-3 right-3 bg-blue-500 text-white text-xs px-2 py-1 rounded-full">2 days ago</div>
-                                </div>
-                                <div class="p-4">
-                                    <div class="flex justify-between items-start mb-2">
-                                        <h3 class="font-semibold text-gray-800">Injured Stray Cat</h3>
-                                        <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">Pending</span>
-                                    </div>
-                                    <p class="text-sm text-gray-600 mb-3">Found a stray cat with an injured paw near Central Park. Needs medical attention.</p>
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-sm"><i class="fas fa-map-marker-alt text-gray-500 mr-1"></i> Central Park, NYC</span>
-                                        <a href="#" class="text-blue-600 hover:text-blue-800 text-sm font-medium">View details</a>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Example Report Card 2 -->
-                            <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 transition transform hover:shadow-md hover:-translate-y-1">
-                                <div class="relative">
-                                    <img src="/api/placeholder/400/250" alt="Reported animal" class="w-full h-48 object-cover">
-                                    <div class="absolute top-3 right-3 bg-blue-500 text-white text-xs px-2 py-1 rounded-full">1 week ago</div>
-                                </div>
-                                <div class="p-4">
-                                    <div class="flex justify-between items-start mb-2">
-                                        <h3 class="font-semibold text-gray-800">Abandoned Puppies</h3>
-                                        <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Processed</span>
-                                    </div>
-                                    <p class="text-sm text-gray-600 mb-3">Found 3 puppies abandoned in a box behind the supermarket. They look healthy but scared.</p>
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-sm"><i class="fas fa-map-marker-alt text-gray-500 mr-1"></i> Main St, Boston</span>
-                                        <a href="#" class="text-blue-600 hover:text-blue-800 text-sm font-medium">View details</a>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Example Report Card 3 -->
-                            <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 transition transform hover:shadow-md hover:-translate-y-1">
-                                <div class="relative">
-                                    <img src="/api/placeholder/400/250" alt="Reported animal" class="w-full h-48 object-cover">
-                                    <div class="absolute top-3 right-3 bg-blue-500 text-white text-xs px-2 py-1 rounded-full">2 weeks ago</div>
-                                </div>
-                                <div class="p-4">
-                                    <div class="flex justify-between items-start mb-2">
-                                        <h3 class="font-semibold text-gray-800">Lost Golden Retriever</h3>
-                                        <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">Resolved</span>
-                                    </div>
-                                    <p class="text-sm text-gray-600 mb-3">Found a friendly golden retriever with a blue collar but no tag. Well-behaved and seems to be someone's pet.</p>
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-sm"><i class="fas fa-map-marker-alt text-gray-500 mr-1"></i> Oak Park, Chicago</span>
-                                        <a href="#" class="text-blue-600 hover:text-blue-800 text-sm font-medium">View details</a>
-                                    </div>
-                                </div>
-                            </div>
+                            <div>
+    @if ($reportsCount > 0)
+        <!-- Loop through the reports and display each one -->
+        @foreach ($reportsUser as $report)
+            <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 transition transform hover:shadow-md hover:-translate-y-1">
+                <div class="relative">
+                    <img src="{{ $report->image ? asset('storage/' . $report->image) : '/api/placeholder/400/250' }}" alt="Reported animal" class="w-full h-48 object-cover">
+                    <div class="absolute top-3 left-3 bg-red-500 text-white text-xs px-2 py-1 rounded-full">Urgent</div>
+                    <div class="absolute top-3 right-3 bg-blue-500 text-white text-xs px-2 py-1 rounded-full">{{ $report->created_at->diffForHumans() }}</div>
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="font-semibold text-gray-800">{{ $report->title }}</h3>
+                        <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">{{ $report->status }}</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-3">{{ $report->description }}</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm"><i class="fas fa-map-marker-alt text-gray-500 mr-1"></i> {{ $report->location }}</span>
+                        <a href="#" class="text-blue-600 hover:text-blue-800 text-sm font-medium">View details</a>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    @else
+        <!-- Display message if there are no reports -->
+        <p class="text-gray-500 text-center">You haven't reported any animals yet.</p>
+    @endif
+</div>
+
                         </div>
                         
                         <div class="mt-6 text-center">
@@ -697,94 +722,43 @@
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             <!-- Example Adoption Card 1 -->
-                            <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 transition transform hover:shadow-md hover:-translate-y-1">
-                                <div class="relative">
-                                    <img src="/api/placeholder/400/250" alt="Adopted animal" class="w-full h-48 object-cover">
-                                    <div class="absolute top-3 right-3 bg-green-500 text-white text-xs px-2 py-1 rounded-full">Adopted</div>
-                                </div>
-                                <div class="p-4">
-                                    <div class="flex justify-between items-start mb-2">
-                                        <h3 class="font-semibold text-gray-800">Max</h3>
-                                        <div class="flex space-x-1">
-                                            <i class="fas fa-star text-yellow-400"></i>
-                                            <i class="fas fa-star text-yellow-400"></i>
-                                            <i class="fas fa-star text-yellow-400"></i>
-                                            <i class="fas fa-star text-yellow-400"></i>
-                                            <i class="fas fa-star text-yellow-400"></i>
-                                        </div>
-                                    </div>
-                                    <div class="flex space-x-2 mb-2 text-xs">
-                                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Dog</span>
-                                        <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full">3 years</span>
-                                        <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full">Golden Retriever</span>
-                                    </div>
-                                    <p class="text-sm text-gray-600 mb-3">Max is a very playful and friendly dog. He loves going on walks and playing fetch.</p>
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-sm text-gray-500">Adopted on: Jun 12, 2023</span>
-                                        <a href="#" class="text-blue-600 hover:text-blue-800 text-sm font-medium">View profile</a>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Example Adoption Card 2 -->
-                            <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 transition transform hover:shadow-md hover:-translate-y-1">
-                                <div class="relative">
-                                    <img src="/api/placeholder/400/250" alt="Adopted animal" class="w-full h-48 object-cover">
-                                    <div class="absolute top-3 right-3 bg-green-500 text-white text-xs px-2 py-1 rounded-full">Adopted</div>
-                                </div>
-                                <div class="p-4">
-                                    <div class="flex justify-between items-start mb-2">
-                                        <h3 class="font-semibold text-gray-800">Luna</h3>
-                                        <div class="flex space-x-1">
-                                            <i class="fas fa-star text-yellow-400"></i>
-                                            <i class="fas fa-star text-yellow-400"></i>
-                                            <i class="fas fa-star text-yellow-400"></i>
-                                            <i class="fas fa-star text-yellow-400"></i>
-                                            <i class="fas fa-star text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                    <div class="flex space-x-2 mb-2 text-xs">
-                                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Cat</span>
-                                        <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full">2 years</span>
-                                        <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full">Siamese</span>
-                                    </div>
-                                    <p class="text-sm text-gray-600 mb-3">Luna is a sweet and gentle cat. She enjoys lounging in sunny spots and playing with string toys.</p>
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-sm text-gray-500">Adopted on: Sep 3, 2023</span>
-                                        <a href="#" class="text-blue-600 hover:text-blue-800 text-sm font-medium">View profile</a>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Example Adoption Card 3 -->
-                            <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 transition transform hover:shadow-md hover:-translate-y-1">
-                                <div class="relative">
-                                    <img src="/api/placeholder/400/250" alt="Adopted animal" class="w-full h-48 object-cover">
-                                    <div class="absolute top-3 right-3 bg-green-500 text-white text-xs px-2 py-1 rounded-full">Adopted</div>
-                                </div>
-                                <div class="p-4">
-                                    <div class="flex justify-between items-start mb-2">
-                                        <h3 class="font-semibold text-gray-800">Charlie</h3>
-                                        <div class="flex space-x-1">
-                                            <i class="fas fa-star text-yellow-400"></i>
-                                            <i class="fas fa-star text-yellow-400"></i>
-                                            <i class="fas fa-star text-yellow-400"></i>
-                                            <i class="fas fa-star text-yellow-400"></i>
-                                            <i class="fas fa-star-half-alt text-yellow-400"></i>
-                                        </div>
-                                    </div>
-                                    <div class="flex space-x-2 mb-2 text-xs">
-                                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Rabbit</span>
-                                        <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full">1 year</span>
-                                        <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full">Holland Lop</span>
-                                    </div>
-                                    <p class="text-sm text-gray-600 mb-3">Charlie is an energetic and curious rabbit. He loves fresh vegetables and hopping around the house.</p>
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-sm text-gray-500">Adopted on: Jan 15, 2024</span>
-                                        <a href="#" class="text-blue-600 hover:text-blue-800 text-sm font-medium">View profile</a>
-                                    </div>
-                                </div>
-                            </div>
+                            <div>
+    @if ($adoptionCount > 0)
+        <!-- Loop through the adoptions and display each one -->
+        @foreach ($adoptionUser as $adoption)
+            <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 transition transform hover:shadow-md hover:-translate-y-1">
+                <div class="relative">
+                    <img src="{{ $adoption->animal_image ? asset('storage/' . $adoption->animal_image) : '/api/placeholder/400/250' }}" alt="Adopted animal" class="w-full h-48 object-cover">
+                    <div class="absolute top-3 right-3 bg-green-500 text-white text-xs px-2 py-1 rounded-full">Adopted</div>
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="font-semibold text-gray-800">{{ $adoption->animal_name }}</h3>
+                        <div class="flex space-x-1">
+                            @for ($i = 0; $i < 5; $i++)
+                                <i class="fas fa-star {{ $i < $adoption->rating ? 'text-yellow-400' : 'text-gray-300' }}"></i>
+                            @endfor
+                        </div>
+                    </div>
+                    <div class="flex space-x-2 mb-2 text-xs">
+                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full">{{ $adoption->animal_type }}</span>
+                        <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full">{{ $adoption->animal_age }} years</span>
+                        <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full">{{ $adoption->animal_breed }}</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-3">{{ $adoption->animal_description }}</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">Adopted on: {{ $adoption->adopted_at->format('M d, Y') }}</span>
+                        <a href="#" class="text-blue-600 hover:text-blue-800 text-sm font-medium">View profile</a>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    @else
+        <!-- Display message if there are no adoptions -->
+        <p class="text-gray-500 text-center">You haven't adopted any animals yet.</p>
+    @endif
+</div>
+
                         </div>
                         
                         <div class="mt-6 text-center">

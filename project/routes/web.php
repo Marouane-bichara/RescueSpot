@@ -1,11 +1,13 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\UsersController;
 use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\UserReportsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,11 +31,12 @@ Route::post('/register' , [AuthController::class , 'register'])->name('register'
 Route::post('/login' , [AuthController::class , 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
-// Route::get('/HomeUser', [UsersController::class, 'index'])->name('HomeUser')->middleware(['auth', 'user.role']);
 
 
 
 Route::prefix('user')->middleware(['auth', 'user.role'])->name('user.')->group(function () {
     Route::get('/HomeUser', [UsersController::class, 'indexHome'])->name('HomeUser');
-    Route::get('/Profile', [UsersController::class, 'indexProfile'])->name('Profile');
+    Route::get('/Profile', [UserProfileController::class, 'index'])->name('Profile');
+    Route::post('/editProfile', [UserProfileController::class, 'editProfileInfo'])->name('editProfile');
+    Route::get('/UserReports', [UserReportsController::class, 'indexReports'])->name('UserReports');
 }); 

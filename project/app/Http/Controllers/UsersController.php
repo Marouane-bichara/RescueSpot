@@ -47,23 +47,6 @@ class UsersController extends Controller
     }
 
 
-    public function indexProfile()
-    {
-
-        $user = auth()->user();
-        $userinfo = User::where('id', $user->id)->first();
-
-        $reportsCount = Reports::where('reporter_id', $user->id)->count();
-        $adoptionCount = Adoptions::where('adopterId', $user->id)->count();
-        $followersCount = Followers::where('followed_id', $user->id)->count();
-
-        return view('user.profile.profile' , compact('userinfo' , 'reportsCount', 'adoptionCount' , 'followersCount'));
-    }
 
 
-    public function indexProfileEdit()
-    {
-
-
-    }
 }

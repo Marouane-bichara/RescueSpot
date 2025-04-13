@@ -51,7 +51,7 @@
                 <div class="hidden md:flex items-center space-x-1">
                     <a href="HomeUser" class="px-3 py-2 rounded-md text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-600">Home</a>
                     <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Adoption</a>
-                    <a href="UserReports" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Reports</a>
+                    <a href="{{ route('user.UserReports.index') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Reports</a>
                     <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Messages</a>
                     <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Contact</a>
                 </div>
@@ -59,7 +59,7 @@
                 <!-- Right Side Menu -->
                 <div class="flex items-center space-x-4">
                     <button class="hidden md:block bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white py-2 px-4 rounded-lg shadow-md transition transform hover:scale-105">
-                        <i class="fas fa-plus mr-2"></i>Report an animal
+                        <a href="{{ route('user.UserReports.index') }}" class="text-white text-sm font-medium">Report an animal</a>
                     </button>
                     
                     <!-- Notifications -->
@@ -114,11 +114,12 @@
             <div class="px-2 pt-2 pb-3 space-y-1 bg-white shadow-md">
                 <a href="HomeUser" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-600">Home</a>
                 <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Adoption</a>
-                <a href="UserReports" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Reports</a>
+                <a href="{{ route('user.UserReports.index') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Reports</a>
                 <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Messages</a>
                 <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Contact</a>
                 <button class="mt-2 w-full flex justify-center items-center bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white py-2 px-4 rounded-lg shadow-md">
-                    <i class="fas fa-plus mr-2"></i>Report an animal
+                <a></a>    
+                <a href="{{ route('user.UserReports.index') }}" class="text-white text-sm font-medium">Report an animal</a>                    
                 </button>
             </div>
         </div>
@@ -176,7 +177,7 @@
                             <i class="fas fa-search mr-2"></i>
                             Find an animal
                         </a>
-                        <a href="#" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl text-base font-medium text-indigo-100 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-indigo-200/30 shadow-lg hover:shadow-xl transition duration-300 hover:-translate-y-1">
+                        <a href="{{ route('user.UserReports.index') }}" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl text-base font-medium text-indigo-100 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-indigo-200/30 shadow-lg hover:shadow-xl transition duration-300 hover:-translate-y-1">
                             <i class="fas fa-plus mr-2"></i>
                             Report
                         </a>

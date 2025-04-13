@@ -26,7 +26,7 @@ class UsersController extends Controller
 
         $conversations = Messages::where('sender_id', $user->id)
         ->orWhere('receiver_id', $user->id)
-        ->latest()  // Get the latest message first
+        ->latest()
         ->get()
         ->groupBy(function ($message) use ($user) {
             return $message->sender_id == $user->id ? $message->receiver_id : $message->sender_id;

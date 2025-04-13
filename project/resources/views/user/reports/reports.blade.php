@@ -162,7 +162,7 @@
                 <div class="hidden md:flex items-center space-x-1">
                     <a href="HomeUser" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Home</a>
                     <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Adoption</a>
-                    <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-white bg-gradient-to-r from-yellow-500 to-orange-500">Reports</a>
+                    <a href="{{ route('user.UserReports.index') }}" class="px-3 py-2 rounded-md text-sm font-medium text-white bg-gradient-to-r from-yellow-500 to-orange-500">Reports</a>
                     <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Messages</a>
                     <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Contact</a>
                 </div>
@@ -186,12 +186,12 @@
                         <div>
                             <button type="button" id="profile-btn" class="flex text-sm bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" aria-expanded="false" aria-haspopup="true">
                                 <img class="h-10 w-10 rounded-full object-cover border-2 border-blue-500" 
-                                     src="{{ asset('images/defaultImageProfile.jpg') }}" 
+                                     src="{{ $userInfo->profilePhoto ? asset('storage/' . $userInfo->profilePhoto) : asset('images/defaultImageProfile.jpg') }}" 
                                      alt="Profile">
                             </button>
                         </div>
                         <div id="profile-dropdown" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-                            <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
+                            <a href="Profile" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
                                 <i class="far fa-user mr-3 text-gray-500"></i> My profile
                             </a>
                             <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
@@ -223,7 +223,7 @@
             <div class="px-2 pt-2 pb-3 space-y-1 bg-white shadow-md">
                 <a href="HomeUser" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Home</a>
                 <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Adoption</a>
-                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gradient-to-r from-yellow-500 to-orange-500">Reports</a>
+                <a href="{{ route('user.UserReports.index') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gradient-to-r from-yellow-500 to-orange-500">Reports</a>
                 <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Messages</a>
                 <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Contact</a>
             </div>
@@ -243,10 +243,8 @@
                 <!-- Report Form -->
                 <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8">
                     <div class="p-6">
-                        <form id="report-form" action="" method="" enctype="multipart/form-data">
+                        <form id="report-form" action="{{ route('user.UserReports.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            <input type="hidden" name="reporter_id" value="{{ auth()->id() }}">
-                            <input type="hidden" name="status" value="Pending">
 
                             <!-- Animal Photo -->
                             <div class="mb-6">
@@ -308,6 +306,36 @@
                                 @error('description')
                                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                                 @enderror
+                            </div>
+
+
+                            <div class="mb-6">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">
+                                    <i class="fas fa-heartbeat mr-2 text-blue-500"></i>Animal Condition
+                                </label>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                    <label class="flex items-center bg-white border border-gray-300 rounded-lg p-3 cursor-pointer hover:bg-gray-50 transition">
+                                        <input type="radio" name="status" value="okay" class="mr-3 focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300" required>
+                                        <div class="flex items-center">
+                                            <i class="fas fa-smile text-green-500 mr-2"></i>
+                                            <span class="text-gray-700">Animal Appears Okay</span>
+                                        </div>
+                                    </label>
+                                    <label class="flex items-center bg-white border border-gray-300 rounded-lg p-3 cursor-pointer hover:bg-gray-50 transition">
+                                        <input type="radio" name="status" value="injured" class="mr-3 focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300">
+                                        <div class="flex items-center">
+                                            <i class="fas fa-band-aid text-yellow-500 mr-2"></i>
+                                            <span class="text-gray-700">Animal Appears Injured</span>
+                                        </div>
+                                    </label>
+                                    <label class="flex items-center bg-white border border-gray-300 rounded-lg p-3 cursor-pointer hover:bg-gray-50 transition">
+                                        <input type="radio" name="status" value="critical" class="mr-3 focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300">
+                                        <div class="flex items-center">
+                                            <i class="fas fa-exclamation-triangle text-red-500 mr-2"></i>
+                                            <span class="text-gray-700">Animal in Critical Condition</span>
+                                        </div>
+                                    </label>
+                                </div>
                             </div>
 
                             <!-- Submit Button -->

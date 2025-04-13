@@ -5,9 +5,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\UserProfileController;
-use App\Http\Controllers\UserReportsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +19,7 @@ use App\Http\Controllers\UserReportsController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+ 
 
 Route::get('/Home', [UserController::class, 'home'])->name('Home');
 
@@ -38,5 +38,7 @@ Route::prefix('user')->middleware(['auth', 'user.role'])->name('user.')->group(f
     Route::get('/HomeUser', [UsersController::class, 'indexHome'])->name('HomeUser');
     Route::get('/Profile', [UserProfileController::class, 'index'])->name('Profile');
     Route::post('/editProfile', [UserProfileController::class, 'editProfileInfo'])->name('editProfile');
-    Route::get('/UserReports', [UserReportsController::class, 'indexReports'])->name('UserReports');
+    // Route::post('/CreateReports', [ReportsController::class, 'addReport'])->name('CreateReports');
+    Route::resource('UserReports', ReportsController::class);
+
 }); 

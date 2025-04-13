@@ -672,49 +672,72 @@
                     </div>
                     
                     <!-- Reports Tab Content -->
-                    <div id="tab-reports" data-tab-content class="p-6 hidden">
-                        <h2 class="text-2xl font-bold text-gray-800 mb-4">My Reports</h2>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            <!-- Example Report Card 1 -->
-                            <div>
-    @if ($reportsCount > 0)
-        <!-- Loop through the reports and display each one -->
-        @foreach ($reportsUser as $report)
-            <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 transition transform hover:shadow-md hover:-translate-y-1">
-                <div class="relative">
-                    <img src="{{ $report->image ? asset('storage/' . $report->image) : '/api/placeholder/400/250' }}" alt="Reported animal" class="w-full h-48 object-cover">
-                    <div class="absolute top-3 left-3 bg-red-500 text-white text-xs px-2 py-1 rounded-full">Urgent</div>
-                    <div class="absolute top-3 right-3 bg-blue-500 text-white text-xs px-2 py-1 rounded-full">{{ $report->created_at->diffForHumans() }}</div>
-                </div>
-                <div class="p-4">
-                    <div class="flex justify-between items-start mb-2">
-                        <h3 class="font-semibold text-gray-800">{{ $report->title }}</h3>
-                        <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">{{ $report->status }}</span>
+         <div id="tab-reports" data-tab-content class="p-6 hidden">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">My Reports</h2>
+    
+    <div class="max-h-[70vh] overflow-y-auto pr-2">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            @if ($reportsCount > 0)
+                <!-- Loop through the reports and display each one -->
+                @foreach ($reportsUser as $report)
+                    <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 transition transform hover:shadow-md hover:-translate-y-1">
+                        <div class="relative">
+                            <img src="{{ $report->photo ? asset('storage/' . $report->photo) : '/api/placeholder/400/250' }}" alt="Reported animal" class="w-full h-48 object-cover">
+                            <div class="absolute top-3 left-3 
+                                @if($report->status == 'okay')
+                                    bg-green-500
+                                @elseif($report->status == 'injured')
+                                    bg-orange-500
+                                @elseif($report->status == 'critical')
+                                    bg-red-500
+                                @else
+                                    bg-gray-500
+                                @endif
+                                text-white text-xs px-2 py-1 rounded-full">
+                                {{$report->status}}
+                            </div>              
+                                          <div class="absolute top-3 right-3 bg-blue-500 text-white text-xs px-2 py-1 rounded-full">{{ $report->created_at->diffForHumans() }}</div>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-semibold text-gray-800">{{ $report->title }}</h3>
+                                <span class="text-xs px-2 py-1 rounded-full
+                                @if($report->status == 'okay')
+                                    bg-green-100 text-green-800
+                                @elseif($report->status == 'injured')
+                                    bg-orange-100 text-orange-800
+                                @elseif($report->status == 'critical')
+                                    bg-red-100 text-red-800
+                                @else
+                                    bg-gray-100 text-gray-800
+                                @endif
+                            ">{{ $report->status }}</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-3">{{ $report->description }}</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm"><i class="fas fa-map-marker-alt text-gray-500 mr-1"></i> {{ $report->location }}</span>
+                                <a href="#" class="text-blue-600 hover:text-blue-800 text-sm font-medium">View details</a>
+                            </div>
+                        </div>
                     </div>
-                    <p class="text-sm text-gray-600 mb-3">{{ $report->description }}</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm"><i class="fas fa-map-marker-alt text-gray-500 mr-1"></i> {{ $report->location }}</span>
-                        <a href="#" class="text-blue-600 hover:text-blue-800 text-sm font-medium">View details</a>
-                    </div>
+                @endforeach
+            @else
+                <!-- Display message if there are no reports -->
+                <div class="col-span-full">
+                    <p class="text-gray-500 text-center">You haven't reported any animals yet.</p>
                 </div>
-            </div>
-        @endforeach
-    @else
-        <!-- Display message if there are no reports -->
-        <p class="text-gray-500 text-center">You haven't reported any animals yet.</p>
-    @endif
+            @endif
+        </div>
+    </div>
+    
+    <div class="mt-6 text-center">
+        <button class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white py-2 px-6 rounded-lg shadow-md inline-flex items-center transition">
+            <i class="fas fa-plus mr-2"></i>
+            <a href="{{ route('user.UserReports.index') }}">Create New Report</a>
+            
+        </button>
+    </div>
 </div>
-
-                        </div>
-                        
-                        <div class="mt-6 text-center">
-                            <button class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white py-2 px-6 rounded-lg shadow-md inline-flex items-center transition">
-                                <i class="fas fa-plus mr-2"></i>
-                                Create New Report
-                            </button>
-                        </div>
-                    </div>
                     
                     <!-- Adoptions Tab Content -->
                     <div id="tab-adoptions" data-tab-content class="p-6 hidden">

@@ -17,7 +17,6 @@ class ProfileService
     }
 
 
-
     public function updateProfileInfo($credentials){
 
         $user = $this->profileRepository->updateProfileInfo($credentials);

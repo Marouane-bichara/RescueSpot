@@ -4,51 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RescueSpot - Find Your Forever Friend</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root {
-            --primary: #ff6b6b;
-            --primary-dark: #ff4757;
-            --secondary: #1dd1a1;
-            --dark: #2d3436;
-            --light: #f9f9f9;
-        }
-        
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--light);
-        }
-        
-        h1, h2, h3, h4, h5 {
-            font-family: 'Quicksand', sans-serif;
-        }
-        
-        .btn-primary {
-            background-color: var(--primary);
-            transition: all 0.3s ease-in-out;
-        }
-        
-        .btn-primary:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-1px);
-            box-shadow: 0 10px 15px -3px rgba(255, 107, 107, 0.4);
-        }
-        
-        .btn-secondary {
-            background-color: var(--secondary);
-            transition: all 0.3s ease-in-out;
-        }
-        
-        .btn-secondary:hover {
-            background-color: #10ac84;
-            transform: translateY(-1px);
-            box-shadow: 0 10px 15px -3px rgba(29, 209, 161, 0.4);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f3f4f6;
         }
         
         .animal-card {
@@ -58,44 +19,6 @@
         .animal-card:hover {
             transform: translateY(-2px);
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-        
-        .image-overlay {
-            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%);
-        }
-        
-        .animate-float {
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        .animate-pulse-custom {
-            animation: pulse 2s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.7; }
-            100% { opacity: 1; }
-        }
-        
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 10px;
         }
         
         /* Modal styles */
@@ -120,130 +43,128 @@
         }
     </style>
 </head>
-<body class="bg-gray-50">
-    <!-- Header -->
-    <header class="bg-white shadow-md fixed w-full z-50 transition-all duration-300">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex justify-between items-center px-4 py-3 sm:px-6 lg:px-8">
+<body class="bg-gray-100 font-sans">
+    <!-- Top Navigation -->
+    <nav class="bg-white shadow-md fixed w-full z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
                 <!-- Logo -->
-                <div class="flex justify-start">
-                    <a href="/" class="flex items-center">
-                        <span class="text-2xl font-bold text-gray-800">
-                            Rescue<span class="text-red-500">Spot</span>
-                        </span>
+                <div class="flex items-center">
+                    <a href="#" class="flex items-center space-x-2">
+                        <div class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-2 rounded-lg">
+                            <i class="fas fa-paw text-xl"></i>
+                        </div>
+                        <span class="text-xl font-bold text-gray-800">RescueSpot</span>
                     </a>
                 </div>
 
-                <!-- Mobile menu button -->
-                <div class="md:hidden">
-                    <button
-                        type="button"
-                        id="mobile-menu-button"
-                        class="rounded-full p-2 inline-flex items-center justify-center text-gray-500 hover:text-gray-600 hover:bg-gray-100 focus:outline-none"
-                        aria-expanded="false"
-                        aria-label="Toggle menu"
-                    >
-                        <span class="sr-only">Open menu</span>
-                        <i class="fas fa-bars h-6 w-6"></i>
+                <!-- Main Navigation - Desktop -->
+                <div class="hidden md:flex items-center space-x-1">
+                    <a href="HomeUser" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Home</a>
+                    <a href="{{ route('user.UserAdoptions.index') }}" class="px-3 py-2 rounded-md text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-600">Adoption</a>
+                    <a href="{{ route('user.UserReports.index') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Reports</a>
+                    <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Messages</a>
+                    <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Contact</a>
+                </div>
+
+                <!-- Right Side Menu -->
+                <div class="flex items-center space-x-4">
+                    <button class="hidden md:block bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white py-2 px-4 rounded-lg shadow-md transition transform hover:scale-105">
+                        <a href="{{ route('user.UserReports.index') }}" class="text-white text-sm font-medium">Report an animal</a>
                     </button>
-                </div>
-
-                <!-- Desktop navigation -->
-                <nav class="hidden md:flex space-x-8">
-                    <a href="/" class="text-base font-medium text-gray-500 hover:text-red-500 transition-colors duration-200">
-                        Home
-                    </a>
-                    <a href="#" class="text-base font-medium text-red-500 border-b-2 border-red-500 pb-1">
-                        Find a Pet
-                    </a>
-                    <a href="#" class="text-base font-medium text-gray-500 hover:text-red-500 transition-colors duration-200">
-                        Report Animal
-                    </a>
-                    <a href="#" class="text-base font-medium text-gray-500 hover:text-red-500 transition-colors duration-200">
-                        Shelters
-                    </a>
-                    <a href="#" class="text-base font-medium text-gray-500 hover:text-red-500 transition-colors duration-200">
-                        About Us
-                    </a>
-                </nav>
-
-                <!-- Desktop right buttons - User profile for logged in users -->
-                <div class="hidden md:flex items-center">
-                    <div class="relative">
-                        <button id="user-menu-button" class="flex items-center space-x-3 focus:outline-none">
-                            <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="User Profile" class="h-8 w-8 rounded-full border-2 border-red-100">
-                            <span class="text-gray-700">{{ Auth::user()->name }}</span>
-                            <i class="fas fa-chevron-down text-gray-500 text-xs"></i>
-                        </button>
-                        <!-- Dropdown menu - hidden by default -->
-                        <div id="user-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-1 z-10">
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Your Profile</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Your Adoptions</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
-                            <div class="border-t border-gray-100"></div>
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                    Sign out
-                                </button>
-                            </form>
+                    
+                    <!-- Notifications -->
+                    <button class="relative p-1 rounded-full text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none">
+                        <i class="far fa-bell text-xl"></i>
+                        <span class="absolute top-0 right-0 bg-red-500 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">3</span>
+                    </button>
+                    
+                    <!-- Messages -->
+                    <button class="relative p-1 rounded-full text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none">
+                        <i class="far fa-envelope text-xl"></i>
+                        <span class="absolute top-0 right-0 bg-red-500 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">5</span>
+                    </button>
+                    
+                    <!-- Profile Dropdown -->
+                    <div class="relative ml-3">
+                        <div>
+                            <button type="button" id="profile-btn" class="flex text-sm bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" aria-expanded="false" aria-haspopup="true">
+                            <img class="h-10 w-10 rounded-full object-cover border-2 border-blue-500" 
+                            src="{{ $userinfo->profilePhoto ? asset('storage/' . $userinfo->profilePhoto) : asset('images/defaultImageProfile.jpg') }}" 
+                            alt="Profile">                            </button>
                         </div>
-                    </div>
-                </div>
-            </div>
+                        <div id="profile-dropdown"
+     class="hidden origin-top-right absolute right-0 mt-2 w-56 rounded-xl shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50"
+     role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
 
-            <!-- Mobile menu - hidden by default -->
-            <div id="mobile-menu" class="hidden absolute top-0 inset-x-0 p-6 transition transform origin-top-right md:hidden bg-white shadow-lg rounded-b-lg mt-16 z-50">
-                <div class="space-y-6">
-                    <div class="grid gap-y-8">
-                        <a href="/" class="text-base font-medium text-gray-500 hover:text-red-500">
-                            Home
-                        </a>
-                        <a href="#" class="text-base font-medium text-red-500 hover:text-red-600">
-                            Find a Pet
-                        </a>
-                        <a href="#" class="text-base font-medium text-gray-500 hover:text-red-500">
-                            Report Animal
-                        </a>
-                        <a href="#" class="text-base font-medium text-gray-500 hover:text-red-500">
-                            Shelters
-                        </a>
-                        <a href="#" class="text-base font-medium text-gray-500 hover:text-red-500">
-                            About Us
-                        </a>
+    <a href="Profile"
+       class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150"
+       role="menuitem">
+        <i class="far fa-user text-gray-500"></i> My profile
+    </a>
+
+    <a href="#"
+       class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150"
+       role="menuitem">
+        <i class="fas fa-cog text-gray-500"></i> Settings
+    </a>
+
+    <a href="#"
+       class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150"
+       role="menuitem">
+        <i class="fas fa-heart text-gray-500"></i> My favorites
+    </a>
+
+    <a href="#"
+       class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150"
+       role="menuitem">
+        <i class="fas fa-history text-gray-500"></i> History
+    </a>
+
+    <div class="border-t border-gray-100 my-1"></div>
+
+    <form method="POST" action="{{ route('user.logout') }}">
+        @csrf
+        <button type="submit"
+                class="w-full text-left flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150"
+                role="menuitem">
+            <i class="fas fa-sign-out-alt text-gray-500"></i> Logout
+        </button>
+    </form>
+</div>
+
                     </div>
-                    <div class="border-t border-gray-200 pt-4">
-                        <div class="flex items-center">
-                            <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="User Profile" class="h-10 w-10 rounded-full border-2 border-red-100">
-                            <div class="ml-3">
-                                <p class="text-base font-medium text-gray-800">{{ Auth::user()->name }}</p>
-                                <p class="text-sm font-medium text-gray-500">{{ Auth::user()->email }}</p>
-                            </div>
-                        </div>
-                        <div class="mt-3 space-y-1">
-                            <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">Your Profile</a>
-                            <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">Your Adoptions</a>
-                            <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">Settings</a>
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <button type="submit" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">
-                                    Sign out
-                                </button>
-                            </form>
-                        </div>
-                    </div>
+                    
+                    <!-- Mobile menu button -->
+                    <button type="button" id="mobile-menu-btn" class="md:hidden bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" aria-controls="mobile-menu" aria-expanded="false">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
                 </div>
             </div>
         </div>
-    </header>
+
+        <!-- Mobile menu, show/hide based on menu state -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 bg-white shadow-md">
+                <a href="HomeUser" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Home</a>
+                <a href="{{ route('user.UserAdoptions.index') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-600">Adoption</a>
+                <a href="{{ route('user.UserReports.index') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Reports</a>
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Messages</a>
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Contact</a>
+                <button class="mt-2 w-full flex justify-center items-center bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white py-2 px-4 rounded-lg shadow-md">
+                    <a href="{{ route('user.UserReports.index') }}" class="text-white text-sm font-medium">Report an animal</a>                    
+                </button>
+            </div>
+        </div>
+    </nav>
 
     <!-- Main Content -->
-    <main class="pt-20">
+    <main class="pt-20 pb-12">
         <!-- Adoption Section -->
-        <section class="py-16 md:py-24 bg-gray-50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <div class="inline-block px-4 py-1 rounded-full bg-green-100 text-green-600 text-sm font-semibold mb-4">
+        <section class="py-8 md:py-12">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <div class="inline-block px-4 py-1 rounded-full bg-blue-100 text-blue-600 text-sm font-semibold mb-4">
                         Find Your Match
                     </div>
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Pets Available for Adoption</h2>
@@ -281,56 +202,138 @@
                 @endif
 
                 <!-- Animal Cards Grid -->
-                <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-                    @forelse($animals->where('status', 'ready') as $animal)
-                    <!-- Animal Card -->
-                    <div class="animal-card bg-white rounded-3xl shadow-md overflow-hidden cursor-pointer" 
-                         onclick="openAdoptionModal('{{ $animal->id }}', '{{ $animal->name }}', '{{ $animal->breed }}', '{{ $animal->age }}', '{{ $animal->species }}', '{{ asset('storage/' . $animal->photoAnimal) }}')">
-                        <div class="relative">
-                            <img src="{{ asset('storage/' . $animal->photoAnimal) }}" alt="{{ $animal->name }}" class="h-64 w-full object-cover">
-                            <button class="absolute top-4 right-4 bg-white p-2 rounded-full shadow text-red-500 hover:text-red-600 hover:scale-110 transition-all duration-200 focus:outline-none">
-                                <i class="fas fa-heart"></i>
-                            </button>
-                        </div>
-                        <div class="p-6">
-                            <div class="flex justify-between items-center mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">{{ $animal->name }}</h3>
-                                <div class="flex items-center">
-                                    <span class="text-sm text-gray-600">{{ $animal->age }}</span>
-                                </div>
-                            </div>
-                            <p class="text-sm text-gray-500 mb-4">{{ $animal->breed }}</p>
-                            <p class="text-sm text-gray-500 mb-4">{{ $animal->species }}</p>
-                            
-                            <button type="button" class="block w-full text-center px-4 py-3 bg-red-500 hover:bg-red-600 text-white text-sm font-medium rounded-full transition-all duration-200">
-                                View Profile
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden mb-8">
+                    <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+                        <h2 class="text-lg font-bold text-gray-800">Available for adoption</h2>
+                        <div class="flex items-center">
+                            <button class="p-1 rounded text-gray-700 hover:bg-gray-100 mr-2">
+                                <i class="fas fa-filter"></i>
                             </button>
                         </div>
                     </div>
-                    @empty
-                    <div class="col-span-full text-center py-12">
-                        <div class="bg-white rounded-xl shadow-md p-8 max-w-lg mx-auto">
-                            <div class="text-red-500 mb-4">
-                                <i class="fas fa-paw text-5xl"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold text-gray-900 mb-2">No Animals Available</h3>
-                            <p class="text-gray-600 mb-6">
-                                There are currently no animals available for adoption. Please check back later or contact us for more information.
-                            </p>
-                            <a href="/" class="btn-primary inline-block px-6 py-3 rounded-full text-white font-medium">
-                                Return to Home
-                            </a>
-                        </div>
+                    
+                        <!-- Replace the existing animal cards grid with this updated version -->
+<!-- Replace the existing animal cards grid with this updated version -->
+<div class="p-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        @forelse($animals->where('status', 'ready') as $animal)
+        <!-- Animal Card -->
+        <div class="animal-card bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 group transition transform hover:shadow-md hover:-translate-y-1 cursor-pointer" 
+             onclick="openAdoptionModal('modal-{{ $animal->id }}')">
+            <div class="relative">
+                <img src="{{ asset('storage/' . $animal->photoAnimal) }}" alt="{{ $animal->name }}" class="w-full h-48 object-cover">
+                <div class="absolute top-3 right-3 bg-green-500 text-white text-xs px-2 py-1 rounded-full">Available</div>
+                <button class="absolute top-3 left-3 bg-white rounded-full p-2 text-red-500 shadow hover:bg-red-500 hover:text-white transition">
+                    <i class="far fa-heart"></i>
+                </button>
+            </div>
+            <div class="p-4">
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-semibold text-gray-800">{{ $animal->name }}</h3>
+                    <div class="flex space-x-1">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-gray-300"></i>
                     </div>
-                    @endforelse
                 </div>
+                <div class="flex space-x-2 mb-2 text-xs">
+                    <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full">{{ $animal->species }}</span>
+                    <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full">{{ $animal->age }} years</span>
+                    <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full">{{ $animal->breed }}</span>
+                </div>
+                <p class="text-sm text-gray-600 mb-3">{{ $animal->shelters ? $animal->shelters->description ?? 'Very affectionate and playful animal' : 'Very affectionate and playful animal' }}</p>
+                <div class="flex justify-between items-center">
+                    <span class="text-sm">
+                        <i class="fas fa-map-marker-alt text-gray-500 mr-1"></i> 
+                        {{ $animal->shelters ? $animal->shelters->address : 'Unknown' }}
+                    </span>
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white py-1.5 px-3 rounded-lg text-sm transition-colors">
+                        View profile
+                    </button>
+                </div>
+            </div>
+        </div>
 
-                <!-- Pagination -->
-                @if($animals->count() > 0)
-                <div class="mt-12 flex justify-center">
-                    {{ $animals->links() }}
+        <!-- Adoption Modal for this specific animal -->
+        <div id="modal-{{ $animal->id }}" class="fixed inset-0 z-50 overflow-y-auto hidden">
+            <div class="modal-overlay fixed inset-0"></div>
+            
+            <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+                <div class="modal-container bg-white rounded-2xl shadow-xl transform transition-all sm:max-w-4xl sm:w-full mx-auto">
+                    <div class="absolute top-4 right-4 z-10">
+                        <button onclick="closeAdoptionModal('modal-{{ $animal->id }}')" class="bg-white p-2 rounded-full shadow-md text-gray-500 hover:text-gray-700 focus:outline-none">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2">
+                        <!-- Animal Details -->
+                        <div class="p-8 bg-gradient-to-br from-blue-50 to-white">
+                            <div class="mb-6">
+                                <img class="w-full h-64 object-cover rounded-2xl shadow-md" src="{{ asset('storage/' . $animal->photoAnimal) }}" alt="{{ $animal->name }}">
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">{{ $animal->name }}</h3>
+                            <div class="flex items-center mb-4">
+                                <span class="text-gray-600">{{ $animal->breed }}</span>
+                                <span class="mx-2">•</span>
+                                <span class="text-gray-600">{{ $animal->age }} years</span>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <h4 class="text-lg font-semibold text-gray-900 mb-3">About</h4>
+                                <p class="text-gray-600">
+                                    {{ $animal->species }}
+                                </p>
+                                <p class="text-gray-600 mt-2">
+                                    This loving animal is looking for a forever home. They've been rehabilitated and are ready to bring joy to your family.
+                                    Please fill out the form to start the adoption process.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Adoption Form -->
+                        <div class="p-8 bg-white">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-6">Adoption Application</h3>
+                            
+                            <form action="{{ route('user.UserAdoptions.store') }}" method="POST">
+                                @csrf
+                                <!-- Changed field name to match what the controller expects -->
+                                <input type="hidden" name="animalId" value="{{ $animal->id }}">
+                                <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white py-3 px-6 rounded-xl font-medium shadow-lg transition transform hover:scale-105">
+                                    <i class="fas fa-paper-plane mr-2"></i> Send Adoption Request
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                @endif
+            </div>
+        </div>
+        @empty
+        <div class="col-span-full p-6 text-center">
+            <div class="inline-flex items-center justify-center bg-gray-100 rounded-full p-6 mb-4">
+                <i class="fas fa-home text-gray-400 text-4xl"></i>
+            </div>
+            <h3 class="text-lg font-medium text-gray-800 mb-2">No animals available for adoption</h3>
+            <p class="text-gray-600 mb-4">Check back soon for more animals needing forever homes.</p>
+            <a href="/" class="inline-flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                <i class="fas fa-bell mr-2"></i>
+                Get notified
+            </a>
+        </div>
+        @endforelse
+    </div>
+</div>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    @if($animals->count() > 0)
+                    <div class="px-6 py-4 border-t border-gray-200 flex justify-center">
+                        {{ $animals->links() }}
+                    </div>
+                    @endif
+                </div>
             </div>
         </section>
     </main>
@@ -340,7 +343,7 @@
         <div class="modal-overlay fixed inset-0"></div>
         
         <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
-            <div class="modal-container bg-white rounded-3xl shadow-xl transform transition-all sm:max-w-4xl sm:w-full mx-auto">
+            <div class="modal-container bg-white rounded-2xl shadow-xl transform transition-all sm:max-w-4xl sm:w-full mx-auto">
                 <div class="absolute top-4 right-4 z-10">
                     <button onclick="closeAdoptionModal()" class="bg-white p-2 rounded-full shadow-md text-gray-500 hover:text-gray-700 focus:outline-none">
                         <i class="fas fa-times"></i>
@@ -349,7 +352,7 @@
                 
                 <div class="grid grid-cols-1 md:grid-cols-2">
                     <!-- Animal Details -->
-                    <div class="p-8 bg-gradient-to-br from-red-50 to-white">
+                    <div class="p-8 bg-gradient-to-br from-blue-50 to-white">
                         <div class="mb-6">
                             <img id="modalAnimalImage" class="w-full h-64 object-cover rounded-2xl shadow-md" src="/placeholder.svg" alt="Animal">
                         </div>
@@ -376,50 +379,12 @@
                     <div class="p-8 bg-white">
                         <h3 class="text-2xl font-bold text-gray-900 mb-6">Adoption Application</h3>
                         
-                        <form id="adoptionForm" action="{{ route('adoptions.store') }}" method="POST">
+                        <form id="adoptionForm" action="{{ route('user.UserAdoptions.store') }}" method="POST">
                             @csrf
-                            <input type="hidden" id="animalId" name="animalId" value="">
-                            
-                            <div class="space-y-4">
-                                <div>
-                                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
-                                    <input type="tel" id="phone" name="phone" class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-red-500 focus:border-red-500" required>
-                                </div>
-                                
-                                <div>
-                                    <label for="address" class="block text-sm font-medium text-gray-700 mb-1">Home Address</label>
-                                    <input type="text" id="address" name="address" class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-red-500 focus:border-red-500" required>
-                                </div>
-                                
-                                <div>
-                                    <label for="experience" class="block text-sm font-medium text-gray-700 mb-1">Previous Pet Experience</label>
-                                    <select id="experience" name="experience" class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-red-500 focus:border-red-500">
-                                        <option value="None">None</option>
-                                        <option value="Some">Some (1-2 years)</option>
-                                        <option value="Experienced">Experienced (3+ years)</option>
-                                    </select>
-                                </div>
-                                
-                                <div>
-                                    <label for="housing" class="block text-sm font-medium text-gray-700 mb-1">Housing Type</label>
-                                    <select id="housing" name="housing" class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-red-500 focus:border-red-500">
-                                        <option value="Apartment">Apartment</option>
-                                        <option value="House">House</option>
-                                        <option value="Other">Other</option>
-                                    </select>
-                                </div>
-                                
-                                <div>
-                                    <label for="reason" class="block text-sm font-medium text-gray-700 mb-1">Why do you want to adopt this pet?</label>
-                                    <textarea id="reason" name="reason" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-red-500 focus:border-red-500" required></textarea>
-                                </div>
-                                
-                                <div class="pt-4">
-                                    <button type="submit" class="w-full btn-primary px-6 py-3 rounded-full text-white font-medium shadow-lg">
-                                        Submit Adoption Request
-                                    </button>
-                                </div>
-                            </div>
+                            <input type="hidden" name="animalId" id="animalId" value="{{ $animal->id }}">
+                            <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white py-3 px-6 rounded-xl font-medium shadow-lg transition transform hover:scale-105">
+                                <i class="fas fa-paper-plane mr-2"></i> Send Adoption Request
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -428,241 +393,137 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white pt-16 pb-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-12 mb-16">
-                <!-- About -->
-                <div class="col-span-1 lg:col-span-2">
-                    <div class="flex items-center mb-6">
-                        <span class="text-2xl font-bold text-white">
-                            Rescue<span class="text-red-500">Spot</span>
-                        </span>
+    <footer class="bg-gray-900 text-white">
+        <div class="container mx-auto px-4 pt-12 pb-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-2 rounded-lg">
+                            <i class="fas fa-paw text-xl"></i>
+                        </div>
+                        <span class="text-xl font-bold">RescueSpot</span>
                     </div>
-                    <p class="text-gray-400 mb-8">
-                        RescueSpot connects people with animal shelters to rescue, rehabilitate, and rehome animals in need. Our
-                        mission is to ensure every animal finds a loving home.
-                    </p>
-                    <div class="flex space-x-6">
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">
+                    <p class="text-gray-400 text-sm mb-4">Platform dedicated to rescuing and adopting abandoned animals.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition">
                             <i class="fab fa-facebook-f"></i>
-                            <span class="sr-only">Facebook</span>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">
+                        <a href="#" class="text-gray-400 hover:text-white transition">
                             <i class="fab fa-twitter"></i>
-                            <span class="sr-only">Twitter</span>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">
+                        <a href="#" class="text-gray-400 hover:text-white transition">
                             <i class="fab fa-instagram"></i>
-                            <span class="sr-only">Instagram</span>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">
-                            <i class="fab fa-youtube"></i>
-                            <span class="sr-only">YouTube</span>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-linkedin-in"></i>
                         </a>
                     </div>
                 </div>
-
-                <!-- Quick Links -->
-                <div class="col-span-1">
-                    <h4 class="text-lg font-bold text-white mb-6">Quick Links</h4>
-                    <ul class="space-y-4">
-                        <li>
-                            <a href="/" class="text-gray-400 hover:text-white transition-colors duration-200">
-                                Home
-                            </a>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick links</h3>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">Home</a></li>
+                        <li><a href="#" class="hover:text-white transition">Report an animal</a></li>
+                        <li><a href="#" class="hover:text-white transition">Adoption</a></li>
+                        <li><a href="#" class="hover:text-white transition">Messages</a></li>
+                        <li><a href="#" class="hover:text-white transition">About us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact us</h3>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2 text-blue-500"></i>
+                            contact@rescuespot.com
                         </li>
-                        <li>
-                            <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">
-                                Find a Pet
-                            </a>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-2 text-blue-500"></i>
+                            (123) 456-7890
                         </li>
-                        <li>
-                            <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">
-                                Report Animal
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">
-                                Shelters
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">
-                                Success Stories
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">
-                                About Us
-                            </a>
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt mr-2 text-blue-500"></i>
+                            75 Hope Street, New York
                         </li>
                     </ul>
                 </div>
-
-                <!-- Resources -->
-                <div class="col-span-1">
-                    <h4 class="text-lg font-bold text-white mb-6">Resources</h4>
-                    <ul class="space-y-4">
-                        <li>
-                            <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">
-                                Pet Care Tips
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">
-                                Adoption Guide
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">
-                                Rescue Resources
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">
-                                FAQs
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">
-                                Privacy Policy
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">
-                                Terms of Service
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Contact Info -->
-                <div class="col-span-1">
-                    <h4 class="text-lg font-bold text-white mb-6">Contact Us</h4>
-                    <ul class="space-y-4 text-gray-400">
-                        <li class="flex items-start">
-                            <i class="fas fa-map-marker-alt mt-1 text-red-400 mr-3 flex-shrink-0"></i>
-                            <span>
-                                123 Rescue Lane
-                                <br>
-                                Animal City, AC 12345
-                            </span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-phone text-red-400 mr-3 flex-shrink-0"></i>
-                            <span>(800) RESCUE-1</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-envelope text-red-400 mr-3 flex-shrink-0"></i>
-                            <span>help@rescuespot.com</span>
-                        </li>
-                    </ul>
-                    <div class="mt-8 bg-gray-800 p-4 rounded-2xl">
-                        <h5 class="text-sm font-bold text-white mb-2">Emergency Hotline</h5>
-                        <p class="text-red-400 text-xl font-bold">(800) 555-HELP</p>
-                        <p class="text-gray-500 text-xs">Available 24/7 for animal emergencies</p>
-                    </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Newsletter</h3>
+                    <p class="text-gray-400 text-sm mb-4">Receive our news and advice for animals.</p>
+                    <form>
+                        <div class="flex">
+                            <input type="email" placeholder="Your email" class="px-4 py-2 w-full rounded-l-lg focus:outline-none text-gray-800">
+                            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-r-lg transition">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
-
-            <div class="pt-8 border-t border-gray-800">
-                <div class="flex flex-col md:flex-row md:justify-between items-center">
-                    <p class="text-gray-400 text-sm mb-4 md:mb-0">
-                        &copy; {{ date('Y') }} RescueSpot. All rights reserved.
-                    </p>
-                    <div class="flex space-x-6">
-                        <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors duration-200">Privacy</a>
-                        <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors duration-200">Terms</a>
-                        <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors duration-200">Cookies</a>
-                    </div>
-                </div>
+            <div class="border-t border-gray-800 mt-8 pt-6 text-center text-sm text-gray-400">
+                <p>&copy; {{ date('Y') }} RescueSpot. All rights reserved. | <a href="#" class="text-blue-400 hover:text-white">Privacy Policy</a> | <a href="#" class="text-blue-400 hover:text-white">Terms of Use</a></p>
             </div>
         </div>
     </footer>
 
     <!-- JavaScript for UI interactions only -->
     <script>
-        // Mobile menu toggle
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            
-            mobileMenuButton.addEventListener('click', function() {
-                mobileMenu.classList.toggle('hidden');
-            });
-            
-            // User dropdown toggle
-            const userMenuButton = document.getElementById('user-menu-button');
-            const userDropdown = document.getElementById('user-dropdown');
-            
-            if (userMenuButton) {
-                userMenuButton.addEventListener('click', function() {
-                    userDropdown.classList.toggle('hidden');
-                });
-                
-                // Close dropdown when clicking outside
-                document.addEventListener('click', function(event) {
-                    if (!userMenuButton.contains(event.target) && !userDropdown.contains(event.target)) {
-                        userDropdown.classList.add('hidden');
-                    }
-                });
-            }
-        });
+       // Replace the existing modal JavaScript with this updated version
+// JavaScript for UI interactions only
+document.addEventListener('DOMContentLoaded', function() {
+    // Toggle mobile menu
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    mobileMenuBtn.addEventListener('click', function() {
+        mobileMenu.classList.toggle('hidden');
+    });
+    
+    // Toggle profile dropdown
+    const profileBtn = document.getElementById('profile-btn');
+    const profileDropdown = document.getElementById('profile-dropdown');
+    
+    profileBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        profileDropdown.classList.toggle('hidden');
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function() {
+        profileDropdown.classList.add('hidden');
+    });
+});
+
+// Updated modal functions
+function openAdoptionModal(modalId) {
+    // Show the modal
+    const modal = document.getElementById(modalId);
+    modal.classList.remove('hidden');
+    modal.classList.add('modal-active');
+    document.body.classList.add('modal-open'); // Prevent scrolling when modal is open
+}
+
+function closeAdoptionModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.classList.add('hidden');
+    modal.classList.remove('modal-active');
+    document.body.classList.remove('modal-open'); // Re-enable scrolling
+}
+
+// Close modal when clicking outside
+document.addEventListener('click', function(event) {
+    const modals = document.querySelectorAll('[id^="modal-"]');
+    
+    modals.forEach(function(modal) {
+        const modalContainer = modal.querySelector('.modal-container');
         
-        // Adoption modal functions
-        function openAdoptionModal(id, name, breed, age, species, image) {
-            // Set animal details in the modal
-            document.getElementById('animalId').value = id;
-            document.getElementById('modalAnimalName').textContent = name;
-            document.getElementById('modalAnimalBreed').textContent = breed;
-            document.getElementById('modalAnimalAge').textContent = age;
-            document.getElementById('modalAnimalSpecies').textContent = species;
-            document.getElementById('modalAnimalImage').src = image;
-            document.getElementById('modalAnimalImage').alt = name;
-            
-            // Show the modal
-            const modal = document.getElementById('adoptionModal');
-            modal.classList.remove('hidden');
-            modal.classList.add('modal-active');
-            document.body.classList.add('modal-open'); // Prevent scrolling when modal is open
-        }
-        
-        function closeAdoptionModal() {
-            const modal = document.getElementById('adoptionModal');
+        if (!modal.classList.contains('hidden') && !modalContainer.contains(event.target) && 
+            !event.target.closest('.animal-card')) {
             modal.classList.add('hidden');
             modal.classList.remove('modal-active');
-            document.body.classList.remove('modal-open'); // Re-enable scrolling
+            document.body.classList.remove('modal-open');
         }
-        
-        // Close modal when clicking outside
-        document.addEventListener('click', function(event) {
-            const modal = document.getElementById('adoptionModal');
-            const modalContainer = modal.querySelector('.modal-container');
-            
-            if (modal && !modal.classList.contains('hidden') && !modalContainer.contains(event.target) && !event.target.closest('.animal-card')) {
-                closeAdoptionModal();
-            }
-        });
-        
-        // Prevent form submission if fields are empty
-        document.getElementById('adoptionForm').addEventListener('submit', function(event) {
-            const requiredFields = this.querySelectorAll('[required]');
-            let isValid = true;
-            
-            requiredFields.forEach(field => {
-                if (!field.value.trim()) {
-                    isValid = false;
-                    field.classList.add('border-red-500');
-                } else {
-                    field.classList.remove('border-red-500');
-                }
-            });
-            
-            if (!isValid) {
-                event.preventDefault();
-                alert('Please fill out all required fields');
-            }
-        });
+    });
+});
     </script>
 </body>
 </html>

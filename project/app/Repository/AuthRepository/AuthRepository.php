@@ -48,11 +48,11 @@ class AuthRepository{
         if (auth()->attempt(['email' => $credentials['email'], 'password' => $credentials['password']])) {
             $user = auth()->user();
 
-            if ($user->status == 'inactive') {
-                return redirect()->back()->with('error', 'Your account is inactive. Please contact support.');
-            }
+     
             
             return $user;
+        }else{
+            return null;
         }
     
         return redirect()->back()->with('error', 'Invalid credentials');

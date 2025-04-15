@@ -161,7 +161,7 @@
                 <!-- Main Navigation - Desktop -->
                 <div class="hidden md:flex items-center space-x-1">
                     <a href="HomeUser" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Home</a>
-                    <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Adoption</a>
+                    <a href="{{ route('user.UserAdoptions.index') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Adoption</a>
                     <a href="{{ route('user.UserReports.index') }}" class="px-3 py-2 rounded-md text-sm font-medium text-white bg-gradient-to-r from-yellow-500 to-orange-500">Reports</a>
                     <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Messages</a>
                     <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Contact</a>
@@ -190,24 +190,45 @@
                                      alt="Profile">
                             </button>
                         </div>
-                        <div id="profile-dropdown" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-                            <a href="Profile" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-                                <i class="far fa-user mr-3 text-gray-500"></i> My profile
-                            </a>
-                            <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-                                <i class="fas fa-cog mr-3 text-gray-500"></i> Settings
-                            </a>
-                            <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-                                <i class="fas fa-heart mr-3 text-gray-500"></i> My favorites
-                            </a>
-                            <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-                                <i class="fas fa-history mr-3 text-gray-500"></i> History
-                            </a>
-                            <div class="border-t border-gray-100"></div>
-                            <a href="#" class="flex items-center px-4 py-2 text-sm text-red-700 hover:bg-gray-100" role="menuitem">
-                                <i class="fas fa-sign-out-alt mr-3 text-red-500"></i> Log out
-                            </a>
-                        </div>
+                        <div id="profile-dropdown"
+     class="hidden origin-top-right absolute right-0 mt-2 w-56 rounded-xl shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50"
+     role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+
+    <a href="Profile"
+       class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150"
+       role="menuitem">
+        <i class="far fa-user text-gray-500"></i> My profile
+    </a>
+
+    <a href="#"
+       class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150"
+       role="menuitem">
+        <i class="fas fa-cog text-gray-500"></i> Settings
+    </a>
+
+    <a href="#"
+       class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150"
+       role="menuitem">
+        <i class="fas fa-heart text-gray-500"></i> My favorites
+    </a>
+
+    <a href="#"
+       class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150"
+       role="menuitem">
+        <i class="fas fa-history text-gray-500"></i> History
+    </a>
+
+    <div class="border-t border-gray-100 my-1"></div>
+
+    <form method="POST" action="{{ route('user.logout') }}">
+        @csrf
+        <button type="submit"
+                class="w-full text-left flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150"
+                role="menuitem">
+            <i class="fas fa-sign-out-alt text-gray-500"></i> Logout
+        </button>
+    </form>
+</div>
                     </div>
                     
                     <!-- Mobile menu button -->
@@ -222,7 +243,7 @@
         <div class="md:hidden hidden" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1 bg-white shadow-md">
                 <a href="HomeUser" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Home</a>
-                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Adoption</a>
+                <a href="{{ route('user.UserAdoptions.index') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Adoption</a>
                 <a href="{{ route('user.UserReports.index') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gradient-to-r from-yellow-500 to-orange-500">Reports</a>
                 <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Messages</a>
                 <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Contact</a>

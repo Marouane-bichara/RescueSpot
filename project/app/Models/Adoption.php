@@ -3,11 +3,11 @@
 namespace App\Models;
 
 use App\Models\User;
-use App\Models\Animals;
+use App\Models\Animal;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Adoptions extends Model
+class Adoption extends Model
 {
     use HasFactory;
 
@@ -21,7 +21,7 @@ class Adoptions extends Model
 
     public function animal()
     {
-        return $this->belongsTo(Animals::class, 'animalId');
+        return $this->belongsTo(Animal::class, 'animalId');
     }
 
 

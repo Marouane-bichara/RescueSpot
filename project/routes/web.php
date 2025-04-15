@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ReportsController;
+use App\Http\Controllers\SheltersController;
+use App\Http\Controllers\AdoptionsController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\UserProfileController;
 
@@ -40,5 +42,13 @@ Route::prefix('user')->middleware(['auth', 'user.role'])->name('user.')->group(f
     Route::post('/editProfile', [UserProfileController::class, 'editProfileInfo'])->name('editProfile');
     // Route::post('/CreateReports', [ReportsController::class, 'addReport'])->name('CreateReports');
     Route::resource('UserReports', ReportsController::class);
-
+    Route::resource('UserAdoptions', AdoptionsController::class);
+    Route::post('logout' , [AuthController::class , 'logout'])->name('logout');
 }); 
+
+
+
+Route::prefix('user')->middleware(['auth', 'user.role'])->name('shelter.')->group(function () {
+    Route::get('/HomeShelter', [SheltersController::class, 'indexHome'])->name('HomeShelter');
+
+});

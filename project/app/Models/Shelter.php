@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use App\Models\Animals;
+use App\Models\Animal;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Shelters extends Model
+class Shelter extends Model
 {
     use HasFactory;
 
@@ -26,6 +26,6 @@ class Shelters extends Model
     }
     public function animals()
     {
-        return $this->hasMany(Animals::class); // A shelter has many animals
+        return $this->hasMany(Animal::class); // A shelter has many animals
     }
 }

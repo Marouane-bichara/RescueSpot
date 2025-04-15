@@ -181,8 +181,8 @@
                 <!-- Main Navigation - Desktop -->
                 <div class="hidden md:flex items-center space-x-1">
                     <a href="HomeUser" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Home</a>
-                    <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Adoption</a>
-                    <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Reports</a>
+                    <a href="{{ route('user.UserAdoptions.index') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Adoption</a>
+                    <a href="{{ route('user.UserReports.index') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Reports</a>
                     <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Messages</a>
                     <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Contact</a>
                 </div>
@@ -190,7 +190,7 @@
                 <!-- Right Side Menu -->
                 <div class="flex items-center space-x-4">
                     <button class="hidden md:block bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white py-2 px-4 rounded-lg shadow-md transition transform hover:scale-105">
-                        <i class="fas fa-plus mr-2"></i>Report an animal
+                    <a href="{{ route('user.UserReports.index') }}" class="text-white text-sm font-medium">Report an animal</a>
                     </button>
                     
                     <!-- Notifications -->
@@ -214,24 +214,46 @@
                             alt="Profile">
                                         </button>
                         </div>
-                        <div id="profile-dropdown" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-                            <a href="#" class="flex items-center px-4 py-2 text-sm text-blue-600 bg-gray-100" role="menuitem">
-                                <i class="far fa-user mr-3 text-blue-500"></i> My profile
-                            </a>
-                            <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-                                <i class="fas fa-cog mr-3 text-gray-500"></i> Settings
-                            </a>
-                            <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-                                <i class="fas fa-heart mr-3 text-gray-500"></i> My favorites
-                            </a>
-                            <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-                                <i class="fas fa-history mr-3 text-gray-500"></i> History
-                            </a>
-                            <div class="border-t border-gray-100"></div>
-                            <a href="#" class="flex items-center px-4 py-2 text-sm text-red-700 hover:bg-gray-100" role="menuitem">
-                                <i class="fas fa-sign-out-alt mr-3 text-red-500"></i> Log out
-                            </a>
-                        </div>
+                        <div id="profile-dropdown"
+     class="hidden origin-top-right absolute right-0 mt-2 w-56 rounded-xl shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50"
+     role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+
+    <a href="Profile"
+       class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150"
+       role="menuitem">
+        <i class="far fa-user text-gray-500"></i> My profile
+    </a>
+
+    <a href="#"
+       class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150"
+       role="menuitem">
+        <i class="fas fa-cog text-gray-500"></i> Settings
+    </a>
+
+    <a href="#"
+       class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150"
+       role="menuitem">
+        <i class="fas fa-heart text-gray-500"></i> My favorites
+    </a>
+
+    <a href="#"
+       class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150"
+       role="menuitem">
+        <i class="fas fa-history text-gray-500"></i> History
+    </a>
+
+    <div class="border-t border-gray-100 my-1"></div>
+
+    <form method="POST" action="{{ route('user.logout') }}">
+        @csrf
+        <button type="submit"
+                class="w-full text-left flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150"
+                role="menuitem">
+            <i class="fas fa-sign-out-alt text-gray-500"></i> Logout
+        </button>
+    </form>
+</div>
+
                     </div>
                     
                     <!-- Mobile menu button -->
@@ -246,13 +268,13 @@
         <div class="md:hidden hidden" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1 bg-white shadow-md">
                 <a href="HomeUser" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Home</a>
-                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-600">Profile</a>
-                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Adoption</a>
-                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Reports</a>
+                <a href="" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-600">Profile</a>
+                <a href="{{ route('user.UserAdoptions.index') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Adoption</a>
+                <a href="{{ route('user.UserReports.index') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Reports</a>
                 <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Messages</a>
                 <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Contact</a>
                 <button class="mt-2 w-full flex justify-center items-center bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white py-2 px-4 rounded-lg shadow-md">
-                    <i class="fas fa-plus mr-2"></i>Report an animal
+                <a href="{{ route('user.UserReports.index') }}" class="text-white text-sm font-medium">Report an animal</a>
                 </button>
             </div>
         </div>
@@ -748,34 +770,37 @@
                             <div>
     @if ($adoptionCount > 0)
         <!-- Loop through the adoptions and display each one -->
-        @foreach ($adoptionUser as $adoption)
-            <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 transition transform hover:shadow-md hover:-translate-y-1">
-                <div class="relative">
-                    <img src="{{ $adoption->animal_image ? asset('storage/' . $adoption->animal_image) : '/api/placeholder/400/250' }}" alt="Adopted animal" class="w-full h-48 object-cover">
-                    <div class="absolute top-3 right-3 bg-green-500 text-white text-xs px-2 py-1 rounded-full">Adopted</div>
-                </div>
-                <div class="p-4">
-                    <div class="flex justify-between items-start mb-2">
-                        <h3 class="font-semibold text-gray-800">{{ $adoption->animal_name }}</h3>
-                        <div class="flex space-x-1">
-                            @for ($i = 0; $i < 5; $i++)
-                                <i class="fas fa-star {{ $i < $adoption->rating ? 'text-yellow-400' : 'text-gray-300' }}"></i>
-                            @endfor
-                        </div>
-                    </div>
-                    <div class="flex space-x-2 mb-2 text-xs">
-                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full">{{ $adoption->animal_type }}</span>
-                        <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full">{{ $adoption->animal_age }} years</span>
-                        <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full">{{ $adoption->animal_breed }}</span>
-                    </div>
-                    <p class="text-sm text-gray-600 mb-3">{{ $adoption->animal_description }}</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-gray-500">Adopted on: {{ $adoption->adopted_at->format('M d, Y') }}</span>
-                        <a href="#" class="text-blue-600 hover:text-blue-800 text-sm font-medium">View profile</a>
-                    </div>
+        @foreach ($adoptions as $adoption)
+    <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 transition transform hover:shadow-md hover:-translate-y-1">
+        <div class="relative">
+            <img src="{{ $adoption->animal && $adoption->animal->image ? asset('storage/' . $adoption->animal->image) : '/api/placeholder/400/250' }}" 
+                 alt="Adopted animal" 
+                 class="w-full h-48 object-cover">
+            <div class="absolute top-3 right-3 bg-green-500 text-white text-xs px-2 py-1 rounded-full">Adopted</div>
+        </div>
+        <div class="p-4">
+            <div class="flex justify-between items-start mb-2">
+                <h3 class="font-semibold text-gray-800">{{ $adoption->animal->name ?? 'Unknown' }}</h3>
+                <div class="flex space-x-1">
+                    @for ($i = 0; $i < 5; $i++)
+                        <i class="fas fa-star {{ $i < ($adoption->rating ?? 0) ? 'text-yellow-400' : 'text-gray-300' }}"></i>
+                    @endfor
                 </div>
             </div>
-        @endforeach
+            <div class="flex space-x-2 mb-2 text-xs">
+                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full">{{ $adoption->animal->type ?? 'N/A' }}</span>
+                <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full">{{ $adoption->animal->age ?? '?' }} years</span>
+                <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full">{{ $adoption->animal->breed ?? 'N/A' }}</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3">{{ $adoption->animal->description ?? 'No description available.' }}</p>
+            <div class="flex justify-between items-center">
+                <span class="text-sm text-gray-500">Adopted on: {{ \Carbon\Carbon::parse($adoption->requestDate)->format('M d, Y') }}</span>
+                <a href="#" class="text-blue-600 hover:text-blue-800 text-sm font-medium">View profile</a>
+            </div>
+        </div>
+    </div>
+@endforeach
+        
     @else
         <!-- Display message if there are no adoptions -->
         <p class="text-gray-500 text-center">You haven't adopted any animals yet.</p>

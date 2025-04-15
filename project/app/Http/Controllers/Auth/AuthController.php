@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
-use App\Services\Auth\AuthService;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\AuthRequest;
+use App\Services\Auth\AuthService;
 use App\Http\Requests\LoginRequest;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -44,17 +45,41 @@ class AuthController extends Controller
         $credentials = $request->only(['email', 'password']);
 
         $authOrFaile = $this->authService->login($credentials);
+        
+
+        if($authOrFaile == null)
+        {
+            return redirect()->back()->with('error', 'Invalid credentials');
+        }
+        {
+
+        }
 
         if($authOrFaile)
         {
-            return redirect()->route('user.HomeUser')->with('success', 'Login successful');
+            if ($authOrFaile->status == 'inactive') {
+                return redirect()->back()->with('error', 'Your account is inactive. Please contact support.');
+            }
+            if ($authOrFaile->role_id == 2) {
+                return redirect()->route('user.HomeUser')->with('success', 'Login successful');
+            }
         }
+        
 
     }
 
     public function logout(Request $request)
     {
-        $authOrFaile = $this->authService->logout();
+      
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+       
+  
+            return redirect()->route('Auth')->with('success', 'Logout successful');
+        
 
     }
 }

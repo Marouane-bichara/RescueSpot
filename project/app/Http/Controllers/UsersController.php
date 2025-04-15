@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\Animals;
-use App\Models\Reports;
-use App\Models\Messages;
-use App\Models\Adoptions;
-use App\Models\Followers;
+use App\Models\Animal;
+use App\Models\Report;
+use App\Models\Message;
+use App\Models\Adoption;
+use App\Models\Follower;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
@@ -16,15 +16,16 @@ class UsersController extends Controller
 
     public function indexHome()
     {
-        $reports = Reports::latest()->paginate(6);  // Paginate reports, 10 per page
-        $readyAnimals = Animals::where('status', 'ready')->paginate(6);
+        $reports = Report::latest()->paginate(6);  // Paginate reports, 10 per page
+        $readyAnimals = Animal::where('status', 'ready')->paginate(6);
 
         $user = auth()->user();
 
-        $reportsUser = Reports::where('reporter_id', $user->id)->get();
+        $reportsUser = Report::where('reporter_id', $user->id)->get();
+        $userinfo = User::where('id', $user->id)->first();
 
 
-        $conversations = Messages::where('sender_id', $user->id)
+        $conversations = Message::where('sender_id', $user->id)
         ->orWhere('receiver_id', $user->id)
         ->latest()
         ->get()
@@ -43,7 +44,7 @@ class UsersController extends Controller
         });
             
 
-        return view('user.home', compact('reports', 'readyAnimals' , 'reportsUser' , 'conversations'));
+        return view('user.home', compact('reports', 'readyAnimals' , 'reportsUser' , 'conversations' , 'userinfo'));
     }
 
 

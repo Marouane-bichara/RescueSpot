@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 
 use App\Models\User;
-use App\Models\Reports;
-use App\Models\Adoptions;
-use App\Models\Followers;
+use App\Models\Report;
+use App\Models\Adoption;
+use App\Models\Follower;
 use Illuminate\Http\Request;
 use App\Http\Requests\EditProfileInfo;
 use App\Services\users\ProfileService;
@@ -28,14 +28,17 @@ class UserProfileController extends Controller
         $userinfo = User::where('id', $user->id)->first();
 
 
-        $reportsCount = Reports::where('reporter_id', $user->id)->count();
-        $reportsUser = Reports::where('reporter_id', $user->id)->get();
-        $adoptionCount = Adoptions::where('adopterId', $user->id)->count();
-        $followersCount = Followers::where('followed_id', $user->id)->count();
-        $adoptionUser = Adoptions::where('adopterId', $user->id)->get();
+        $reportsCount = Report::where('reporter_id', $user->id)->count();
+        $reportsUser = Report::where('reporter_id', $user->id)->get();
+        $adoptionCount = Adoption::where('adopterId', $user->id)->where('status', 'accepted')->count();
+        $followersCount = Follower::where('followed_id', $user->id)->count();
+        $adoptions = Adoption::with('animal')
+        ->where('adopterId', $user->id)
+        ->where('status', 'accepted') // 🔥 filter by accepted status
+        ->get();
 
         // dd($reportsCount);
-        return view('user.profile.profile' , compact('userinfo' , 'reportsCount', 'adoptionCount' , 'followersCount' , 'reportsUser' , 'adoptionUser'));
+        return view('user.profile.profile' , compact('userinfo' , 'reportsCount', 'adoptionCount' , 'followersCount' , 'reportsUser' , 'adoptions'));
     }
 
 

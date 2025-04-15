@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use App\Models\Shelters;
-use App\Models\Adoptions;
+use App\Models\Shelter;
+use App\Models\Adoption;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Animals extends Model
+class Animal extends Model
 {
     use HasFactory;
     protected $fillable = [
@@ -23,13 +23,13 @@ class Animals extends Model
 
     public function shelters()
     {
-        return $this->belongsTo(Shelters::class); // Foreign key is shelter_id in the animals table
+        return $this->belongsTo(Shelter::class , 'shelter_id'); // Foreign key is shelter_id in the animals table
     }
 
 
     public function adoptions()
     {
-        return $this->hasMany(Adoptions::class, 'animalId');
+        return $this->hasMany(Adoption::class, 'animalId');
     }
     
 }

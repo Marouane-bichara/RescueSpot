@@ -4,7 +4,7 @@ namespace App\Repository\users;
 
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
-use App\Models\Reports;
+use App\Models\Report;
 use Illuminate\Support\Facades\Auth;
 
 class ReportsRepository
@@ -25,7 +25,7 @@ class ReportsRepository
         $user = $user = auth()->user();
 
         
-        $addreport = Reports::create([
+        $addreport = Report::create([
             'reporter_id' => $user->id,
             'photo' => $credentials->file('photo')->store('photos', 'public'),
             'location' => $credentials->input('location'),

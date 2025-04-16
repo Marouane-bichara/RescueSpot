@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SheltersController extends Controller
@@ -10,6 +11,9 @@ class SheltersController extends Controller
 
     public function indexHome()
     {
-        return view('Shelter.home');
+
+        $shelterid = auth()->user()->id;
+        $shelter = User::where('id', $shelterid)->first();
+        return view('Shelter.home' , compact('shelter'));
     }
 }

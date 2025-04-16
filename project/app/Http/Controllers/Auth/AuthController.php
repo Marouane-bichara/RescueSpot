@@ -46,7 +46,6 @@ class AuthController extends Controller
 
         $authOrFaile = $this->authService->login($credentials);
         
-
         if($authOrFaile == null)
         {
             return redirect()->back()->with('error', 'Invalid credentials');
@@ -62,6 +61,9 @@ class AuthController extends Controller
             }
             if ($authOrFaile->role_id == 2) {
                 return redirect()->route('user.HomeUser')->with('success', 'Login successful');
+            }
+            if ($authOrFaile->role_id == 3) {
+                return redirect()->route('shelter.HomeShelter')->with('success', 'Login successful');
             }
         }
         

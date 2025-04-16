@@ -24,7 +24,7 @@ class EditProfileInfo extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:255',
+            'name' => 'string|max:255',
             'birthday'           => 'nullable|date',
             'relationship_status'=> 'nullable|string',
             'bio'                => 'nullable|string|max:1000',

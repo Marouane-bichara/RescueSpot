@@ -39,7 +39,7 @@
                             <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-blue-100">Settings</a>
                             <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-blue-100">Help</a>
                             <hr>
-                            <form method="POST" action="{{ route('logout') }}">
+                            <form method="POST" action="{{ route('shelter.logout') }}">
                                 @csrf
                                 <button type="submit" class="block w-full text-left px-4 py-2 text-gray-800 hover:bg-blue-100">Logout</button>
                             </form>

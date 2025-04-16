@@ -12,7 +12,6 @@ class ProfileRepository
     {
         $user = auth()->user();
 
-
         if (isset($credentials['profilePhoto']) && $credentials['profilePhoto']) {
             if ($user->profilePhoto && \Storage::exists($user->profilePhoto)) {
                 \Storage::delete($user->profilePhoto);

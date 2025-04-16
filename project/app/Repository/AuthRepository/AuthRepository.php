@@ -47,8 +47,6 @@ class AuthRepository{
 
         if (auth()->attempt(['email' => $credentials['email'], 'password' => $credentials['password']])) {
             $user = auth()->user();
-
-     
             
             return $user;
         }else{
@@ -60,11 +58,7 @@ class AuthRepository{
 
 
 
-public function logout()
-{
-    auth()->user()->tokens()->delete();
-    return redirect()->route('login')->with('success', 'Logout successful');
-}
+
 
 }
 

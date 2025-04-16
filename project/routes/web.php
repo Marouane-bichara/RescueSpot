@@ -48,7 +48,8 @@ Route::prefix('user')->middleware(['auth', 'user.role'])->name('user.')->group(f
 
 
 
-Route::prefix('user')->middleware(['auth', 'user.role'])->name('shelter.')->group(function () {
+Route::prefix('shelter')->middleware(['auth', 'shelter.role'])->name('shelter.')->group(function () {
     Route::get('/HomeShelter', [SheltersController::class, 'indexHome'])->name('HomeShelter');
+    Route::post('logout' , [AuthController::class , 'logout'])->name('logout');
 
 });

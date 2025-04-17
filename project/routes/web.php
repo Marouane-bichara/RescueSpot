@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\SheltersController;
 use App\Http\Controllers\AdoptionsController;
@@ -51,5 +52,5 @@ Route::prefix('user')->middleware(['auth', 'user.role'])->name('user.')->group(f
 Route::prefix('shelter')->middleware(['auth', 'shelter.role'])->name('shelter.')->group(function () {
     Route::get('/HomeShelter', [SheltersController::class, 'indexHome'])->name('HomeShelter');
     Route::post('logout' , [AuthController::class , 'logout'])->name('logout');
-
+    Route::post('/addAnimal', [AnimalController::class, 'addAnimal'])->name('addAnimal');
 });

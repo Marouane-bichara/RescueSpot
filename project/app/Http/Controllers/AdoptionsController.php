@@ -55,7 +55,8 @@ class AdoptionsController extends Controller
         $adoptionOrFail = $this->adoptionService->storeAdoption($request->all());
         if($adoptionOrFail)
         {
-            return redirect()->route('user.UserAdoptions')->with('success', 'Adoption created successfully');
+            return redirect()->back()->with('success', 'Adoption created successfully');
+
         }
 
         if($adoptionOrFail == false)

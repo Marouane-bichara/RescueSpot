@@ -27,7 +27,6 @@ class UserProfileController extends Controller
         $user = auth()->user();
         $userinfo = User::where('id', $user->id)->first();
 
-dd($userinfo);
         $reportsCount = Report::where('reporter_id', $user->id)->count();
         $reportsUser = Report::where('reporter_id', $user->id)->get();
         $adoptionCount = Adoption::where('adopterId', $user->id)->where('status', 'accepted')->count();

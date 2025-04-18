@@ -11,6 +11,7 @@ use App\Http\Controllers\SheltersController;
 use App\Http\Controllers\AdoptionsController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\ShelterProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,4 +54,5 @@ Route::prefix('shelter')->middleware(['auth', 'shelter.role'])->name('shelter.')
     Route::get('/HomeShelter', [SheltersController::class, 'indexHome'])->name('HomeShelter');
     Route::post('logout' , [AuthController::class , 'logout'])->name('logout');
     Route::post('/addAnimal', [AnimalController::class, 'addAnimal'])->name('addAnimal');
+    Route::resource('ShelterProfile', ShelterProfileController::class);
 });

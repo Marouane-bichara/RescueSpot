@@ -320,7 +320,7 @@
             </div>
             
             <div class="p-6">
-                <form id="edit-profile-form" action="{{ route('shelter.updateProfile') }}" method="POST" enctype="multipart/form-data" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <form id="edit-profile-form" action="" method="POST" enctype="multipart/form-data" class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     @csrf
                     <div class="bg-gray-50 p-6 rounded-xl border border-gray-100">
                         <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">

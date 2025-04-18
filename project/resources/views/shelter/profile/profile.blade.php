@@ -318,7 +318,7 @@
                     <i class="fas fa-times text-xl"></i>
                 </button>
             </div>
-            
+             
             <div class="p-6">
                 <form id="edit-profile-form" action="" method="POST" enctype="multipart/form-data" class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     @csrf

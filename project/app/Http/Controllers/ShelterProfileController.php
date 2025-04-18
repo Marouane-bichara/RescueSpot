@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Services\shelter\ShelterProfileServices;
 
 class ShelterProfileController extends Controller
 {
@@ -12,12 +13,22 @@ class ShelterProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    protected $shelterProfileServices;
+
+    public function __construct(ShelterProfileServices $shelterProfileServices)
     {
+        $this->shelterProfileServices = $shelterProfileServices;
+    }
+
+    public function index()
+    { 
         //
-        $shelterid = auth()->user()->id;
-        $shelter = User::where('id', $shelterid)->first();
-        return view('shelter.profile.profile' , compact('shelter'));
+        $userID = auth()->user()->id;
+        $user = User::where('id', $userID)->first();
+        $statisticShelter = $this->shelterProfileServices->statisticShelter();
+        $animals = $this->shelterProfileServices->shelterAnimals();
+        return view('shelter.profile.profile' , compact('user' , 'statisticShelter' , 'animals'));
     }
 
     /**

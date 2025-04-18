@@ -13,7 +13,7 @@ class  SheltersRepository{
 
         public function getAllAnimals()
         {
-            return Animal::where('status', 'ready for adoption')->limit(4)->get();
+            return Animal::where('status', 'ready for adoption')->get();
         }
 
         public function getallTheAdoptionRequests()
@@ -57,7 +57,7 @@ class  SheltersRepository{
             $userId = auth()->user()->id; 
             $shelter = Shelter::where('user_id', $userId)->first(); 
 
-            $animals = Animal::where('shelter_id', $shelter->id)->get(); 
+            $animals = Animal::where('shelter_id', $shelter->id)->paginate(6); 
 
             return $animals;
         }

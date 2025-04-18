@@ -27,14 +27,13 @@ class UserProfileController extends Controller
         $user = auth()->user();
         $userinfo = User::where('id', $user->id)->first();
 
-
         $reportsCount = Report::where('reporter_id', $user->id)->count();
         $reportsUser = Report::where('reporter_id', $user->id)->get();
         $adoptionCount = Adoption::where('adopterId', $user->id)->where('status', 'accepted')->count();
         $followersCount = Follower::where('followed_id', $user->id)->count();
         $adoptions = Adoption::with('animal')
         ->where('adopterId', $user->id)
-        ->where('status', 'accepted') // 🔥 filter by accepted status
+        ->where('status', 'accepted') 
         ->get();
 
         // dd($reportsCount);

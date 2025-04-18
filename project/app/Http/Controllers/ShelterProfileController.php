@@ -4,32 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Services\users\AdoptionsService;
-use App\Http\Requests\AdoptionValidation;
 
-class AdoptionsController extends Controller
+class ShelterProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-     protected $adoptionService;
-    public function __construct(AdoptionsService $adoptionService)
-    {
-        $this->adoptionService = $adoptionService;
-    }
     public function index()
     {
         //
-
-        $user = auth()->user();
-
-        $userinfo = User::where('id', $user->id)->first();
-        $animals = $this->adoptionService->getAllAdoptions();
-
-        return view('user.adoptions.adoptions', compact('animals' , 'userinfo'));   
+        $shelterid = auth()->user()->id;
+        $shelter = User::where('id', $shelterid)->first();
+        return view('shelter.profile.profile' , compact('shelter'));
     }
 
     /**
@@ -48,22 +36,9 @@ class AdoptionsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AdoptionValidation $request)
+    public function store(Request $request)
     {
         //
-
-        $adoptionOrFail = $this->adoptionService->storeAdoption($request->all());
-        if($adoptionOrFail)
-        {
-            return redirect()->back()->with('success', 'Adoption created successfully');
-
-        }
-
-        if($adoptionOrFail == false)
-        {
-            return redirect()->back()->with('error', 'Adoption already exists');
-        }
-        return redirect()->back()->with('error', 'Failed to create adoption');
     }
 
     /**

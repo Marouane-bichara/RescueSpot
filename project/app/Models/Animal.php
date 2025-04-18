@@ -26,7 +26,7 @@ class Animal extends Model
         return $this->belongsTo(Shelter::class , 'shelter_id'); // Foreign key is shelter_id in the animals table
     }
 
-
+ 
     public function adoptions()
     {
         return $this->hasMany(Adoption::class, 'animalId');

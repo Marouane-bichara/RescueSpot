@@ -84,7 +84,14 @@ class ShelterProfileController extends Controller
     public function update(Request $request, $id)
     {
         //
-    }
+
+        $updateAnimal = $this->shelterProfileServices->updateAnimal($id, $request->all());
+        if ($updateAnimal) {
+            return redirect()->back()->with('success', 'Animal updated successfully!');
+        } else {
+            return redirect()->back()->with('error', 'Animal not found!');
+        }
+    } 
 
     /**
      * Remove the specified resource from storage.
@@ -95,5 +102,11 @@ class ShelterProfileController extends Controller
     public function destroy($id)
     {
         //
+        $deleteanimal = $this->shelterProfileServices->profileDeleteAnimal($id);
+        if ($deleteanimal) {
+            return redirect()->back()->with('success', 'Animal deleted successfully!');
+        } else {
+            return redirect()->back()->with('error', 'Animal not found!');
+        }
     }
 }

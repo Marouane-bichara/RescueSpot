@@ -10,8 +10,10 @@ use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\SheltersController;
 use App\Http\Controllers\AdoptionsController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\AdoptionReqController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\ShelterProfileController;
+use App\Http\Controllers\EditeProfileInfoSController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,4 +57,8 @@ Route::prefix('shelter')->middleware(['auth', 'shelter.role'])->name('shelter.')
     Route::post('logout' , [AuthController::class , 'logout'])->name('logout');
     Route::post('/addAnimal', [AnimalController::class, 'addAnimal'])->name('addAnimal');
     Route::resource('ShelterProfile', ShelterProfileController::class);
+    Route::post('/editProfile', [EditeProfileInfoSController::class, 'editeProfileInfoS'])->name('editProfile');
+    Route::get('/AdoptionsRequests', [AdoptionReqController::class, 'index'])->name('AdoptionsRequests');
+    Route::post('/rejectAdoptionRequest/{id}', [AdoptionReqController::class, 'rejectAdoptionRequest'])->name('rejectAdoptionRequest');
+
 });

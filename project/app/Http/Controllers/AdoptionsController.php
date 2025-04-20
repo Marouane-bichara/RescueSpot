@@ -22,7 +22,7 @@ class AdoptionsController extends Controller
     }
     public function index()
     {
-        //
+        // 
 
         $user = auth()->user();
 

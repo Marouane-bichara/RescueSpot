@@ -13,13 +13,14 @@ class SheltersController extends Controller
 
     protected $sheltersService;
 
-    public function __construct(SheltersService $sheltersService){
+
+    public function __construct(SheltersService $sheltersService ){
         $this->sheltersService = $sheltersService;
     }
 
     public function indexHome()
     {
-
+ 
         $adoptionRequests = $this->sheltersService->getallTheAdoptionRequests();
         $messages = $this->sheltersService->getMessages();
         $allthereports = $this->sheltersService->getLatestReports(); 

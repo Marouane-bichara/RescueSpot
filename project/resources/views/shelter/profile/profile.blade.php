@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE
+html >
+  <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -230,23 +231,17 @@
           
           // Save profile changes
           const saveProfileBtn = document.getElementById('save-profile-btn');
-          
+
           saveProfileBtn.addEventListener('click', function() {
-              // Here you would typically send the form data to your server
-              const formData = new FormData(document.getElementById('edit-profile-form'));
+              // Get the form element
+              const form = document.getElementById('edit-profile-form');
               
-              // Update the profile info with the edited data
-              document.getElementById('shelter-name').textContent = formData.get('name');
-              document.getElementById('shelter-bio').textContent = formData.get('bio') || 'No bio added yet';
-              document.getElementById('shelter-email').textContent = formData.get('email') || 'Not specified';
-              document.getElementById('shelter-phone').textContent = formData.get('phone') || 'Not specified';
-              document.getElementById('shelter-address').textContent = formData.get('address') || 'Not specified';
-              document.getElementById('shelter-city').textContent = formData.get('city') || 'Not specified';
-              document.getElementById('shelter-country').textContent = formData.get('country') || 'Not specified';
-              document.getElementById('shelter-website').textContent = formData.get('website') || 'Not specified';
+              // Submit the form to the server
+              form.submit();
               
-              closeModal();
-              showToast('Shelter profile updated successfully!');
+              // Note: The page will refresh after form submission, so the following code
+              // will only execute if there's an issue with the form submission
+              showToast('Submitting form...');
           });
 
           // Toast functionality
@@ -365,12 +360,63 @@
           const deleteButtons = document.querySelectorAll('.delete-animal-btn');
           
           deleteButtons.forEach(button => {
-              button.addEventListener('click', function(e) {
+              button.addEventListener('click', (e) => {
                   if (!confirm('Are you sure you want to delete this animal?')) {
                       e.preventDefault();
                   }
               });
           });
+
+          // Toggle edit animal forms
+          const editAnimalButtons = document.querySelectorAll('.edit-animal-btn');
+          const animalInfoSections = document.querySelectorAll('.animal-info-section');
+          const animalEditForms = document.querySelectorAll('.animal-edit-form');
+          
+          editAnimalButtons.forEach(button => {
+              button.addEventListener('click', function(e) {
+                  e.preventDefault();
+                  const animalId = this.getAttribute('data-animal-id');
+                  
+                  // Toggle visibility of info and edit form for this animal
+                  const infoSection = document.getElementById(`animal-info-${animalId}`);
+                  const editForm = document.getElementById(`animal-edit-form-${animalId}`);
+                  
+                  if (infoSection && editForm) {
+                      infoSection.classList.toggle('hidden');
+                      editForm.classList.toggle('hidden');
+                  }
+              });
+          });
+
+          // Cancel edit buttons
+          const cancelEditButtons = document.querySelectorAll('.cancel-edit-btn');
+          
+          cancelEditButtons.forEach(button => {
+              button.addEventListener('click', function(e) {
+                  e.preventDefault();
+                  const animalId = this.getAttribute('data-animal-id');
+                  
+                  // Hide edit form and show info section
+                  const infoSection = document.getElementById(`animal-info-${animalId}`);
+                  const editForm = document.getElementById(`animal-edit-form-${animalId}`);
+                  
+                  if (infoSection && editForm) {
+                      infoSection.classList.remove('hidden');
+                      editForm.classList.add('hidden');
+                  }
+              });
+          });
+
+          // Preview animal photo
+          window.previewAnimalPhoto = function(input, previewId) {
+              if (input.files && input.files[0]) {
+                  const reader = new FileReader();
+                  reader.onload = function(e) {
+                      document.getElementById(previewId).src = e.target.result;
+                  };
+                  reader.readAsDataURL(input.files[0]);
+              }
+          };
       });
   </script>
 </head>
@@ -401,9 +447,9 @@
                   <i class="fas fa-times text-xl"></i>
               </button>
           </div>
-           
+            
           <div class="p-6">
-              <form id="edit-profile-form" action="" method="POST" enctype="multipart/form-data" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <form id="edit-profile-form" action="{{ route('shelter.editProfile') }}" method="POST" enctype="multipart/form-data" class="grid grid-cols-1 md:grid-cols-2 gap-8">
                   @csrf
                   <div class="bg-gray-50 p-6 rounded-xl border border-gray-100">
                       <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
@@ -514,7 +560,7 @@
                       
                       <div class="mb-4">
                           <label for="website" class="block text-sm font-medium text-gray-700 mb-1">Website</label>
-                          <input type="url" id="website" name="website" value="www.happypawsshelter.org" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 transition duration-150">
+                          <input type="url" id="website" name="website" value="{{ $user->shelter->website ?? '' }}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 transition duration-150">
                       </div>
                       
                       <h3 class="text-lg font-semibold text-gray-800 mt-6 mb-4 flex items-center">
@@ -610,7 +656,7 @@
               <div class="hidden md:flex items-center space-x-1">
                   <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 transition duration-150">Dashboard</a>
                   <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 transition duration-150">Animals</a>
-                  <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 transition duration-150">Adoption Requests</a>
+                  <a href="AdoptionsRequests" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 transition duration-150">Adoption Requests</a>
                   <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 transition duration-150">Reports</a>
                   <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 transition duration-150">Messages</a>
               </div>
@@ -697,7 +743,7 @@
               <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 transition duration-150">Dashboard</a>
               <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gradient-to-r from-primary-600 to-secondary-600">Profile</a>
               <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 transition duration-150">Animals</a>
-              <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 transition duration-150">Adoption Requests</a>
+              <a href="AdoptionsRequests" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 transition duration-150">Adoption Requests</a>
               <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 transition duration-150">Reports</a>
               <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 transition duration-150">Messages</a>
               <button class="mt-2 w-full flex justify-center items-center bg-gradient-to-r from-secondary-500 to-primary-500 hover:from-secondary-600 hover:to-primary-600 text-white py-2 px-4 rounded-lg shadow-md transition duration-150">
@@ -1039,7 +1085,9 @@
                                           {{ ucfirst($animal->status) }}
                                       </div>
                                   </div>
-                                  <div class="p-5">
+                                  
+                                  <!-- Animal Info Section (Default View) -->
+                                  <div id="animal-info-{{ $animal->id }}" class="animal-info-section p-5">
                                       <div class="flex justify-between items-start mb-2">
                                           <h3 class="font-semibold text-gray-800 text-lg">{{ $animal->name }}</h3>
                                           <div class="flex space-x-1">
@@ -1055,20 +1103,95 @@
                                       <div class="flex justify-between items-center">
                                           <span class="text-sm text-gray-500">Added: {{ \Carbon\Carbon::parse($animal->created_at)->diffForHumans() }}</span>
                                           <div class="flex space-x-2">
-                                              <form action="" method="GET">
-                                                  <button type="submit" class="bg-primary-500 hover:bg-primary-600 text-white py-1 px-3 rounded-lg text-sm transition duration-150">
-                                                      <i class="fas fa-edit"></i> Edit
-                                                  </button>
-                                              </form>
-                                              <form action="" method="POST" onsubmit="return confirm('Are you sure you want to delete this animal?');">
+                                              <button type="button" 
+                                                  class="edit-animal-btn bg-primary-500 hover:bg-primary-600 text-white py-1 px-3 rounded-lg text-sm transition duration-150"
+                                                  data-animal-id="{{ $animal->id }}">
+                                                  <i class="fas fa-edit"></i> Edit
+                                              </button>
+                                              <form action="{{ route('shelter.ShelterProfile.destroy', $animal->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this animal?');">
                                                   @csrf
                                                   @method('DELETE')
+                                                  <input type="hidden" name="animal_id" value="{{ $animal->id }}">
                                                   <button type="submit" class="bg-red-500 hover:bg-red-600 text-white py-1 px-3 rounded-lg text-sm transition duration-150 delete-animal-btn">
                                                       <i class="fas fa-trash"></i> Delete
                                                   </button>
                                               </form>
                                           </div>
                                       </div>
+                                  </div>
+                                  
+                                  <!-- Animal Edit Form (Hidden by Default) -->
+                                  <div id="animal-edit-form-{{ $animal->id }}" class="animal-edit-form p-5 hidden">
+                                      <form action="{{ route('shelter.ShelterProfile.update', $animal->id) }}" method="POST" enctype="multipart/form-data">
+                                          @csrf
+                                          @method('PUT')
+                                          
+                                          <div class="mb-3">
+                                              <label for="name_{{ $animal->id }}" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                                              <input type="text" id="name_{{ $animal->id }}" name="name" value="{{ $animal->name }}" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 transition duration-150 text-sm">
+                                          </div>
+                                          
+                                          <div class="grid grid-cols-2 gap-3 mb-3">
+                                              <div>
+                                                  <label for="species_{{ $animal->id }}" class="block text-sm font-medium text-gray-700 mb-1">Species</label>
+                                                  <select id="species_{{ $animal->id }}" name="species" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 transition duration-150 text-sm">
+                                                      <option value="Dog" {{ $animal->species == 'Dog' ? 'selected' : '' }}>Dog</option>
+                                                      <option value="Cat" {{ $animal->species == 'Cat' ? 'selected' : '' }}>Cat</option>
+                                                      <option value="Other" {{ $animal->species == 'Other' ? 'selected' : '' }}>Other</option>
+                                                  </select>
+                                              </div>
+                                              <div>
+                                                  <label for="breed_{{ $animal->id }}" class="block text-sm font-medium text-gray-700 mb-1">Breed</label>
+                                                  <input type="text" id="breed_{{ $animal->id }}" name="breed" value="{{ $animal->breed }}" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 transition duration-150 text-sm">
+                                              </div>
+                                          </div>
+                                          
+                                          <div class="grid grid-cols-2 gap-3 mb-3">
+                                              <div>
+                                                  <label for="age_{{ $animal->id }}" class="block text-sm font-medium text-gray-700 mb-1">Age (years)</label>
+                                                  <input type="number" id="age_{{ $animal->id }}" name="age" value="{{ $animal->age }}" min="0" step="0.1" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 transition duration-150 text-sm">
+                                              </div>
+                                              <div>
+                                                  <label for="status_{{ $animal->id }}" class="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                                                  <select id="status_{{ $animal->id }}" name="status" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 transition duration-150 text-sm">
+                                                      <option value="ready" {{ $animal->status == 'ready' ? 'selected' : '' }}>Ready for Adoption</option>
+                                                      <option value="medical" {{ $animal->status == 'medical' ? 'selected' : '' }}>Medical Treatment</option>
+                                                      <option value="training" {{ $animal->status == 'training' ? 'selected' : '' }}>Training</option>
+                                                      <option value="pending" {{ $animal->status == 'pending' ? 'selected' : '' }}>Adoption Pending</option>
+                                                      <option value="adopted" {{ $animal->status == 'adopted' ? 'selected' : '' }}>Adopted</option>
+                                                  </select>
+                                              </div>
+                                          </div>
+                                          
+                                          <div class="mb-3">
+                                              <label for="description_{{ $animal->id }}" class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                                              <textarea id="description_{{ $animal->id }}" name="description" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 transition duration-150 text-sm">{{ $animal->description }}</textarea>
+                                          </div>
+                                          
+                                          <div class="mb-3">
+                                              <label class="block text-sm font-medium text-gray-700 mb-1">Photo</label>
+                                              <div class="flex items-center space-x-3">
+                                                  <div class="relative h-16 w-16 rounded-lg overflow-hidden bg-gray-100">
+                                                      <img id="animal-photo-preview-{{ $animal->id }}" src="{{ asset('storage/'.$animal->photoAnimal) }}" alt="{{ $animal->name }}" class="h-full w-full object-cover">
+                                                  </div>
+                                                  <div>
+                                                      <input type="file" id="photo_{{ $animal->id }}" name="photoAnimal" class="hidden" accept="image/*" onchange="previewAnimalPhoto(this, 'animal-photo-preview-{{ $animal->id }}')">
+                                                      <label for="photo_{{ $animal->id }}" class="bg-primary-600 hover:bg-primary-700 text-white px-3 py-1.5 rounded-lg shadow-sm text-xs cursor-pointer inline-block transition duration-150">
+                                                          <i class="fas fa-upload mr-1"></i> Change Photo
+                                                      </label>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          
+                                          <div class="flex justify-end space-x-2 mt-4">
+                                              <button type="button" class="cancel-edit-btn px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg shadow-sm transition duration-150 text-sm" data-animal-id="{{ $animal->id }}">
+                                                  Cancel
+                                              </button>
+                                              <button type="submit" class="px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white rounded-lg shadow-md transition duration-150 hover:shadow-lg text-sm">
+                                                  <i class="fas fa-save mr-1"></i> Save Changes
+                                              </button>
+                                          </div>
+                                      </form>
                                   </div>
                               </div>
                               @empty

@@ -46,6 +46,28 @@ class  SheltersRepository{
                 
         }
 
+        public function getallAdoptionsReqPaginations()
+        {
+
+            $userId = auth()->user()->id; 
+            $shelter = Shelter::where('user_id', $userId)->first(); 
+
+
+            $adoptionRequests = Adoption::where('status', 'pending')
+            ->whereHas('animal', function ($query) use ($shelter) {
+                $query->where('shelter_id', $shelter->id);
+            })
+            ->with(['animal', 'adopter'])
+            ->paginate(10); // You can set the number of items per page (e.g., 10)
+        
+
+
+                
+
+
+                return $adoptionRequests;
+        }
+
         public function getLatestReports()
         {
             $reports = Report::latest()->paginate(3); 
@@ -110,5 +132,14 @@ public function getMessages()
         })->values();
 }
 
-        
+public function rejectAdoptionRequest($id)
+{
+    $adoptionRequest = Adoption::find($id);
+    if ($adoptionRequest) {
+        $adoptionRequest->status = 'rejected';
+        $adoptionRequest->save();
+        return $adoptionRequest;
+    }
+    return null; // or handle the case where the request is not found
+}
 }

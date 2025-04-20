@@ -212,122 +212,121 @@
                         </div>
                     </div>
                     
-                        <!-- Replace the existing animal cards grid with this updated version -->
-<!-- Replace the existing animal cards grid with this updated version -->
-<div class="p-6">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        @forelse($animals->where('status', 'ready') as $animal)
-        <!-- Animal Card -->
-        <div class="animal-card bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 group transition transform hover:shadow-md hover:-translate-y-1 cursor-pointer" 
-             onclick="openAdoptionModal('modal-{{ $animal->id }}')">
-            <div class="relative">
-                <img src="{{ asset('storage/' . $animal->photoAnimal) }}" alt="{{ $animal->name }}" class="w-full h-48 object-cover">
-                <div class="absolute top-3 right-3 bg-green-500 text-white text-xs px-2 py-1 rounded-full">Available</div>
-                <button class="absolute top-3 left-3 bg-white rounded-full p-2 text-red-500 shadow hover:bg-red-500 hover:text-white transition">
-                    <i class="far fa-heart"></i>
-                </button>
-            </div>
-            <div class="p-4">
-                <div class="flex justify-between items-start mb-2">
-                    <h3 class="font-semibold text-gray-800">{{ $animal->name }}</h3>
-                    <div class="flex space-x-1">
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-gray-300"></i>
-                    </div>
-                </div>
-                <div class="flex space-x-2 mb-2 text-xs">
-                    <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full">{{ $animal->species }}</span>
-                    <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full">{{ $animal->age }} years</span>
-                    <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full">{{ $animal->breed }}</span>
-                </div>
-                <p class="text-sm text-gray-600 mb-3">{{ $animal->shelters ? $animal->shelters->description ?? 'Very affectionate and playful animal' : 'Very affectionate and playful animal' }}</p>
-                <div class="flex justify-between items-center">
-                    <span class="text-sm">
-                        <i class="fas fa-map-marker-alt text-gray-500 mr-1"></i> 
-                        {{ $animal->shelters ? $animal->shelters->address : 'Unknown' }}
-                    </span>
-                    <button class="bg-blue-600 hover:bg-blue-700 text-white py-1.5 px-3 rounded-lg text-sm transition-colors">
-                        View profile
-                    </button>
-                </div>
-            </div>
-        </div>
+                    <!-- Animal cards grid with improved empty state -->
+                    <div class="p-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                            @forelse($animals->where('status', 'ready') as $animal)
+                            <!-- Animal Card -->
+                            <div class="animal-card bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 group transition transform hover:shadow-md hover:-translate-y-1 cursor-pointer" 
+                                onclick="openAdoptionModal('modal-{{ $animal->id }}')">
+                                <div class="relative">
+                                    <img src="{{ asset('storage/' . $animal->photoAnimal) }}" alt="{{ $animal->name }}" class="w-full h-48 object-cover">
+                                    <div class="absolute top-3 right-3 bg-green-500 text-white text-xs px-2 py-1 rounded-full">Available</div>
+                                    <button class="absolute top-3 left-3 bg-white rounded-full p-2 text-red-500 shadow hover:bg-red-500 hover:text-white transition">
+                                        <i class="far fa-heart"></i>
+                                    </button>
+                                </div>
+                                <div class="p-4">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h3 class="font-semibold text-gray-800">{{ $animal->name }}</h3>
+                                        <div class="flex space-x-1">
+                                            <i class="fas fa-star text-yellow-400"></i>
+                                            <i class="fas fa-star text-yellow-400"></i>
+                                            <i class="fas fa-star text-yellow-400"></i>
+                                            <i class="fas fa-star text-yellow-400"></i>
+                                            <i class="fas fa-star text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                    <div class="flex space-x-2 mb-2 text-xs">
+                                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full">{{ $animal->species }}</span>
+                                        <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full">{{ $animal->age }} years</span>
+                                        <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full">{{ $animal->breed }}</span>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-3">{{ $animal->shelters ? $animal->shelters->description ?? 'Very affectionate and playful animal' : 'Very affectionate and playful animal' }}</p>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm">
+                                            <i class="fas fa-map-marker-alt text-gray-500 mr-1"></i> 
+                                            {{ $animal->shelters ? $animal->shelters->address : 'Unknown' }}
+                                        </span>
+                                        <button class="bg-blue-600 hover:bg-blue-700 text-white py-1.5 px-3 rounded-lg text-sm transition-colors">
+                                            View profile
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
 
-        <!-- Adoption Modal for this specific animal -->
-        <div id="modal-{{ $animal->id }}" class="fixed inset-0 z-50 overflow-y-auto hidden">
-            <div class="modal-overlay fixed inset-0"></div>
-            
-            <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
-                <div class="modal-container bg-white rounded-2xl shadow-xl transform transition-all sm:max-w-4xl sm:w-full mx-auto">
-                    <div class="absolute top-4 right-4 z-10">
-                        <button onclick="closeAdoptionModal('modal-{{ $animal->id }}')" class="bg-white p-2 rounded-full shadow-md text-gray-500 hover:text-gray-700 focus:outline-none">
-                            <i class="fas fa-times"></i>
-                        </button>
+                            <!-- Adoption Modal for this specific animal -->
+                            <div id="modal-{{ $animal->id }}" class="fixed inset-0 z-50 overflow-y-auto hidden">
+                                <div class="modal-overlay fixed inset-0"></div>
+                                
+                                <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+                                    <div class="modal-container bg-white rounded-2xl shadow-xl transform transition-all sm:max-w-4xl sm:w-full mx-auto">
+                                        <div class="absolute top-4 right-4 z-10">
+                                            <button onclick="closeAdoptionModal('modal-{{ $animal->id }}')" class="bg-white p-2 rounded-full shadow-md text-gray-500 hover:text-gray-700 focus:outline-none">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                        
+                                        <div class="grid grid-cols-1 md:grid-cols-2">
+                                            <!-- Animal Details -->
+                                            <div class="p-8 bg-gradient-to-br from-blue-50 to-white">
+                                                <div class="mb-6">
+                                                    <img class="w-full h-64 object-cover rounded-2xl shadow-md" src="{{ asset('storage/' . $animal->photoAnimal) }}" alt="{{ $animal->name }}">
+                                                </div>
+                                                <h3 class="text-2xl font-bold text-gray-900 mb-2">{{ $animal->name }}</h3>
+                                                <div class="flex items-center mb-4">
+                                                    <span class="text-gray-600">{{ $animal->breed }}</span>
+                                                    <span class="mx-2">•</span>
+                                                    <span class="text-gray-600">{{ $animal->age }} years</span>
+                                                </div>
+                                                
+                                                <div class="mb-6">
+                                                    <h4 class="text-lg font-semibold text-gray-900 mb-3">About</h4>
+                                                    <p class="text-gray-600">
+                                                        {{ $animal->species }}
+                                                    </p>
+                                                    <p class="text-gray-600 mt-2">
+                                                        This loving animal is looking for a forever home. They've been rehabilitated and are ready to bring joy to your family.
+                                                        Please fill out the form to start the adoption process.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Adoption Form -->
+                                            <div class="p-8 bg-white">
+                                                <h3 class="text-2xl font-bold text-gray-900 mb-6">Adoption Application</h3>
+                                                
+                                                <form action="{{ route('user.UserAdoptions.store') }}" method="POST">
+                                                    @csrf
+                                                    <!-- Changed field name to match what the controller expects -->
+                                                    <input type="hidden" name="animalId" value="{{ $animal->id }}">
+                                                    <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white py-3 px-6 rounded-xl font-medium shadow-lg transition transform hover:scale-105">
+                                                        <i class="fas fa-paper-plane mr-2"></i> Send Adoption Request
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @empty
+                            <!-- Empty state - No animals available -->
+                            <div class="col-span-full p-8 text-center">
+                                <div class="inline-flex items-center justify-center bg-gray-100 rounded-full p-8 mb-6">
+                                    <i class="fas fa-paw text-gray-400 text-5xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-gray-800 mb-3">There are no animals available</h3>
+                                <p class="text-gray-600 mb-6 max-w-lg mx-auto">We currently don't have any animals ready for adoption. Please check back soon as we regularly update our listings with new animals looking for forever homes.</p>
+                                <a href="#" class="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                                    <i class="fas fa-bell mr-2"></i>
+                                    Get notified when new animals arrive
+                                </a>
+                            </div>
+                            @endforelse
+                        </div>
                     </div>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-2">
-                        <!-- Animal Details -->
-                        <div class="p-8 bg-gradient-to-br from-blue-50 to-white">
-                            <div class="mb-6">
-                                <img class="w-full h-64 object-cover rounded-2xl shadow-md" src="{{ asset('storage/' . $animal->photoAnimal) }}" alt="{{ $animal->name }}">
-                            </div>
-                            <h3 class="text-2xl font-bold text-gray-900 mb-2">{{ $animal->name }}</h3>
-                            <div class="flex items-center mb-4">
-                                <span class="text-gray-600">{{ $animal->breed }}</span>
-                                <span class="mx-2">•</span>
-                                <span class="text-gray-600">{{ $animal->age }} years</span>
-                            </div>
-                            
-                            <div class="mb-6">
-                                <h4 class="text-lg font-semibold text-gray-900 mb-3">About</h4>
-                                <p class="text-gray-600">
-                                    {{ $animal->species }}
-                                </p>
-                                <p class="text-gray-600 mt-2">
-                                    This loving animal is looking for a forever home. They've been rehabilitated and are ready to bring joy to your family.
-                                    Please fill out the form to start the adoption process.
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <!-- Adoption Form -->
-                        <div class="p-8 bg-white">
-                            <h3 class="text-2xl font-bold text-gray-900 mb-6">Adoption Application</h3>
-                            
-                            <form action="{{ route('user.UserAdoptions.store') }}" method="POST">
-                                @csrf
-                                <!-- Changed field name to match what the controller expects -->
-                                <input type="hidden" name="animalId" value="{{ $animal->id }}">
-                                <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white py-3 px-6 rounded-xl font-medium shadow-lg transition transform hover:scale-105">
-                                    <i class="fas fa-paper-plane mr-2"></i> Send Adoption Request
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        @empty
-        <div class="col-span-full p-6 text-center">
-            <div class="inline-flex items-center justify-center bg-gray-100 rounded-full p-6 mb-4">
-                <i class="fas fa-home text-gray-400 text-4xl"></i>
-            </div>
-            <h3 class="text-lg font-medium text-gray-800 mb-2">No animals available for adoption</h3>
-            <p class="text-gray-600 mb-4">Check back soon for more animals needing forever homes.</p>
-            <a href="/" class="inline-flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-                <i class="fas fa-bell mr-2"></i>
-                Get notified
-            </a>
-        </div>
-        @endforelse
-    </div>
-</div>
-                    </div>
-                    
-                    <!-- Pagination -->
+                    <!-- Pagination - Only show if there are animals -->
                     @if($animals->count() > 0)
                     <div class="px-6 py-4 border-t border-gray-200 flex justify-center">
                         {{ $animals->links() }}
@@ -337,60 +336,6 @@
             </div>
         </section>
     </main>
-
-    <!-- Adoption Modal -->
-    <div id="adoptionModal" class="fixed inset-0 z-50 overflow-y-auto hidden">
-        <div class="modal-overlay fixed inset-0"></div>
-        
-        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
-            <div class="modal-container bg-white rounded-2xl shadow-xl transform transition-all sm:max-w-4xl sm:w-full mx-auto">
-                <div class="absolute top-4 right-4 z-10">
-                    <button onclick="closeAdoptionModal()" class="bg-white p-2 rounded-full shadow-md text-gray-500 hover:text-gray-700 focus:outline-none">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2">
-                    <!-- Animal Details -->
-                    <div class="p-8 bg-gradient-to-br from-blue-50 to-white">
-                        <div class="mb-6">
-                            <img id="modalAnimalImage" class="w-full h-64 object-cover rounded-2xl shadow-md" src="/placeholder.svg" alt="Animal">
-                        </div>
-                        <h3 id="modalAnimalName" class="text-2xl font-bold text-gray-900 mb-2"></h3>
-                        <div class="flex items-center mb-4">
-                            <span id="modalAnimalBreed" class="text-gray-600"></span>
-                            <span class="mx-2">•</span>
-                            <span id="modalAnimalAge" class="text-gray-600"></span>
-                        </div>
-                        
-                        <div class="mb-6">
-                            <h4 class="text-lg font-semibold text-gray-900 mb-3">About</h4>
-                            <p class="text-gray-600">
-                                <span id="modalAnimalSpecies"></span>
-                            </p>
-                            <p class="text-gray-600 mt-2">
-                                This loving animal is looking for a forever home. They've been rehabilitated and are ready to bring joy to your family.
-                                Please fill out the form to start the adoption process.
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <!-- Adoption Form -->
-                    <div class="p-8 bg-white">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Adoption Application</h3>
-                        
-                        <form id="adoptionForm" action="{{ route('user.UserAdoptions.store') }}" method="POST">
-                            @csrf
-                            <input type="hidden" name="animalId" id="animalId" value="{{ $animal->id }}">
-                            <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white py-3 px-6 rounded-xl font-medium shadow-lg transition transform hover:scale-105">
-                                <i class="fas fa-paper-plane mr-2"></i> Send Adoption Request
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-white">
@@ -465,65 +410,64 @@
         </div>
     </footer>
 
-    <!-- JavaScript for UI interactions only -->
+    <!-- JavaScript for UI interactions -->
     <script>
-       // Replace the existing modal JavaScript with this updated version
-// JavaScript for UI interactions only
-document.addEventListener('DOMContentLoaded', function() {
-    // Toggle mobile menu
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    
-    mobileMenuBtn.addEventListener('click', function() {
-        mobileMenu.classList.toggle('hidden');
-    });
-    
-    // Toggle profile dropdown
-    const profileBtn = document.getElementById('profile-btn');
-    const profileDropdown = document.getElementById('profile-dropdown');
-    
-    profileBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        profileDropdown.classList.toggle('hidden');
-    });
-    
-    // Close dropdown when clicking outside
-    document.addEventListener('click', function() {
-        profileDropdown.classList.add('hidden');
-    });
-});
+        // JavaScript for UI interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Toggle mobile menu
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Toggle profile dropdown
+            const profileBtn = document.getElementById('profile-btn');
+            const profileDropdown = document.getElementById('profile-dropdown');
+            
+            profileBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                profileDropdown.classList.toggle('hidden');
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function() {
+                profileDropdown.classList.add('hidden');
+            });
+        });
 
-// Updated modal functions
-function openAdoptionModal(modalId) {
-    // Show the modal
-    const modal = document.getElementById(modalId);
-    modal.classList.remove('hidden');
-    modal.classList.add('modal-active');
-    document.body.classList.add('modal-open'); // Prevent scrolling when modal is open
-}
+        // Modal functions
+        function openAdoptionModal(modalId) {
+            // Show the modal
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('hidden');
+            modal.classList.add('modal-active');
+            document.body.classList.add('modal-open'); // Prevent scrolling when modal is open
+        }
 
-function closeAdoptionModal(modalId) {
-    const modal = document.getElementById(modalId);
-    modal.classList.add('hidden');
-    modal.classList.remove('modal-active');
-    document.body.classList.remove('modal-open'); // Re-enable scrolling
-}
-
-// Close modal when clicking outside
-document.addEventListener('click', function(event) {
-    const modals = document.querySelectorAll('[id^="modal-"]');
-    
-    modals.forEach(function(modal) {
-        const modalContainer = modal.querySelector('.modal-container');
-        
-        if (!modal.classList.contains('hidden') && !modalContainer.contains(event.target) && 
-            !event.target.closest('.animal-card')) {
+        function closeAdoptionModal(modalId) {
+            const modal = document.getElementById(modalId);
             modal.classList.add('hidden');
             modal.classList.remove('modal-active');
-            document.body.classList.remove('modal-open');
+            document.body.classList.remove('modal-open'); // Re-enable scrolling
         }
-    });
-});
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function(event) {
+            const modals = document.querySelectorAll('[id^="modal-"]');
+            
+            modals.forEach(function(modal) {
+                const modalContainer = modal.querySelector('.modal-container');
+                
+                if (!modal.classList.contains('hidden') && !modalContainer.contains(event.target) && 
+                    !event.target.closest('.animal-card')) {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('modal-active');
+                    document.body.classList.remove('modal-open');
+                }
+            });
+        });
     </script>
 </body>
-</html>
+</html> 

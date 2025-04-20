@@ -12,12 +12,15 @@ class Shelter extends Model
 
 
     protected $fillable = [
-        'name',
-        'location',
-        'phone',
-        'email',
+        'user_id',
+        'shelterName',
+        'address',
+        'city',
+        'state',
+        'zip_code',
+        'country',
+        'description',
         'website',
-        'status'
     ];
 
     public function user()

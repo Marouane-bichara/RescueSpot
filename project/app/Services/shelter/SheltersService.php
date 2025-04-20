@@ -33,6 +33,10 @@ class SheltersService
         return $shelterAnimals;
     }
 
+    public function getallAdoptionsReqPaginations(){
+        $adoptionReq = $this->sheltersRepository->getallAdoptionsReqPaginations(); 
+        return $adoptionReq;
+    }
     public function addAnimal($credentials)
     {
         $animal = $this->sheltersRepository->addAnimal($credentials); 
@@ -43,6 +47,12 @@ class SheltersService
     {
         $messages = $this->sheltersRepository->getMessages(); 
         return $messages;
+    }
+
+    public function rejectAdoptionRequest($id)
+    {
+        $adoptionRequest = $this->sheltersRepository->rejectAdoptionRequest($id); 
+        return $adoptionRequest;
     }
     
 }

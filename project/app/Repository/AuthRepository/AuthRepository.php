@@ -2,6 +2,7 @@
 namespace App\Repository\AuthRepository;
 
 use App\Models\User;
+use App\Models\Shelter;
 use Illuminate\Support\Facades\Hash;
 
     
@@ -38,7 +39,28 @@ class AuthRepository{
 
         ]);
 
-            return $user;
+        if($user->role_id == 3)
+        {
+            $shelter = Shelter::create([
+                'user_id' => $user->id,
+                'shelterName' => $user->name,
+                'address' => 'empty',
+                'city' => 'empty',
+                'state' => 'empty',
+                'zip_code' => 'empty',
+                'country' => 'empty',
+                'description' => 'empty',
+                'website' => 'empty',
+            ]);
+            
+        }
+
+
+
+            return [
+                'user' => $user,
+                'shelter' => isset($shelter) ? $shelter : null,
+            ];
         
     }
     

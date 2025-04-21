@@ -512,7 +512,7 @@ document.addEventListener('click', function(event) {
                             <form action="{{ route('user.UserAdoptions.store') }}" method="POST">
                                 @csrf
                                 <!-- Changed field name to match what the controller expects -->
-                                <input type="hidden" name="animal_id" value="{{ $animal->id }}">
+                                <input type="hidden" name="animalId" value="{{ $animal->id }}">
                                 <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white py-3 px-6 rounded-xl font-medium shadow-lg transition transform hover:scale-105">
                                     <i class="fas fa-paper-plane mr-2"></i> Send Adoption Request
                                 </button>

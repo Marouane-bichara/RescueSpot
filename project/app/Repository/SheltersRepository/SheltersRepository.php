@@ -22,25 +22,13 @@ class  SheltersRepository{
             $userId = auth()->user()->id; 
             $shelter = Shelter::where('user_id', $userId)->first(); 
 
-
-            $adoptionRequests = Adoption::where('status', 'pending')
-                ->whereHas('animal', function ($query) use ($shelter) {
+            $adoptionRequests = Adoption::where('status', 'pending')->whereHas('animal', function ($query) use ($shelter) {
                     $query->where('shelter_id', $shelter->id);
                 })
                 ->with(['animal', 'adopter']) 
                 ->get();
 
-
-                
-
-                // foreach ($adoptionRequests as $request) {
-                //     dump([
-                //         'animal' => $request->animal->name ?? 'no animal',
-                //         'adopter_name' => $request->adopter->name ?? 'no adopter',
-                //         'adopter_email' => $request->adopter->email ?? 'no email',
-                //     ]);
-                // }
-                // dd('done');
+                // dd($adoptionRequests);
 
                 return $adoptionRequests;
                 
@@ -58,9 +46,9 @@ class  SheltersRepository{
                 $query->where('shelter_id', $shelter->id);
             })
             ->with(['animal', 'adopter'])
-            ->paginate(10); // You can set the number of items per page (e.g., 10)
+            ->paginate(10); 
         
-
+            dd($adoptionRequests); // Debugging line to check the data
 
                 
 

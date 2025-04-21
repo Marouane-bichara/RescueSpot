@@ -18,7 +18,7 @@ class SheltersService
     {
         $alladoptionReq = $this->sheltersRepository->getallTheAdoptionRequests();
 
-        return $alladoptionReq;
+        return $alladoptionReq; 
     }
 
     public function getLatestReports()
@@ -55,4 +55,4 @@ class SheltersService
         return $adoptionRequest;
     }
     
-}
+} 

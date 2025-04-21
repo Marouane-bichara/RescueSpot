@@ -1156,7 +1156,7 @@
                                         <option value="declined">Declined</option>
                                     </select>
                                 </div>
-                                
+                                 
                                 <div class="mb-4">
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Notes</label>
                                     <textarea rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500" placeholder="Add internal notes about this application..."></textarea>

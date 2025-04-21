@@ -51,7 +51,6 @@ class AdoptionsController extends Controller
     public function store(AdoptionValidation $request)
     {
         //
-
         $adoptionOrFail = $this->adoptionService->storeAdoption($request->all());
         if($adoptionOrFail)
         {

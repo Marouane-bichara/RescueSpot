@@ -15,7 +15,7 @@ class AdoptionReqController extends Controller
     public function __construct(SheltersService $sheltersService ){
         $this->sheltersService = $sheltersService;
     }
-
+ 
     public function index()
     {
         $adoptionRequests = $this->sheltersService->getallAdoptionsReqPaginations();

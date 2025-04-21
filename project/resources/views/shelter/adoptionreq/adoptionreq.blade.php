@@ -629,9 +629,10 @@
                                                     </button>
                                                 </form>
 
-                                                <form action="{{ route('shelter.rejectAdoptionRequest', ['id' => $request->id]) }}" method="POST" class="inline ml-2">
+                                                <form action="" method="POST" class="inline ml-2">
                                                     @csrf
-                                        
+                                                    <input type="hidden" name="request_id" value="{{ $request->id }}">
+                                                    <input type="hidden" name="rejection_reason" value="Application rejected">
                                                     <button type="submit" class="text-red-600 hover:text-red-900 text-sm font-medium">
                                                         Reject
                                                     </button>

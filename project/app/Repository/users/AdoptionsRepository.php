@@ -17,7 +17,7 @@ class AdoptionsRepository
     public function getAllAnimals()
     {
 
-        $animals = Animal::with('shelters')->where('status', 'ready')->paginate(10);
+        $animals = Animal::with('shelters')->where('status', 'ready')->get();
   
         return $animals;
     }

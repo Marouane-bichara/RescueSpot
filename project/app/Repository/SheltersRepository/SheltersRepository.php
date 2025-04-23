@@ -48,7 +48,6 @@ class  SheltersRepository{
             ->with(['animal', 'adopter'])
             ->paginate(10); 
         
-            dd($adoptionRequests); // Debugging line to check the data
 
                 
 
@@ -129,5 +128,23 @@ public function rejectAdoptionRequest($id)
         return $adoptionRequest;
     }
     return null; // or handle the case where the request is not found
+}
+public function aproveAdoptionRequest($id)
+{
+    $adoptionRequest = Adoption::find($id);
+
+    if ($adoptionRequest) {
+        $adoptionRequest->status = 'approved';
+        $adoptionRequest->save();
+        $animal = Animal::find($adoptionRequest->animalId);
+
+        if ($animal) {
+            $animal->delete();
+        }
+        return $adoptionRequest;
+    }
+   
+    return null; 
+    
 }
 }

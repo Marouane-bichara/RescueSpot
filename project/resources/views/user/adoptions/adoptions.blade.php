@@ -41,6 +41,58 @@
         body.modal-open {
             overflow: hidden;
         }
+        
+        /* Scrollable container styles */
+        .scrollable-container {
+            height: 600px; /* Fixed height for the container */
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 1.5rem;
+            position: relative;
+        }
+        
+        /* Custom scrollbar for the container */
+        .scrollable-container::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .scrollable-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .scrollable-container::-webkit-scrollbar-thumb {
+            background: #c5c5c5;
+            border-radius: 10px;
+        }
+        
+        .scrollable-container::-webkit-scrollbar-thumb:hover {
+            background: #a0a0a0;
+        }
+        
+        /* Scroll indicator inside container */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            color: #3b82f6;
+            z-index: 10;
+            opacity: 0.8;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-5px) translateX(-50%);
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-100 font-sans">
@@ -63,8 +115,7 @@
                     <a href="HomeUser" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Home</a>
                     <a href="{{ route('user.UserAdoptions.index') }}" class="px-3 py-2 rounded-md text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-600">Adoption</a>
                     <a href="{{ route('user.UserReports.index') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Reports</a>
-                    <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Messages</a>
-                    <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Contact</a>
+
                 </div>
 
                 <!-- Right Side Menu -->
@@ -74,16 +125,9 @@
                     </button>
                     
                     <!-- Notifications -->
-                    <button class="relative p-1 rounded-full text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none">
-                        <i class="far fa-bell text-xl"></i>
-                        <span class="absolute top-0 right-0 bg-red-500 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">3</span>
-                    </button>
+
                     
-                    <!-- Messages -->
-                    <button class="relative p-1 rounded-full text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none">
-                        <i class="far fa-envelope text-xl"></i>
-                        <span class="absolute top-0 right-0 bg-red-500 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">5</span>
-                    </button>
+    
                     
                     <!-- Profile Dropdown -->
                     <div class="relative ml-3">
@@ -149,8 +193,6 @@
                 <a href="HomeUser" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Home</a>
                 <a href="{{ route('user.UserAdoptions.index') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-600">Adoption</a>
                 <a href="{{ route('user.UserReports.index') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Reports</a>
-                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Messages</a>
-                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Contact</a>
                 <button class="mt-2 w-full flex justify-center items-center bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white py-2 px-4 rounded-lg shadow-md">
                     <a href="{{ route('user.UserReports.index') }}" class="text-white text-sm font-medium">Report an animal</a>                    
                 </button>
@@ -201,7 +243,7 @@
                 </div>
                 @endif
 
-                <!-- Animal Cards Grid -->
+                <!-- Animal Cards Grid with Scrollable Container -->
                 <div class="bg-white rounded-2xl shadow-xl overflow-hidden mb-8">
                     <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
                         <h2 class="text-lg font-bold text-gray-800">Available for adoption</h2>
@@ -212,8 +254,8 @@
                         </div>
                     </div>
                     
-                    <!-- Animal cards grid with improved empty state -->
-                    <div class="p-6">
+                    <!-- Scrollable container for animal cards -->
+                    <div class="scrollable-container">
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                             @forelse($animals->where('status', 'ready') as $animal)
                             <!-- Animal Card -->
@@ -324,14 +366,14 @@
                             </div>
                             @endforelse
                         </div>
+                        
+                        <!-- Scroll indicator - only show if there are animals -->
+                        @if(count($animals->where('status', 'ready')) > 8)
+                        <div class="scroll-indicator">
+                            <i class="fas fa-chevron-down text-xl animate-bounce"></i>
+                        </div>
+                        @endif
                     </div>
-                    
-                    <!-- Pagination - Only show if there are animals -->
-                    @if($animals->count() > 0)
-                    <div class="px-6 py-4 border-t border-gray-200 flex justify-center">
-                        {{ $animals->links() }}
-                    </div>
-                    @endif
                 </div>
             </div>
         </section>
@@ -435,6 +477,21 @@
             document.addEventListener('click', function() {
                 profileDropdown.classList.add('hidden');
             });
+            
+            // Hide scroll indicator after scrolling
+            const scrollContainer = document.querySelector('.scrollable-container');
+            const scrollIndicator = document.querySelector('.scroll-indicator');
+            
+            if (scrollContainer && scrollIndicator) {
+                scrollContainer.addEventListener('scroll', function() {
+                    if (scrollContainer.scrollTop > 100) {
+                        scrollIndicator.style.opacity = '0';
+                        setTimeout(function() {
+                            scrollIndicator.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            }
         });
 
         // Modal functions
@@ -470,4 +527,4 @@
         });
     </script>
 </body>
-</html> 
+</html>

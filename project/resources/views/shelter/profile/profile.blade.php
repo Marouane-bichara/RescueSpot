@@ -654,11 +654,11 @@ html >
 
               <!-- Main Navigation - Desktop -->
               <div class="hidden md:flex items-center space-x-1">
-                  <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 transition duration-150">Dashboard</a>
+                  <a href="HomeShelter" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 transition duration-150">Dashboard</a>
                   <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 transition duration-150">Animals</a>
                   <a href="AdoptionsRequests" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 transition duration-150">Adoption Requests</a>
                   <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 transition duration-150">Reports</a>
-                  <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 transition duration-150">Messages</a>
+
               </div>
 
               <!-- Right Side Menu -->
@@ -667,17 +667,7 @@ html >
                       <span class="text-white text-sm font-medium">Add Animal</span>
                   </button>
                   
-                  <!-- Notifications -->
-                  <button class="relative p-1 rounded-full text-gray-600 hover:text-primary-600 hover:bg-primary-50 focus:outline-none transition duration-150">
-                      <i class="far fa-bell text-xl"></i>
-                      <span class="absolute top-0 right-0 bg-red-500 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">7</span>
-                  </button>
-                  
-                  <!-- Messages -->
-                  <button class="relative p-1 rounded-full text-gray-600 hover:text-primary-600 hover:bg-primary-50 focus:outline-none transition duration-150">
-                      <i class="far fa-envelope text-xl"></i>
-                      <span class="absolute top-0 right-0 bg-red-500 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">3</span>
-                  </button>
+             
                   
                   <!-- Profile Dropdown -->
                   <div class="relative ml-3">
@@ -740,12 +730,11 @@ html >
       <!-- Mobile menu, show/hide based on menu state -->
       <div class="md:hidden hidden" id="mobile-menu">
           <div class="px-2 pt-2 pb-3 space-y-1 bg-white shadow-md">
-              <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 transition duration-150">Dashboard</a>
+              <a href="HomeShelter" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 transition duration-150">Dashboard</a>
               <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gradient-to-r from-primary-600 to-secondary-600">Profile</a>
               <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 transition duration-150">Animals</a>
               <a href="AdoptionsRequests" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 transition duration-150">Adoption Requests</a>
               <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 transition duration-150">Reports</a>
-              <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 transition duration-150">Messages</a>
               <button class="mt-2 w-full flex justify-center items-center bg-gradient-to-r from-secondary-500 to-primary-500 hover:from-secondary-600 hover:to-primary-600 text-white py-2 px-4 rounded-lg shadow-md transition duration-150">
                   <span class="text-white text-sm font-medium">Add Animal</span>
               </button>

@@ -54,5 +54,10 @@ class SheltersService
         $adoptionRequest = $this->sheltersRepository->rejectAdoptionRequest($id); 
         return $adoptionRequest;
     }
+    public function aproveAdoptionRequest($id)
+    {
+        $adoptionRequest = $this->sheltersRepository->aproveAdoptionRequest($id); 
+        return $adoptionRequest;
+    }
     
 } 

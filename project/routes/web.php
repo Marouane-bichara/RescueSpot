@@ -15,6 +15,7 @@ use App\Http\Controllers\AdoptionReqController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\ShelterProfileController;
 use App\Http\Controllers\EditeProfileInfoSController;
+use App\Http\Controllers\UserAprovedAdoptionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,7 +50,7 @@ Route::prefix('user')->middleware(['auth', 'user.role'])->name('user.')->group(f
     Route::resource('UserReports', ReportsController::class);
     Route::resource('UserAdoptions', AdoptionsController::class);
     Route::post('logout' , [AuthController::class , 'logout'])->name('logout');
-
+    Route::get('AprovedRequests', [UserAprovedAdoptionController::class, 'index'])->name('AprovedRequests');
 
 }); 
 

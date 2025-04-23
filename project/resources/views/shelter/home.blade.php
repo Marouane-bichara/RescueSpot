@@ -87,9 +87,8 @@
                 <div class="hidden md:flex items-center space-x-1">
                     <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-white bg-gradient-to-r from-teal-600 to-emerald-600">Dashboard</a>
                     <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Animals</a>
-                    <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Adoption Requests</a>
+                    <a href="AdoptionsRequests" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Adoption Requests</a>
                     <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Reports</a>
-                    <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Messages</a>
                 </div>
 
                 <!-- Right Side Menu -->
@@ -99,16 +98,7 @@
                     </button>
                     
                     <!-- Notifications -->
-                    <button class="relative p-1 rounded-full text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none">
-                        <i class="far fa-bell text-xl"></i>
-                        <span class="absolute top-0 right-0 bg-red-500 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">7</span>
-                    </button>
-                    
-                    <!-- Messages -->
-                    <button class="relative p-1 rounded-full text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none">
-                        <i class="far fa-envelope text-xl"></i>
-                        <span class="absolute top-0 right-0 bg-red-500 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">3</span>
-                    </button>
+
                     
                     <!-- Profile Dropdown -->
                     <div class="relative ml-3">
@@ -150,9 +140,8 @@
             <div class="px-2 pt-2 pb-3 space-y-1 bg-white shadow-md">
                 <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gradient-to-r from-teal-600 to-emerald-600">Dashboard</a>
                 <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Animals</a>
-                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Adoption Requests</a>
+                <a href="AdoptionsRequests" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Adoption Requests</a>
                 <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Reports</a>
-                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Messages</a>
                 <button data-modal-target="add-animal-modal" class="mt-2 w-full flex justify-center items-center bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white py-2 px-4 rounded-lg shadow-md">
                     <span class="text-white text-sm font-medium">Add Animal</span>                    
                 </button>
@@ -807,7 +796,7 @@
             <button data-close-modal class="text-gray-400 hover:text-gray-500">
                 <i class="fas fa-times text-xl"></i>
             </button>
-        </div>
+        </div>  
         <div class="p-6">
             <form method="POST" action="{{ route('shelter.addAnimal') }}" enctype="multipart/form-data">
             @csrf

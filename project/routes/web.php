@@ -3,6 +3,7 @@
 use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\AnimalController;
@@ -23,7 +24,7 @@ use App\Http\Controllers\EditeProfileInfoSController;
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
-|
+|  
 */
  
 
@@ -48,6 +49,8 @@ Route::prefix('user')->middleware(['auth', 'user.role'])->name('user.')->group(f
     Route::resource('UserReports', ReportsController::class);
     Route::resource('UserAdoptions', AdoptionsController::class);
     Route::post('logout' , [AuthController::class , 'logout'])->name('logout');
+
+
 }); 
 
 
@@ -59,6 +62,11 @@ Route::prefix('shelter')->middleware(['auth', 'shelter.role'])->name('shelter.')
     Route::resource('ShelterProfile', ShelterProfileController::class);
     Route::post('/editProfile', [EditeProfileInfoSController::class, 'editeProfileInfoS'])->name('editProfile');
     Route::get('/AdoptionsRequests', [AdoptionReqController::class, 'index'])->name('AdoptionsRequests');
-    Route::post('/rejectAdoptionRequest/{id}', [AdoptionReqController::class, 'rejectAdoptionRequest'])->name('rejectAdoptionRequest');
+    Route::post('/rejectAdoptionRequest', [AdoptionReqController::class, 'rejectAdoptionRequest'])->name('rejectAdoptionRequest');
+    Route::post('/aproveAdoptionRequest', [AdoptionReqController::class, 'aproveAdoptionRequest'])->name('aproveAdoptionRequest');
+    
+    // Route::get('/chat', [ChatController::class, 'index'])->name('chat');
 
+
+    
 });

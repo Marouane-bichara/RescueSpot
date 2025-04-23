@@ -40,6 +40,18 @@
                     const modalId = trigger.getAttribute('data-modal-target');
                     const modal = document.getElementById(modalId);
                     
+                    // Get the request ID from the trigger's data attribute
+                    const requestId = trigger.getAttribute('data-request-id');
+                    
+                    // Set the request ID in the modal forms
+                    if (requestId) {
+                        const rejectInput = document.getElementById('reject_request_id');
+                        const approveInput = document.getElementById('approve_request_id');
+                        
+                        if (rejectInput) rejectInput.value = requestId;
+                        if (approveInput) approveInput.value = requestId;
+                    }
+                    
                     modal.classList.remove('hidden');
                     overlay.classList.remove('hidden');
                     document.body.classList.add('overflow-hidden');
@@ -114,29 +126,21 @@
 
                 <!-- Main Navigation - Desktop -->
                 <div class="hidden md:flex items-center space-x-1">
-                    <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Dashboard</a>
+                    <a href="HomeShelter" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Dashboard</a>
                     <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Animals</a>
                     <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-white bg-gradient-to-r from-teal-600 to-emerald-600">Adoption Requests</a>
                     <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Reports</a>
-                    <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Messages</a>
                 </div>
 
                 <!-- Right Side Menu -->
                 <div class="flex items-center space-x-4">
-                    <button data-modal-target="add-animal-modal" class="hidden md:block bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white py-2 px-4 rounded-lg shadow-md transition transform hover:scale-105">
-                        <span class="text-white text-sm font-medium">Add Animal</span>
-                    </button>
-                    
-                    <!-- Notifications -->
-                    <button class="relative p-1 rounded-full text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none">
-                        <i class="far fa-bell text-xl"></i>
-                        <span class="absolute top-0 right-0 bg-red-500 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">7</span>
-                    </button>
-                    
-                    <!-- Messages -->
-                    <button class="relative p-1 rounded-full text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none">
-                        <i class="far fa-envelope text-xl"></i>
-                        <span class="absolute top-0 right-0 bg-red-500 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">3</span>
+                    <!-- Add New Animal Button in Header -->
+                    <button 
+                        type="button" 
+                        data-modal-target="add-animal-modal" 
+                        class="bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white rounded-lg px-4 py-2 flex items-center justify-center">
+                        <i class="fas fa-plus mr-2"></i>
+                        <span>Add Animal</span>
                     </button>
                     
                     <!-- Profile Dropdown -->
@@ -159,10 +163,16 @@
                             <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
                                 <i class="fas fa-users mr-3 text-gray-500"></i> Staff
                             </a>
-                            <div class="border-t border-gray-100"></div>
-                            <a href="#" class="flex items-center px-4 py-2 text-sm text-red-700 hover:bg-gray-100" role="menuitem">
-                                <i class="fas fa-sign-out-alt mr-3 text-red-500"></i> Log out
-                            </a>
+                            <div class="border-t border-gray-100 my-1"></div>
+
+<form method="POST" action="{{ route('shelter.logout') }}">
+    @csrf
+    <button type="submit"
+            class="w-full text-left flex items-center gap-3 px-4 py-3 text-sm text-red-600 hover:bg-red-50 transition-colors duration-150"
+            role="menuitem">
+        <i class="fas fa-sign-out-alt text-red-500"></i> Logout
+    </button>
+</form>
                         </div>
                     </div>
                     
@@ -177,14 +187,11 @@
         <!-- Mobile menu, show/hide based on menu state -->
         <div class="md:hidden hidden" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1 bg-white shadow-md">
-                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Dashboard</a>
+                <a href="HomeShelter" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Dashboard</a>
                 <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Animals</a>
                 <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gradient-to-r from-teal-600 to-emerald-600">Adoption Requests</a>
                 <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Reports</a>
-                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Messages</a>
-                <button data-modal-target="add-animal-modal" class="mt-2 w-full flex justify-center items-center bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white py-2 px-4 rounded-lg shadow-md">
-                    <span class="text-white text-sm font-medium">Add Animal</span>                    
-                </button>
+
             </div>
         </div>
     </nav>
@@ -247,136 +254,135 @@
                 </div>
             </div>
 
-            <!-- Adoption Requests Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                @forelse ($adoptionRequests as $request)
-                    <div data-status="{{ $request->status }}" class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 transition hover:shadow-lg">
-                        <!-- Card Header with Status -->
-                        <div class="px-4 py-3 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
-                            <div class="flex items-center">
-                                <span class="text-sm font-medium text-gray-800">Request #{{ $request->id }}</span>
-                            </div>
-                            @php
-                                $statusColors = [
-                                    'pending' => 'bg-yellow-100 text-yellow-800',
-                                    'approved' => 'bg-green-100 text-green-800',
-                                    'rejected' => 'bg-red-100 text-red-800',
-                                    'interview' => 'bg-blue-100 text-blue-800',
-                                    'home_check_passed' => 'bg-green-100 text-green-800',
-                                ];
-                            @endphp
-                            <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full {{ $statusColors[$request->status] ?? 'bg-gray-100 text-gray-800' }}">
-                                {{ ucwords(str_replace('_', ' ', $request->status)) }}
-                            </span>
-                        </div>
-                        
-                        <!-- Applicant Info -->
-                        <div class="p-4 border-b border-gray-200">
-                            <div class="flex items-center">
-                                <div class="flex-shrink-0 h-12 w-12">
-                                    <img class="h-12 w-12 rounded-full object-cover" src="{{ asset('storage/' . $request->adopter->profilePhoto) }}" alt="Adopter Photo">
+            <!-- Scrollable Container for Adoption Requests Cards -->
+            <div class="bg-white rounded-xl shadow-md p-4 mb-6">
+                <div class="h-[calc(100vh-300px)] overflow-y-auto pr-2">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        @forelse ($adoptionRequests as $request)
+                            <div data-status="{{ $request->status }}" class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 transition hover:shadow-lg">
+                                <!-- Card Header with Status -->
+                                <div class="px-4 py-3 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
+                                    <div class="flex items-center">
+                                        <span class="text-sm font-medium text-gray-800">Request #{{ $request->id }}</span>
+                                    </div>
+                                    @php
+                                        $statusColors = [
+                                            'pending' => 'bg-yellow-100 text-yellow-800',
+                                            'approved' => 'bg-green-100 text-green-800',
+                                            'rejected' => 'bg-red-100 text-red-800',
+                                            'interview' => 'bg-blue-100 text-blue-800',
+                                            'home_check_passed' => 'bg-green-100 text-green-800',
+                                        ];
+                                    @endphp
+                                    <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full {{ $statusColors[$request->status] ?? 'bg-gray-100 text-gray-800' }}">
+                                        {{ ucwords(str_replace('_', ' ', $request->status)) }}
+                                    </span>
                                 </div>
-                                <div class="ml-4">
-                                    <div class="text-sm font-medium text-gray-900">{{ $request->adopter->name }}</div>
-                                    <div class="text-sm text-gray-500">{{ $request->adopter->email }}</div>
+                                
+                                <!-- Applicant Info -->
+                                <div class="p-4 border-b border-gray-200">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-12 w-12">
+                                            <img class="h-12 w-12 rounded-full object-cover" src="{{ asset('storage/' . $request->adopter->profilePhoto) }}" alt="Adopter Photo">
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900">{{ $request->adopter->name }}</div>
+                                            <div class="text-sm text-gray-500">{{ $request->adopter->email }}</div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Animal Info -->
-                        <div class="p-4 border-b border-gray-200">
-                            <div class="flex items-center">
-                                <div class="flex-shrink-0 h-16 w-16">
-                                    <img class="h-16 w-16 rounded-lg object-cover" src="{{ asset('storage/' . $request->animal->photoAnimal) }}" alt="Animal Photo">
+                                
+                                <!-- Animal Info -->
+                                <div class="p-4 border-b border-gray-200">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-16 w-16">
+                                            <img class="h-16 w-16 rounded-lg object-cover" src="{{ asset('storage/' . $request->animal->photoAnimal) }}" alt="Animal Photo">
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900">{{ $request->animal->name }} ({{ $request->animal->code }})</div>
+                                            <div class="text-sm text-gray-500">{{ $request->animal->race }}, {{ $request->animal->age }} years</div>
+                                            <div class="mt-1 flex items-center">
+                                                <i class="far fa-calendar-alt text-gray-400 mr-1.5 text-xs"></i>
+                                                <span class="text-xs text-gray-500">{{ \Carbon\Carbon::parse($request->requestDate)->format('F j, Y') }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="ml-4">
-                                    <div class="text-sm font-medium text-gray-900">{{ $request->animal->name }} ({{ $request->animal->code }})</div>
-                                    <div class="text-sm text-gray-500">{{ $request->animal->race }}, {{ $request->animal->age }} years</div>
-                                    <div class="mt-1 flex items-center">
-                                        <i class="far fa-calendar-alt text-gray-400 mr-1.5 text-xs"></i>
-                                        <span class="text-xs text-gray-500">{{ \Carbon\Carbon::parse($request->requestDate)->format('F j, Y') }}</span>
+                                
+                                <!-- Request Details -->
+                                <div class="p-4 border-b border-gray-200">
+                                    <div class="grid grid-cols-2 gap-4 text-sm">
+                                        <div>
+                                            <span class="block text-gray-500">Submitted</span>
+                                            <span class="font-medium text-gray-800">{{ \Carbon\Carbon::parse($request->requestDate)->diffForHumans() }}</span>
+                                        </div>
+                                        <div>
+                                            <span class="block text-gray-500">Home Type</span>
+                                            <span class="font-medium text-gray-800">{{ $request->adopter->homeType ?? 'Not specified' }}</span>
+                                        </div>
+                                        <div>
+                                            <span class="block text-gray-500">Has Children</span>
+                                            <span class="font-medium text-gray-800">{{ $request->adopter->hasChildren ? 'Yes' : 'No' }}</span>
+                                        </div>
+                                        <div>
+                                            <span class="block text-gray-500">Has Pets</span>
+                                            <span class="font-medium text-gray-800">{{ $request->adopter->hasPets ? 'Yes' : 'No' }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Actions -->
+                                <div class="p-4 bg-gray-50 flex justify-between items-center">
+                                    <button 
+                                        type="button" 
+                                        data-modal-target="adoption-details-modal" 
+                                        data-request-id="{{ $request->id }}" 
+                                        class="text-teal-600 hover:text-teal-900 font-medium text-sm flex items-center">
+                                        <i class="far fa-eye mr-1.5"></i> View
+                                    </button>
+                                    
+                                    <div class="flex space-x-3">
+                                        <form action="{{ route('shelter.aproveAdoptionRequest') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="adoption_request_id" value="{{ $request->id }}">
+                                            <button type="submit" class="bg-green-100 hover:bg-green-200 text-green-800 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors">
+                                                Approve
+                                            </button>
+                                        </form>
+                                        
+                                        <form action="{{ route('shelter.rejectAdoptionRequest') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="adoption_request_id" value="{{ $request->id }}">
+                                            <button type="submit" class="bg-red-100 hover:bg-red-200 text-red-800 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors">
+                                                Decline
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <!-- Request Details -->
-                        <div class="p-4 border-b border-gray-200">
-                            <div class="grid grid-cols-2 gap-4 text-sm">
-                                <div>
-                                    <span class="block text-gray-500">Submitted</span>
-                                    <span class="font-medium text-gray-800">{{ \Carbon\Carbon::parse($request->requestDate)->diffForHumans() }}</span>
+                        @empty
+                            <div class="col-span-full bg-white rounded-xl shadow-md p-8 text-center">
+                                <div class="inline-flex items-center justify-center w-20 h-20 bg-gray-100 rounded-full mb-6">
+                                    <i class="fas fa-clipboard-list text-gray-400 text-3xl"></i>
                                 </div>
-                                <div>
-                                    <span class="block text-gray-500">Home Type</span>
-                                    <span class="font-medium text-gray-800">{{ $request->adopter->homeType ?? 'Not specified' }}</span>
-                                </div>
-                                <div>
-                                    <span class="block text-gray-500">Has Children</span>
-                                    <span class="font-medium text-gray-800">{{ $request->adopter->hasChildren ? 'Yes' : 'No' }}</span>
-                                </div>
-                                <div>
-                                    <span class="block text-gray-500">Has Pets</span>
-                                    <span class="font-medium text-gray-800">{{ $request->adopter->hasPets ? 'Yes' : 'No' }}</span>
+                                <h3 class="text-xl font-semibold text-gray-900 mb-2">No adoption requests yet</h3>
+                                <p class="text-gray-600 mb-6 max-w-md mx-auto">There are currently no adoption requests to review. When potential adopters submit applications, they will appear here.</p>
+                                <div class="flex flex-col sm:flex-row justify-center gap-3">
+                                    <a href="#" class="inline-flex items-center justify-center px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition">
+                                        <i class="fas fa-sync-alt mr-2"></i>
+                                        Refresh page
+                                    </a>
+                                    <a href="#" 
+                                       data-modal-target="add-animal-modal"
+                                       class="inline-flex items-center justify-center px-4 py-2 bg-gradient-to-r from-teal-500 to-emerald-500 text-white rounded-lg hover:from-teal-600 hover:to-emerald-600 transition">
+                                        <i class="fas fa-plus mr-2"></i>
+                                        Add new animal
+                                    </a>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <!-- Actions -->
-                        <div class="p-4 bg-gray-50 flex justify-between items-center">
-                            <form action="" method="GET">
-                                <button type="submit" class="text-teal-600 hover:text-teal-900 font-medium text-sm flex items-center">
-                                    <i class="far fa-eye mr-1.5"></i> View
-                                </button>
-                            </form>
-                            
-                            <div class="flex space-x-3">
-                                <form action="" method="POST">
-                                    @csrf
-                                    <button type="submit" class="bg-green-100 hover:bg-green-200 text-green-800 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors">
-                                        Approve
-                                    </button>
-                                </form>
-                                
-                                <form action="" method="POST">
-                                    @csrf
-                                    <button type="submit" class="bg-red-100 hover:bg-red-200 text-red-800 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors">
-                                        Decline
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
+                        @endforelse
                     </div>
-                @empty
-                    <div class="col-span-full bg-white rounded-xl shadow-md p-8 text-center">
-                        <div class="inline-flex items-center justify-center w-16 h-16 bg-gray-100 rounded-full mb-4">
-                            <i class="fas fa-inbox text-gray-400 text-2xl"></i>
-                        </div>
-                        <h3 class="text-lg font-medium text-gray-900 mb-1">No adoption requests found</h3>
-                        <p class="text-gray-500">There are currently no adoption requests to review.</p>
-                    </div>
-                @endforelse
-            </div>
-
-            <!-- Pagination -->
-            <div class="mt-8 flex justify-center">
-                <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
-                    <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                        <span class="sr-only">Previous</span>
-                        <i class="fas fa-chevron-left text-xs"></i>
-                    </a>
-                    <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">1</a>
-                    <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-teal-50 text-sm font-medium text-teal-600 hover:bg-teal-100">2</a>
-                    <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">3</a>
-                    <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700">...</span>
-                    <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">8</a>
-                    <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">9</a>
-                    <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">10</a>
-                    <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                        <span class="sr-only">Next</span>
-                        <i class="fas fa-chevron-right text-xs"></i>
-                    </a>
-                </nav>
+                </div>
             </div>
         </div>
     </main>
@@ -442,10 +448,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="text-gray-400 hover:text-teal-400 transition-colors flex items-center">
-                            <i class="fas fa-chevron-right text-xs mr-2 text-teal-500"></i>
-                            Messages
-                        </a>
+     
                     </li>
                 </ul>
             </div>
@@ -643,18 +646,105 @@
                                         </button>
                                     </div>
                                     <div class="flex space-x-2">
-                                        <button class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md shadow-sm text-sm font-medium focus:outline-none">
-                                            Decline
-                                        </button>
-                                        <button class="px-4 py-2 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white rounded-md shadow-sm text-sm font-medium focus:outline-none">
-                                            Approve
-                                        </button>
+                                        <form action="{{ route('shelter.rejectAdoptionRequest') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="adoption_request_id" id="reject_request_id" value="">
+                                            <button type="submit" class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md shadow-sm text-sm font-medium focus:outline-none">
+                                                Decline
+                                            </button>
+                                        </form>
+                                        <form action="{{ route('shelter.aproveAdoptionRequest') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="adoption_request_id" id="approve_request_id" value="">
+                                            <button type="submit" class="px-4 py-2 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white rounded-md shadow-sm text-sm font-medium focus:outline-none">
+                                                Approve
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add New Animal Modal -->
+    <div id="add-animal-modal" class="modal hidden fixed inset-0 z-50 flex items-center justify-center">
+        <div class="bg-white rounded-xl shadow-2xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center sticky top-0 bg-white">
+                <h3 class="text-xl font-bold text-gray-800">Add New Animal</h3>
+                <button data-close-modal class="text-gray-400 hover:text-gray-500">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="p-6">
+                <form method="POST" action="{{ route('shelter.addAnimal') }}" enctype="multipart/form-data">
+                @csrf
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                            <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500">
+                        </div>
+                        <div class="col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Upload Photos</label>
+                            <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                                <div class="flex justify-center">
+                                    <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-2"></i>
+                                </div>
+                                <p class="text-sm text-gray-500 mb-2">Drag and drop photos here, or click to select files</p>
+                                <input type="file" id="photoAnimal" name="photoAnimal" class="hidden">
+                                <button type="button" onclick="document.getElementById('photoAnimal').click()" class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none">
+                                    <i class="fas fa-upload mr-2"></i>
+                                    Select Files
+                                </button>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="species" class="block text-sm font-medium text-gray-700 mb-1">Species</label>
+                            <select id="species" name="species" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500">
+                                <option value="">Select species</option>
+                                <option value="dog">Dog</option>
+                                <option value="cat">Cat</option>
+                                <option value="rabbit">Rabbit</option>
+                                <option value="bird">Bird</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="breed" class="block text-sm font-medium text-gray-700 mb-1">Breed</label>
+                            <input type="text" id="breed" name="breed" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500">
+                        </div>
+                        <div>
+                            <label for="age" class="block text-sm font-medium text-gray-700 mb-1">Age</label>
+                            <input type="number" id="age" name="age" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500">
+                        </div>
+                        <div>
+                            <label for="status" class="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                            <select id="status" name="status" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500">
+                                <option value="">Select status</option>
+                                <option value="available">Available for Adoption</option>
+                                <option value="pending">Pending Adoption</option>
+                                <option value="medical">Medical Care</option>
+                                <option value="quarantine">Quarantine</option>
+                                <option value="foster">In Foster Care</option>
+                                <option value="training">In Training</option>
+                            </select>
+                        </div>
+ 
+                    </div>
+                    <div class="mt-6 flex justify-end space-x-3">
+                        <button type="button" data-close-modal class="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none">
+                            Cancel
+                        </button>
+                        <button type="submit" class="px-4 py-2 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white rounded-md shadow-sm text-sm font-medium focus:outline-none">
+                            Add Animal
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

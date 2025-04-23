@@ -10,4 +10,4 @@ class UserAprovedAdoptionRepository
     {
         echo "Aproved Adoption Requests";
     }
-}
+}   

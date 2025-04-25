@@ -136,15 +136,20 @@ public function aproveAdoptionRequest($id)
     if ($adoptionRequest) {
         $adoptionRequest->status = 'approved';
         $adoptionRequest->save();
-        $animal = Animal::find($adoptionRequest->animalId);
-
-        if ($animal) {
-            $animal->delete();
-        }
         return $adoptionRequest;
     }
    
     return null; 
     
+}
+
+public function getallAnimalsOfShelter()
+{
+    $userId = auth()->user()->id; 
+    $shelter = Shelter::where('user_id', $userId)->first(); 
+
+    $animals = Animal::where('shelter_id', $shelter->id)->get(); 
+
+    return $animals;
 }
 }

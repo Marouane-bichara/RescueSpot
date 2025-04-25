@@ -4,6 +4,7 @@ namespace App\Repository\SheltersRepository;
 use App\Models\Animal;
 use App\Models\Report;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 
 class ShelterProfileRepository
@@ -33,14 +34,31 @@ class ShelterProfileRepository
             return false;
    }
 
-    public function updateAnimal($id, $data){
-            $animal = Animal::find($id);
-            if ($animal) {
-                $animal->update($data);
-                return true;
-            } 
-            return false;
-            }
+   public function updateAnimal($id, $data)
+   {
+       $animal = Animal::find($id);
+   
+       if (!$animal) {
+           return false;
+       }
+   
+       if (isset($data['photoAnimal']) && $data['photoAnimal'] instanceof \Illuminate\Http\UploadedFile) {
+           $file = $data['photoAnimal'];
+           $filename = time() . '_' . $file->getClientOriginalName();
+           $path = $file->storeAs('animals', $filename, 'public');
+   
+           if ($animal->photoAnimal && Storage::disk('public')->exists($animal->photoAnimal)) {
+               Storage::disk('public')->delete($animal->photoAnimal);
+           }
+   
+           // Replace the file in data with the path string
+           $data['photoAnimal'] = $path;
+       }
+   
+       $animal->update($data);
+       return true;
+   }
+   
 
      public function updateUser($user, array $data)
     {

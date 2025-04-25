@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Services\shelter\SheltersService;
 use App\Http\Requests\AddAnimalValidation;
@@ -16,6 +17,14 @@ class AnimalController extends Controller
         $this->sheltersService = $sheltersService;
     }
 
+    public function index()
+    {
+        $user = auth()->user();
+        $userinfo = User::find($user->id);
+        $animals = $this->sheltersService->getallAnimalsOfShelter();
+
+        return view('shelter.animals.animals' , compact('userinfo', 'animals'));
+    }
 
     public function addAnimal(AddAnimalValidation $request)
     {

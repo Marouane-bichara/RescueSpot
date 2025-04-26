@@ -59,6 +59,9 @@ class AuthController extends Controller
             if ($authOrFaile->status == 'inactive') {
                 return redirect()->back()->with('error', 'Your account is inactive. Please contact support.');
             }
+            if ($authOrFaile->role_id == 1) {
+                return redirect()->route('admin.HomeAdmin')->with('success', 'Login successful');
+            }
             if ($authOrFaile->role_id == 2) {
                 return redirect()->route('user.HomeUser')->with('success', 'Login successful');
             }

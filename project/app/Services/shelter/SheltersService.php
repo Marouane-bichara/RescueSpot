@@ -59,5 +59,12 @@ class SheltersService
         $adoptionRequest = $this->sheltersRepository->aproveAdoptionRequest($id); 
         return $adoptionRequest;
     }
+
+
+    public function getallAnimalsOfShelter()
+    {
+        $animals = $this->sheltersRepository->getallAnimalsOfShelter(); 
+        return $animals;
+    }
     
 } 

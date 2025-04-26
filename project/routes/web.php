@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\ReportsController;
@@ -65,8 +66,17 @@ Route::prefix('shelter')->middleware(['auth', 'shelter.role'])->name('shelter.')
     Route::get('/AdoptionsRequests', [AdoptionReqController::class, 'index'])->name('AdoptionsRequests');
     Route::post('/rejectAdoptionRequest', [AdoptionReqController::class, 'rejectAdoptionRequest'])->name('rejectAdoptionRequest');
     Route::post('/aproveAdoptionRequest', [AdoptionReqController::class, 'aproveAdoptionRequest'])->name('aproveAdoptionRequest');
+    Route::get('/animalsShelter', [AnimalController::class, 'index'])->name('animalsShelter');
+    
     
     // Route::get('/chat', [ChatController::class, 'index'])->name('chat');
+
+
+    
+});
+
+Route::prefix('admin')->middleware(['auth', 'admin.role'])->name('admin.')->group(function () {
+    Route::get('/HomeAdmin', [AdminController::class, 'indexHome'])->name('HomeAdmin');
 
 
     

@@ -34,7 +34,7 @@ class AdminController extends Controller
             'recentAnimalReports' => $recentAnimalReports,
             'recentAdoptionRequestWithAnimal' => $recentAdoptionRequestWithAnimal
         ];
-
+     
         return view('admin.home', compact('arrayofInfo'));
     }
 }

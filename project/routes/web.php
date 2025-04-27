@@ -16,6 +16,7 @@ use App\Http\Controllers\AdoptionReqController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\ShelterProfileController;
 use App\Http\Controllers\EditeProfileInfoSController;
+use App\Http\Controllers\AnimalReportsAdminController;
 use App\Http\Controllers\UserAprovedAdoptionController;
 
 /*
@@ -77,7 +78,8 @@ Route::prefix('shelter')->middleware(['auth', 'shelter.role'])->name('shelter.')
 
 Route::prefix('admin')->middleware(['auth', 'admin.role'])->name('admin.')->group(function () {
     Route::get('/HomeAdmin', [AdminController::class, 'indexHome'])->name('HomeAdmin');
-
+    Route::get('/ReportsAnimal', [AnimalReportsAdminController::class, 'index'])->name('ReportsAnimal');
+    Route::post('/deleteReport', [AnimalReportsAdminController::class, 'deleteReport'])->name('deleteReport');
 
     
 });

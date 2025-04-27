@@ -44,7 +44,7 @@
                             <i class="fas fa-tachometer-alt mr-3"></i>
                             Dashboard
                         </a>
-                        <a href="#" class="flex items-center px-4 py-3 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-100">
+                        <a href="ReportsAnimal" class="flex items-center px-4 py-3 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-100">
                             <i class="fas fa-paw mr-3"></i>
                             Animal Reports
                         </a>
@@ -56,10 +56,7 @@
                             <i class="fas fa-home mr-3"></i>
                             Shelters
                         </a>
-                        <a href="#" class="flex items-center px-4 py-3 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-100">
-                            <i class="fas fa-comments mr-3"></i>
-                            Messages
-                        </a>
+
                         <a href="#" class="flex items-center px-4 py-3 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-100">
                             <i class="fas fa-users mr-3"></i>
                             Users
@@ -100,7 +97,7 @@
                             <i class="fas fa-tachometer-alt mr-3"></i>
                             Dashboard
                         </a>
-                        <a href="#" class="flex items-center px-4 py-3 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-100">
+                        <a href="ReportsAnimal" class="flex items-center px-4 py-3 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-100">
                             <i class="fas fa-paw mr-3"></i>
                             Animal Reports
                         </a>
@@ -111,10 +108,6 @@
                         <a href="#" class="flex items-center px-4 py-3 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-100">
                             <i class="fas fa-home mr-3"></i>
                             Shelters
-                        </a>
-                        <a href="#" class="flex items-center px-4 py-3 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-100">
-                            <i class="fas fa-comments mr-3"></i>
-                            Messages
                         </a>
                         <a href="#" class="flex items-center px-4 py-3 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-100">
                             <i class="fas fa-users mr-3"></i>
@@ -180,7 +173,6 @@
                             </div>
                         </div>
                         <div class="md:w-1/2">
-                            <img src="/placeholder.svg?height=250&width=500" alt="Happy rescued animals" class="h-48 md:h-full w-full object-cover">
                         </div>
                     </div>
                 </div>

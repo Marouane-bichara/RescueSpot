@@ -12,8 +12,11 @@ use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\SheltersController;
 use App\Http\Controllers\AdoptionsController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\UsersAdminController;
 use App\Http\Controllers\AdoptionReqController;
 use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\SheltersAdminController;
+use App\Http\Controllers\AdoptionsAdminController;
 use App\Http\Controllers\ShelterProfileController;
 use App\Http\Controllers\EditeProfileInfoSController;
 use App\Http\Controllers\AnimalReportsAdminController;
@@ -80,6 +83,11 @@ Route::prefix('admin')->middleware(['auth', 'admin.role'])->name('admin.')->grou
     Route::get('/HomeAdmin', [AdminController::class, 'indexHome'])->name('HomeAdmin');
     Route::get('/ReportsAnimal', [AnimalReportsAdminController::class, 'index'])->name('ReportsAnimal');
     Route::post('/deleteReport', [AnimalReportsAdminController::class, 'deleteReport'])->name('deleteReport');
+    Route::get('/adoptions', [AdoptionsAdminController::class, 'index'])->name('adoptions');
+    Route::get('/shelters', [SheltersAdminController::class, 'index'])->name('shelters');
+    Route::get('/users', [UsersAdminController::class, 'index'])->name('users');
+    Route::post('/activeUser', [SheltersAdminController::class, 'active'])->name('activeUser');
+    Route::post('/inactiveUser', [SheltersAdminController::class, 'inactive'])->name('inactiveUser');
 
     
 });

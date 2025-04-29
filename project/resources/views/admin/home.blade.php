@@ -48,16 +48,16 @@
                             <i class="fas fa-paw mr-3"></i>
                             Animal Reports
                         </a>
-                        <a href="#" class="flex items-center px-4 py-3 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-100">
+                        <a href="adoptions" class="flex items-center px-4 py-3 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-100">
                             <i class="fas fa-heart mr-3"></i>
                             Adoptions
                         </a>
-                        <a href="#" class="flex items-center px-4 py-3 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-100">
+                        <a href="shelters" class="flex items-center px-4 py-3 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-100">
                             <i class="fas fa-home mr-3"></i>
                             Shelters
                         </a>
 
-                        <a href="#" class="flex items-center px-4 py-3 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-100">
+                        <a href="users" class="flex items-center px-4 py-3 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-100">
                             <i class="fas fa-users mr-3"></i>
                             Users
                         </a>
@@ -101,15 +101,15 @@
                             <i class="fas fa-paw mr-3"></i>
                             Animal Reports
                         </a>
-                        <a href="#" class="flex items-center px-4 py-3 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-100">
+                        <a href="adoptions" class="flex items-center px-4 py-3 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-100">
                             <i class="fas fa-heart mr-3"></i>
                             Adoptions
                         </a>
-                        <a href="#" class="flex items-center px-4 py-3 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-100">
+                        <a href="shelters" class="flex items-center px-4 py-3 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-100">
                             <i class="fas fa-home mr-3"></i>
                             Shelters
                         </a>
-                        <a href="#" class="flex items-center px-4 py-3 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-100">
+                        <a href="users" class="flex items-center px-4 py-3 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-100">
                             <i class="fas fa-users mr-3"></i>
                             Users
                         </a>

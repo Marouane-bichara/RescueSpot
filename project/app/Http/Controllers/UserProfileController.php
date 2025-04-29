@@ -33,7 +33,7 @@ class UserProfileController extends Controller
         $followersCount = Follower::where('followed_id', $user->id)->count();
         $adoptions = Adoption::with('animal')
         ->where('adopterId', $user->id)
-        ->where('status', 'accepted') 
+        ->where('status', 'approved') 
         ->get();
 
         // dd($reportsCount);

@@ -88,6 +88,7 @@ Route::prefix('admin')->middleware(['auth', 'admin.role'])->name('admin.')->grou
     Route::get('/users', [UsersAdminController::class, 'index'])->name('users');
     Route::post('/activeUser', [SheltersAdminController::class, 'active'])->name('activeUser');
     Route::post('/inactiveUser', [SheltersAdminController::class, 'inactive'])->name('inactiveUser');
+    Route::post('logout' , [AuthController::class , 'logout'])->name('logout');
 
     
 });

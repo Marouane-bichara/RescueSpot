@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Animal;
 use Illuminate\Http\Request;
 use App\Services\shelter\ShelterProfileServices;
 
@@ -84,7 +85,9 @@ class ShelterProfileController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $animal = Animal::findOrFail($id);
 
+        $this->authorize('update', $animal);
         $updateAnimal = $this->shelterProfileServices->updateAnimal($id, $request->all());
         if ($updateAnimal) {
             return redirect()->back()->with('success', 'Animal updated successfully!');
@@ -102,6 +105,9 @@ class ShelterProfileController extends Controller
     public function destroy($id)
     {
         //
+         $animal = Animal::findOrFail($id);
+
+        $this->authorize('delete', $animal);
         $deleteanimal = $this->shelterProfileServices->profileDeleteAnimal($id);
         if ($deleteanimal) {
             return redirect()->back()->with('success', 'Animal deleted successfully!');

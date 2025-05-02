@@ -16,7 +16,8 @@ class Report extends Model
         'location',
         'reportDate',
         'description',
-        'status'
+        'status',
+        'shelter_status',
     ];
     public function user()
     {

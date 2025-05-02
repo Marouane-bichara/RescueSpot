@@ -20,13 +20,14 @@ class SheltersController extends Controller
 
     public function indexHome()
     {
- 
+        $user = auth()->user();
+        $user = User::where('id', $user->id)->first();
         $adoptionRequests = $this->sheltersService->getallTheAdoptionRequests();
         $messages = $this->sheltersService->getMessages();
         $allthereports = $this->sheltersService->getLatestReports(); 
         $allAnimalsReadyForAdoption = $this->sheltersService->sheltAnimalsForAdoption();
         $shelterid = auth()->user()->id;
         $shelter = User::where('id', $shelterid)->first();
-        return view('Shelter.home' , compact('shelter' , 'adoptionRequests' , 'allthereports' , 'allAnimalsReadyForAdoption'  , 'messages'));
+        return view('Shelter.home' , compact('shelter' , 'adoptionRequests' , 'allthereports' , 'allAnimalsReadyForAdoption'  , 'messages' , 'user'));
     }
 }

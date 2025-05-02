@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Animal;
 use App\Models\Messages;
+use App\Policies\AnimalPolicy;
 use App\Policies\MessagePolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -16,8 +18,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        Animal::class => AnimalPolicy::class,
 
-        Messages::class => MessagePolicy::class,
     ];
 
     /**

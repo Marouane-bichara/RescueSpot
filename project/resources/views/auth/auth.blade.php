@@ -46,10 +46,56 @@
         <!-- Form Section -->
         <div class="md:w-1/2 p-6 md:p-12 flex flex-col justify-center relative">
 
+            <!-- Error Message Display -->
+            @if(session('error'))
+            <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6 rounded-md" role="alert">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm">{{ session('error') }}</p>
+                    </div>
+                </div>
+            </div>
+            @endif
+
+            <!-- Success Message Display -->
+            @if(session('success'))
+            <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6 rounded-md" role="alert">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm">{{ session('success') }}</p>
+                    </div>
+                </div>
+            </div>
+            @endif
+
+            <!-- Validation Errors -->
+            @if ($errors->any())
+            <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6 rounded-md" role="alert">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </div>
+                    <div class="ml-3">
+                        <p class="font-medium">Please fix the following errors:</p>
+                        <ul class="mt-1 list-disc list-inside text-sm">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            @endif
+
             <!-- Login Form -->
             <form id="loginForm" action="{{ route('login') }}" method="POST" class="space-y-6">
-
-            @csrf
+                @csrf
 
                 <h1 class="text-3xl md:text-4xl font-bold text-center mb-8 text-blue-900">
                     Login
@@ -63,6 +109,7 @@
                         type="email"
                         id="email"
                         name="email"
+                        value="{{ old('email') }}"
                         required
                         class="w-full px-4 py-3 border-2 border-blue-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
                         placeholder="Enter your email"
@@ -126,6 +173,7 @@
                         type="text"
                         id="fullName"
                         name="name"
+                        value="{{ old('name') }}"
                         required
                         class="w-full px-4 py-3 border-2 border-blue-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
                         placeholder="Enter your full name"
@@ -140,6 +188,7 @@
                         type="email"
                         id="registerEmail"
                         name="email"
+                        value="{{ old('email') }}"
                         required
                         class="w-full px-4 py-3 border-2 border-blue-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
                         placeholder="Enter your email"
@@ -153,7 +202,7 @@
                     </label>
                     <div class="grid grid-cols-2 gap-4">
                         <label class="relative flex cursor-pointer rounded-xl border-2 border-blue-100 bg-white p-4 focus-within:ring-2 focus-within:ring-blue-500 hover:border-blue-200">
-                            <input type="radio" name="role_id" value="2" class="peer sr-only" checked>
+                            <input type="radio" name="role_id" value="2" class="peer sr-only" {{ old('role_id', '2') == '2' ? 'checked' : '' }}>
                             <div class="flex items-center">
                                 <div class="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-blue-600">
                                     <i class="fas fa-user"></i>
@@ -169,7 +218,7 @@
                         </label>
                         
                         <label class="relative flex cursor-pointer rounded-xl border-2 border-blue-100 bg-white p-4 focus-within:ring-2 focus-within:ring-blue-500 hover:border-blue-200">
-                            <input type="radio" name="role_id" value="3" class="peer sr-only">
+                            <input type="radio" name="role_id" value="3" class="peer sr-only" {{ old('role_id') == '3' ? 'checked' : '' }}>
                             <div class="flex items-center">
                                 <div class="flex h-10 w-10 items-center justify-center rounded-full bg-green-100 text-green-600">
                                     <i class="fas fa-building"></i>
@@ -184,9 +233,6 @@
                             <div class="absolute inset-0 rounded-xl border-2 border-transparent peer-checked:border-blue-500"></div>
                         </label>
                     </div>
-                    
-                    <!-- Hidden input field that will store the selected account type ID -->
-                    <input type="hidden" id="accountTypeId" name="role_id" value="2">
                 </div>
 
                 <div class="relative">
@@ -221,7 +267,7 @@
                     <input
                         type="password"
                         id="confirmPassword"
-                        name="confirmPassword"
+                        name="password_confirmation"
                         required
                         class="w-full px-4 py-3 border-2 border-blue-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
                         placeholder="Confirm your password"
@@ -295,16 +341,6 @@
             });
         });
 
-        // Account Type Selection
-        const accountTypeRadios = document.querySelectorAll('input[name="role_id"]');
-        const accountTypeIdInput = document.getElementById('accountTypeId');
-
-        accountTypeRadios.forEach(radio => {
-            radio.addEventListener('change', function() {
-                accountTypeIdInput.value = this.value;
-            });
-        });
-
         // Form Validation
         document.getElementById('registerForm').addEventListener('submit', function(event) {
             const password = document.getElementById('registerPassword').value;
@@ -315,6 +351,14 @@
                 alert('Passwords do not match!');
             }
         });
+
+        // Show the registration form if there are validation errors on it
+        @if ($errors->any() && old('role_id'))
+            document.addEventListener('DOMContentLoaded', function() {
+                loginForm.classList.add('hidden');
+                registerForm.classList.remove('hidden');
+            });
+        @endif
     </script>
 </body>
 </html>

@@ -88,7 +88,7 @@
                     <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-white bg-gradient-to-r from-teal-600 to-emerald-600">Dashboard</a>
                     <a href="animalsShelter" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Animals</a>
                     <a href="AdoptionsRequests" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Adoption Requests</a>
-                    <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Reports</a>
+                    <a href="reportsShelter" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Reports</a>
                 </div>
 
                 <!-- Right Side Menu -->
@@ -103,9 +103,13 @@
                     <!-- Profile Dropdown -->
                     <div class="relative ml-3">
                         <div>
-                            <button type="button" id="profile-btn" class="flex text-sm bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500" aria-expanded="false" aria-haspopup="true">
-                                <img class="h-10 w-10 rounded-full object-cover border-2 border-teal-500" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Shelter Profile">
-                            </button>
+                        <div>
+                          <button type="button" id="profile-btn" class="flex text-sm bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition duration-150" aria-expanded="false" aria-haspopup="true">
+                              <img class="h-10 w-10 rounded-full object-cover border-2 border-primary-500" 
+                              src="{{ $user->profilePhoto ? asset('storage/'.$user->profilePhoto) : 'https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80' }}" 
+                              alt="Shelter Profile">
+                          </button>
+                      </div>
                         </div> 
                         <div id="profile-dropdown" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                             <a href="ShelterProfile" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
@@ -146,7 +150,7 @@
                 <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gradient-to-r from-teal-600 to-emerald-600">Dashboard</a>
                 <a href="animalsShelter" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Animals</a>
                 <a href="AdoptionsRequests" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Adoption Requests</a>
-                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Reports</a>
+                <a href="reportsShelter" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Reports</a>
                 <button data-modal-target="add-animal-modal" class="mt-2 w-full flex justify-center items-center bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white py-2 px-4 rounded-lg shadow-md">
                     <span class="text-white text-sm font-medium">Add Animal</span>                    
                 </button>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ValidateEditProfileInfo;
 use App\Services\shelter\ShelterProfileServices;
 
 class EditeProfileInfoSController extends Controller
@@ -15,7 +16,7 @@ class EditeProfileInfoSController extends Controller
     {
         $this->shelterProfileServices = $shelterProfileServices;
     }
-    public function editeProfileInfoS(Request $request)
+    public function editeProfileInfoS(ValidateEditProfileInfo $request)
 {
     $validatedData = $request->validate([
         'name' => 'required|string|max:255',

@@ -15,6 +15,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\UsersAdminController;
 use App\Http\Controllers\AdoptionReqController;
 use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\ReportShelterController;
 use App\Http\Controllers\SheltersAdminController;
 use App\Http\Controllers\AdoptionsAdminController;
 use App\Http\Controllers\ShelterProfileController;
@@ -71,12 +72,9 @@ Route::prefix('shelter')->middleware(['auth', 'shelter.role'])->name('shelter.')
     Route::post('/rejectAdoptionRequest', [AdoptionReqController::class, 'rejectAdoptionRequest'])->name('rejectAdoptionRequest');
     Route::post('/aproveAdoptionRequest', [AdoptionReqController::class, 'aproveAdoptionRequest'])->name('aproveAdoptionRequest');
     Route::get('/animalsShelter', [AnimalController::class, 'index'])->name('animalsShelter');
-    
-    
-    // Route::get('/chat', [ChatController::class, 'index'])->name('chat');
+    Route::get('/reportsShelter', [ReportShelterController::class, 'index'])->name('reportsShelter');
+    Route::post('requestStatus' , [ReportShelterController::class , 'reportStatus'])->name('requestStatus');
 
-
-    
 });
 
 Route::prefix('admin')->middleware(['auth', 'admin.role'])->name('admin.')->group(function () {

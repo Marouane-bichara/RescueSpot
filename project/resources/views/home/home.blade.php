@@ -40,7 +40,6 @@
             border-radius: 10px;
         }
         
-        /* Button Styles */
         .btn-primary {
             background-color: var(--primary);
             transition: all 0.4s ease;
@@ -63,7 +62,6 @@
             box-shadow: 0 10px 15px -3px rgba(29, 209, 161, 0.4);
         }
         
-        /* Card Styles */
         .animal-card {
             transition: all 0.4s ease;
         }
@@ -73,7 +71,6 @@
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
         
-        /* Mobile Menu */
         .mobile-menu {
             transition: transform 0.3s ease-in-out;
             transform: translateX(-100%);
@@ -83,12 +80,10 @@
             transform: translateX(0);
         }
         
-        /* Image overlay */
         .image-overlay {
             background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 60%);
         }
         
-        /* Animations */
         .animate-float {
             animation: float 3s ease-in-out infinite;
         }
@@ -111,18 +106,15 @@
     </style>
 </head>
 <body>
-    <!-- Header & Navigation -->
     <header class="bg-white shadow-md fixed w-full z-50 transition-all duration-300">
         <div class="max-w-7xl mx-auto">
             <div class="flex justify-between items-center px-4 py-3 sm:px-6 lg:px-8">
-                <!-- Logo -->
                 <div class="flex justify-start">
                     <a href="#" class="flex items-center">
                         <span class="text-2xl font-bold text-gray-800">Rescue<span class="text-red-500">Spot</span></span>
                     </a>
                 </div>
                 
-                <!-- Mobile menu button -->
                 <div class="md:hidden">
                     <button type="button" id="mobile-menu-button" class="rounded-full p-2 inline-flex items-center justify-center text-gray-500 hover:text-gray-600 hover:bg-gray-100 focus:outline-none">
                         <span class="sr-only">Open menu</span>
@@ -130,7 +122,6 @@
                     </button>
                 </div>
                 
-                <!-- Desktop navigation -->
                 <nav class="hidden md:flex space-x-8">
                     <a href="#" class="text-base font-medium text-red-500 border-b-2 border-red-500 pb-1">Home</a>
                     <a href="#" class="text-base font-medium text-gray-500 hover:text-red-500 transition-colors duration-200">Find a Pet</a>
@@ -139,7 +130,6 @@
                     <a href="#" class="text-base font-medium text-gray-500 hover:text-red-500 transition-colors duration-200">About Us</a>
                 </nav>
                 
-                <!-- Desktop right buttons -->
                 <div class="hidden md:flex items-center space-x-4">
                     <a href="Auth" class="text-gray-500 hover:text-red-500 transition-colors duration-200">
                         Sign In
@@ -150,7 +140,6 @@
                 </div>
             </div>
             
-            <!-- Mobile menu -->
             <div id="mobile-menu" class="mobile-menu absolute top-0 inset-x-0 p-6 transition transform origin-top-right md:hidden bg-white shadow-lg rounded-b-lg mt-16 z-50">
                 <div class="space-y-6">
                     <div class="grid gap-y-8">
@@ -178,7 +167,6 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="pt-28 pb-16 md:pt-32 md:pb-24 bg-gradient-to-br from-white to-red-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row items-center">
@@ -221,7 +209,7 @@
         </div>
     </section>
 
-    <!-- Impact Stats Section -->
+
     <section class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -257,7 +245,7 @@
         </div>
     </section>
 
-    <!-- How It Works Section -->
+
     <section class="py-16 md:py-24 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
@@ -269,8 +257,8 @@
             </div>
 
             <div class="grid gap-8 md:grid-cols-3">
-                <!-- Step 1 -->
-                <div class="animal-card bg-white rounded-3xl shadow-md overflow-hidden">
+
+            <div class="animal-card bg-white rounded-3xl shadow-md overflow-hidden">
                     <div class="h-2 bg-red-500"></div>
                     <div class="p-8">
                         <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-6">
@@ -300,7 +288,7 @@
                     </div>
                 </div>
 
-                <!-- Step 2 -->
+
                 <div class="animal-card bg-white rounded-3xl shadow-md overflow-hidden">
                     <div class="h-2 bg-green-500"></div>
                     <div class="p-8">
@@ -331,7 +319,7 @@
                     </div>
                 </div>
 
-                <!-- Step 3 -->
+
                 <div class="animal-card bg-white rounded-3xl shadow-md overflow-hidden">
                     <div class="h-2 bg-red-500"></div>
                     <div class="p-8">
@@ -365,7 +353,7 @@
         </div>
     </section>
 
-    <!-- Animals Needing Help -->
+
     <section class="py-16 md:py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-16">
@@ -384,8 +372,8 @@
             </div>
 
             <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                <!-- Animal Card 1 -->
-                <div class="animal-card bg-white rounded-3xl shadow-md overflow-hidden">
+
+            <div class="animal-card bg-white rounded-3xl shadow-md overflow-hidden">
                     <div class="relative">
                         <img class="h-72 w-full object-cover" src="{{ asset('images/injureddog.jpg') }}" alt="Golden Retriever">
                         <div class="absolute top-4 right-4">
@@ -426,7 +414,7 @@
                     </div>
                 </div>
 
-                <!-- Animal Card 2 -->
+
                 <div class="animal-card bg-white rounded-3xl shadow-md overflow-hidden">
                     <div class="relative">
                         <img class="h-72 w-full object-cover" src="{{ asset('images/injuerdcat.jpg') }}" alt="Tabby Cat">
@@ -464,7 +452,7 @@
                     </div>
                 </div>
 
-                <!-- Animal Card 3 -->
+
                 <div class="animal-card bg-white rounded-3xl shadow-md overflow-hidden">
                     <div class="relative">
                         <img class="h-72 w-full object-cover" src="{{ asset('images/injuredpoppy.jpg') }}" alt="Beagle Puppy">
@@ -511,7 +499,7 @@
         </div>
     </section>
 
-    <!-- Adoption Section -->
+
     <section class="py-16 md:py-24 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
@@ -523,8 +511,8 @@
             </div>
 
             <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-                <!-- Adoption Card 1 -->
-                <div class="animal-card bg-white rounded-3xl shadow-md overflow-hidden">
+
+            <div class="animal-card bg-white rounded-3xl shadow-md overflow-hidden">
                     <div class="relative">
                         <img class="h-64 w-full object-cover" src="{{ asset('images/LabradorMix.jpg') }}" alt="Buddy">
                         <button class="absolute top-4 right-4 bg-white p-2 rounded-full shadow text-red-500 hover:text-red-600 hover:scale-110 transition-all duration-200 focus:outline-none">
@@ -551,7 +539,7 @@
                     </div>
                 </div>
 
-                <!-- Adoption Card 2 -->
+
                 <div class="animal-card bg-white rounded-3xl shadow-md overflow-hidden">
                     <div class="relative">
                         <img class="h-64 w-full object-cover" src="{{ asset('images/SiameseMix.jpg') }}" alt="Luna">
@@ -579,7 +567,7 @@
                     </div>
                 </div>
 
-                <!-- Adoption Card 3 -->
+
                 <div class="animal-card bg-white rounded-3xl shadow-md overflow-hidden">
                     <div class="relative">
                         <img class="h-64 w-full object-cover" src="{{ asset('images/Beagle.jpg') }}" alt="Charlie">
@@ -607,7 +595,7 @@
                     </div>
                 </div>
 
-                <!-- Adoption Card 4 -->
+
                 <div class="animal-card bg-white rounded-3xl shadow-md overflow-hidden">
                     <div class="relative">
                         <img class="h-64 w-full object-cover" src="{{ asset('images/TabbyKitten.jpg') }}" alt="Bella">
@@ -644,7 +632,7 @@
         </div>
     </section>
 
-    <!-- Testimonials Section -->
+
     <section class="py-16 md:py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
@@ -656,8 +644,8 @@
             </div>
 
             <div class="grid gap-8 md:grid-cols-3">
-                <!-- Testimonial 1 -->
-                <div class="animal-card bg-gradient-to-tr from-white to-red-50 p-8 rounded-3xl shadow-md">
+
+            <div class="animal-card bg-gradient-to-tr from-white to-red-50 p-8 rounded-3xl shadow-md">
                     <div class="flex items-center mb-6">
                         <img class="h-14 w-14 rounded-full object-cover border-2 border-red-100" src="/api/placeholder/100/100" alt="User">
                         <div class="ml-4">
@@ -686,7 +674,7 @@
                     </div>
                 </div>
 
-                <!-- Testimonial 2 -->
+
                 <div class="animal-card bg-gradient-to-tr from-white to-green-50 p-8 rounded-3xl shadow-md">
                     <div class="flex items-center mb-6">
                         <img class="h-14 w-14 rounded-full object-cover border-2 border-green-100" src="/api/placeholder/100/100" alt="User">
@@ -716,7 +704,7 @@
                     </div>
                 </div>
 
-                <!-- Testimonial 3 -->
+
                 <div class="animal-card bg-gradient-to-tr from-white to-blue-50 p-8 rounded-3xl shadow-md">
                     <div class="flex items-center mb-6">
                         <img class="h-14 w-14 rounded-full object-cover border-2 border-blue-100" src="/api/placeholder/100/100" alt="User">
@@ -755,7 +743,7 @@
         </div>
     </section>
 
-    <!-- Call to Action -->
+
     <section class="py-16 md:py-24 bg-gradient-to-r from-red-500 to-pink-500 text-white">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 class="text-3xl md:text-4xl font-bold mb-8">Ready to Make a Difference?</h2>
@@ -791,12 +779,12 @@
         </div>
     </section>
 
-    <!-- Footer -->
+
     <footer class="bg-gray-900 text-white pt-16 pb-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-12 mb-16">
-                <!-- About -->
-                <div class="col-span-1 lg:col-span-2">
+
+            <div class="col-span-1 lg:col-span-2">
                     <div class="flex items-center mb-6">
                         <span class="text-2xl font-bold text-white">Rescue<span class="text-red-500">Spot</span></span>
                     </div>
@@ -819,7 +807,7 @@
                     </div>
                 </div>
 
-                <!-- Quick Links -->
+
                 <div class="col-span-1">
                     <h4 class="text-lg font-bold text-white mb-6">Quick Links</h4>
                     <ul class="space-y-4">
@@ -832,7 +820,7 @@
                     </ul>
                 </div>
 
-                <!-- Resources -->
+
                 <div class="col-span-1">
                     <h4 class="text-lg font-bold text-white mb-6">Resources</h4>
                     <ul class="space-y-4">
@@ -845,7 +833,7 @@
                     </ul>
                 </div>
 
-                <!-- Contact Info -->
+
                 <div class="col-span-1">
                     <h4 class="text-lg font-bold text-white mb-6">Contact Us</h4>
                     <ul class="space-y-4 text-gray-400">
@@ -885,7 +873,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Mobile Menu Toggle -->
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuButton = document.getElementById('mobile-menu-button');

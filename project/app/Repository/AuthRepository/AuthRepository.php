@@ -2,6 +2,7 @@
 namespace App\Repository\AuthRepository;
 
 use App\Models\User;
+use App\Models\Shelter;
 use Illuminate\Support\Facades\Hash;
 
     
@@ -38,7 +39,28 @@ class AuthRepository{
 
         ]);
 
-            return $user;
+        if($user->role_id == 3)
+        {
+            $shelter = Shelter::create([
+                'user_id' => $user->id,
+                'shelterName' => $user->name,
+                'address' => 'empty',
+                'city' => 'empty',
+                'state' => 'empty',
+                'zip_code' => 'empty',
+                'country' => 'empty',
+                'description' => 'empty',
+                'website' => 'empty',
+            ]);
+            
+        }
+
+
+
+            return [
+                'user' => $user,
+                'shelter' => isset($shelter) ? $shelter : null,
+            ];
         
     }
     
@@ -47,12 +69,10 @@ class AuthRepository{
 
         if (auth()->attempt(['email' => $credentials['email'], 'password' => $credentials['password']])) {
             $user = auth()->user();
-
-            if ($user->status == 'inactive') {
-                return redirect()->back()->with('error', 'Your account is inactive. Please contact support.');
-            }
             
             return $user;
+        }else{
+            return null;
         }
     
         return redirect()->back()->with('error', 'Invalid credentials');
@@ -60,11 +80,7 @@ class AuthRepository{
 
 
 
-public function logout()
-{
-    auth()->user()->tokens()->delete();
-    return redirect()->route('login')->with('success', 'Logout successful');
-}
+
 
 }
 

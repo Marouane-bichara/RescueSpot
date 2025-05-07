@@ -2,11 +2,15 @@
 
 namespace App\Models;
 
+use App\Models\Report;
+use App\Models\Message;
+use App\Models\Shelter;
+use App\Models\Adoption;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -20,10 +24,22 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'email_verified_at',
+        'profilePhoto',
         'password',
         'status',
         'role_id',
+        'birthday',
+        'backgroundProfile',
+        'phone', 
+        'address',
+        'city',
+        'country',
+        'bio',
+        'relationship_status',
+        'instagram',
+        'twitter',
+        'linkedin',
+        'facebook',
     ];
 
     /**
@@ -47,4 +63,31 @@ class User extends Authenticatable
     public function role(){
         return $this->belongsTo(Role::class);
     }
+
+    public function reports()
+    {
+        return $this->hasMany(Report::class);
+    }
+    public function shelter()
+    {
+        return $this->hasOne(Shelter::class); 
+    }
+
+
+  
+
+    public function adoptions()
+    {
+        return $this->hasMany(Adoption::class, 'adopterId');
+    }
+
+ 
+
+ 
+
+    public function hasPermission($permission)
+    {
+        return $this->role && $this->role->permissions()->where('name', $permission)->exists();
+    }
+    
 }

@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Toggle mobile menu
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
             
@@ -17,8 +16,7 @@
                 mobileMenu.classList.toggle('hidden');
             });
             
-            // Toggle profile dropdown
-            const profileBtn = document.getElementById('profile-btn');
+             const profileBtn = document.getElementById('profile-btn');
             const profileDropdown = document.getElementById('profile-dropdown');
             
             profileBtn.addEventListener('click', function(e) {
@@ -26,13 +24,11 @@
                 profileDropdown.classList.toggle('hidden');
             });
             
-            // Close dropdown when clicking outside
-            document.addEventListener('click', function() {
+             document.addEventListener('click', function() {
                 profileDropdown.classList.add('hidden');
             });
 
-            // Photo preview functionality
-            const photoInput = document.getElementById('photo');
+             const photoInput = document.getElementById('photo');
             const photoPreview = document.getElementById('photo-preview');
             const photoPreviewContainer = document.getElementById('photo-preview-container');
             
@@ -49,8 +45,7 @@
                 }
             });
             
-            // Current location button
-            const locationBtn = document.getElementById('get-location-btn');
+             const locationBtn = document.getElementById('get-location-btn');
             
             locationBtn.addEventListener('click', function() {
                 if (navigator.geolocation) {
@@ -64,8 +59,7 @@
                         
                         locationBtn.innerHTML = '<i class="fas fa-map-marker-alt mr-2"></i>Get My Location';
                         
-                        // Show success message
-                        const successMsg = document.createElement('p');
+                         const successMsg = document.createElement('p');
                         successMsg.className = 'text-green-500 text-xs mt-1';
                         successMsg.innerText = 'Location detected successfully!';
                         
@@ -85,8 +79,7 @@
                         
                         locationBtn.innerHTML = '<i class="fas fa-map-marker-alt mr-2"></i>Get My Location';
                         
-                        // Show error message
-                        const errorMsg = document.createElement('p');
+                         const errorMsg = document.createElement('p');
                         errorMsg.className = 'text-red-500 text-xs mt-1';
                         errorMsg.innerText = "Couldn't get your location. Please enter it manually.";
                         
@@ -123,8 +116,7 @@
                 }
             });
 
-            // Set current date as default for reportDate
-            const today = new Date();
+             const today = new Date();
             const year = today.getFullYear();
             const month = String(today.getMonth() + 1).padStart(2, '0');
             const day = String(today.getDate()).padStart(2, '0');
@@ -133,8 +125,7 @@
     </script>
 </head>
 <body class="bg-gray-100 font-sans">
-    <!-- Toast Notification -->
-    <div id="toast" class="hidden fixed top-5 right-5 z-50 flex items-center p-4 mb-4 w-full max-w-xs text-gray-500 bg-white rounded-lg shadow-lg" role="alert">
+     <div id="toast" class="hidden fixed top-5 right-5 z-50 flex items-center p-4 mb-4 w-full max-w-xs text-gray-500 bg-white rounded-lg shadow-lg" role="alert">
         <div class="inline-flex flex-shrink-0 justify-center items-center w-8 h-8 text-green-500 bg-green-100 rounded-lg">
             <i class="fas fa-check"></i>
         </div>
@@ -144,12 +135,10 @@
         </button>
     </div>
 
-    <!-- Top Navigation -->
-    <nav class="bg-white shadow-md fixed w-full z-50">
+     <nav class="bg-white shadow-md fixed w-full z-50">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center h-16">
-                <!-- Logo -->
-                <div class="flex items-center">
+                 <div class="flex items-center">
                     <a href="#" class="flex items-center space-x-2">
                         <div class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-2 rounded-lg">
                             <i class="fas fa-paw text-xl"></i>
@@ -158,8 +147,7 @@
                     </a>
                 </div>
 
-                <!-- Main Navigation - Desktop -->
-                <div class="hidden md:flex items-center space-x-1">
+                 <div class="hidden md:flex items-center space-x-1">
                     <a href="HomeUser" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Home</a>
                     <a href="{{ route('user.UserAdoptions.index') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Adoption</a>
                     <a href="{{ route('user.AprovedRequests') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Requests</a>
@@ -167,15 +155,11 @@
         
                 </div>
 
-                <!-- Right Side Menu -->
-                <div class="flex items-center space-x-4">
-                    <!-- Notifications -->
+                 <div class="flex items-center space-x-4">
+                     
+ 
                     
-                    <!-- Messages -->
-
-                    
-                    <!-- Profile Dropdown -->
-                    <div class="relative ml-3">
+                     <div class="relative ml-3">
                         <div>
                             <button type="button" id="profile-btn" class="flex text-sm bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" aria-expanded="false" aria-haspopup="true">
                                 <img class="h-10 w-10 rounded-full object-cover border-2 border-blue-500" 
@@ -224,16 +208,14 @@
 </div>
                     </div>
                     
-                    <!-- Mobile menu button -->
-                    <button type="button" id="mobile-menu-btn" class="md:hidden bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" aria-controls="mobile-menu" aria-expanded="false">
+                     <button type="button" id="mobile-menu-btn" class="md:hidden bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" aria-controls="mobile-menu" aria-expanded="false">
                         <i class="fas fa-bars text-xl"></i>
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- Mobile menu, show/hide based on menu state -->
-        <div class="md:hidden hidden" id="mobile-menu">
+         <div class="md:hidden hidden" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1 bg-white shadow-md">
                 <a href="HomeUser" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Home</a>
                 <a href="{{ route('user.UserAdoptions.index') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Adoption</a>
@@ -244,24 +226,20 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main class="pt-20 pb-12">
+     <main class="pt-20 pb-12">
         <div class="container mx-auto px-4">
             <div class="max-w-3xl mx-auto">
-                <!-- Page Header -->
-                <div class="mb-8 text-center">
+                 <div class="mb-8 text-center">
                     <h1 class="text-3xl font-bold text-gray-800 mb-2">Report an Animal in Need</h1>
                     <p class="text-gray-600">Help us locate and rescue animals in distress by submitting a report</p>
                 </div>
 
-                <!-- Report Form -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8">
+                 <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8">
                     <div class="p-6">
                         <form id="report-form" action="{{ route('user.UserReports.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
-                            <!-- Animal Photo -->
-                            <div class="mb-6">
+                             <div class="mb-6">
                                 <label for="photo" class="block text-sm font-medium text-gray-700 mb-2">
                                     <i class="fas fa-camera mr-2 text-blue-500"></i>Animal Photo
                                 </label>
@@ -281,8 +259,7 @@
                                 @enderror
                             </div>
 
-                            <!-- Location -->
-                            <div class="mb-6" id="location-field">
+                             <div class="mb-6" id="location-field">
                                 <label for="location" class="block text-sm font-medium text-gray-700 mb-2">
                                     <i class="fas fa-map-marker-alt mr-2 text-blue-500"></i>Location
                                 </label>
@@ -299,8 +276,7 @@
                                 @enderror
                             </div>
 
-                            <!-- Report Date -->
-                            <div class="mb-6">
+                             <div class="mb-6">
                                 <label for="reportDate" class="block text-sm font-medium text-gray-700 mb-2">
                                     <i class="fas fa-calendar-alt mr-2 text-blue-500"></i>Date Reported
                                 </label>
@@ -310,8 +286,7 @@
                                 @enderror
                             </div>
 
-                            <!-- Description -->
-                            <div class="mb-6">
+                             <div class="mb-6">
                                 <label for="description" class="block text-sm font-medium text-gray-700 mb-2">
                                     <i class="fas fa-align-left mr-2 text-blue-500"></i>Description
                                 </label>
@@ -352,8 +327,7 @@
                                 </div>
                             </div>
 
-                            <!-- Submit Button -->
-                            <div class="flex justify-center">
+                             <div class="flex justify-center">
                                 <button type="submit" id="submit-report-btn" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white py-3 px-8 rounded-lg shadow-md flex items-center text-lg font-medium transition transform hover:scale-105">
                                     <i class="fas fa-paper-plane mr-2"></i>Submit Report
                                 </button>
@@ -362,10 +336,8 @@
                     </div>
                 </div>
 
-                <!-- Information Cards -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    <!-- What Happens Next Card -->
-                    <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-200">
+                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                     <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-200">
                         <div class="p-5">
                             <div class="flex items-center mb-4">
                                 <div class="bg-blue-100 p-3 rounded-full mr-4">
@@ -382,8 +354,7 @@
                         </div>
                     </div>
 
-                    <!-- Tips Card -->
-                    <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-200">
+                     <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-200">
                         <div class="p-5">
                             <div class="flex items-center mb-4">
                                 <div class="bg-yellow-100 p-3 rounded-full mr-4">
@@ -400,8 +371,7 @@
                         </div>
                     </div>
 
-                    <!-- Contact Card -->
-                    <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-200">
+                     <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-200">
                         <div class="p-5">
                             <div class="flex items-center mb-4">
                                 <div class="bg-green-100 p-3 rounded-full mr-4">
@@ -422,8 +392,7 @@
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white">
+     <footer class="bg-gray-900 text-white">
         <div class="container mx-auto px-4 pt-12 pb-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div>

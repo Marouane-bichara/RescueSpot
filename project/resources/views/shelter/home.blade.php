@@ -8,16 +8,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Toggle mobile menu
-            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
             
             mobileMenuBtn.addEventListener('click', function() {
                 mobileMenu.classList.toggle('hidden');
             });
             
-            // Toggle profile dropdown
-            const profileBtn = document.getElementById('profile-btn');
+             const profileBtn = document.getElementById('profile-btn');
             const profileDropdown = document.getElementById('profile-dropdown');
             
             profileBtn.addEventListener('click', function(e) {
@@ -25,13 +23,11 @@
                 profileDropdown.classList.toggle('hidden');
             });
             
-            // Close dropdown when clicking outside
-            document.addEventListener('click', function() {
+             document.addEventListener('click', function() {
                 profileDropdown.classList.add('hidden');
             });
 
-            // Simplified Modal functionality - just toggle visibility
-            const modalTriggers = document.querySelectorAll('[data-modal-target]');
+             const modalTriggers = document.querySelectorAll('[data-modal-target]');
             const closeModalButtons = document.querySelectorAll('[data-close-modal]');
             const overlay = document.getElementById('modal-overlay');
 
@@ -60,20 +56,17 @@
 
             overlay.addEventListener('click', closeModal);
             
-            // Helper function to simulate Laravel's asset function
-            function asset(path) {
+             function asset(path) {
                 return path;
             }
         });
     </script>
 </head>
 <body class="bg-gray-100 font-sans">
-    <!-- Top Navigation -->
-    <nav class="bg-white shadow-md fixed w-full z-50">
+     <nav class="bg-white shadow-md fixed w-full z-50">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center h-16">
-                <!-- Logo -->
-                <div class="flex items-center">
+                 <div class="flex items-center">
                     <a href="#" class="flex items-center space-x-2">
                         <div class="bg-gradient-to-r from-teal-600 to-emerald-600 text-white p-2 rounded-lg">
                             <i class="fas fa-paw text-xl"></i>
@@ -83,25 +76,21 @@
                     </a>
                 </div>
 
-                <!-- Main Navigation - Desktop -->
-                <div class="hidden md:flex items-center space-x-1">
+                 <div class="hidden md:flex items-center space-x-1">
                     <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-white bg-gradient-to-r from-teal-600 to-emerald-600">Dashboard</a>
                     <a href="animalsShelter" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Animals</a>
                     <a href="AdoptionsRequests" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Adoption Requests</a>
                     <a href="reportsShelter" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Reports</a>
                 </div>
 
-                <!-- Right Side Menu -->
-                <div class="flex items-center space-x-4">
+                 <div class="flex items-center space-x-4">
                     <button data-modal-target="add-animal-modal" class="hidden md:block bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white py-2 px-4 rounded-lg shadow-md transition transform hover:scale-105">
                         <span class="text-white text-sm font-medium">Add Animal</span>
                     </button>
                     
-                    <!-- Notifications -->
-
+ 
                     
-                    <!-- Profile Dropdown -->
-                    <div class="relative ml-3">
+                     <div class="relative ml-3">
                         <div>
                         <div>
                           <button type="button" id="profile-btn" class="flex text-sm bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition duration-150" aria-expanded="false" aria-haspopup="true">
@@ -136,16 +125,14 @@
                         </div>
                     </div>
                     
-                    <!-- Mobile menu button -->
-                    <button type="button" id="mobile-menu-btn" class="md:hidden bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500" aria-controls="mobile-menu" aria-expanded="false">
+                     <button type="button" id="mobile-menu-btn" class="md:hidden bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500" aria-controls="mobile-menu" aria-expanded="false">
                         <i class="fas fa-bars text-xl"></i>
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- Mobile menu, show/hide based on menu state -->
-        <div class="md:hidden hidden" id="mobile-menu">
+         <div class="md:hidden hidden" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1 bg-white shadow-md">
                 <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gradient-to-r from-teal-600 to-emerald-600">Dashboard</a>
                 <a href="animalsShelter" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Animals</a>
@@ -158,13 +145,10 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main class="pt-20 pb-12">
-        <!-- Welcome Banner -->
-        <div class="relative bg-white overflow-hidden mb-8">
+     <main class="pt-20 pb-12">
+         <div class="relative bg-white overflow-hidden mb-8">
             <div class="max-w-7xl mx-auto">
-                <!-- Full-width Hero Section -->
-                <style>
+                 <style>
                   .full-bleed {
                     width: 100vw;
                     margin-left: calc(50% - 50vw);
@@ -173,21 +157,16 @@
                 </style>
 
                 <div class="full-bleed relative overflow-hidden bg-gradient-to-br from-teal-900 to-emerald-900 border-0">
-                    <!-- Background Image with Overlay -->
-                    <div class="absolute inset-0 z-0">
+                     <div class="absolute inset-0 z-0">
                         <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="" class="w-full h-full object-cover opacity-40">
-                        <!-- Strong overlay to hide any watermarks completely -->
-                        <div class="absolute inset-0 bg-gradient-to-br from-teal-900/90 via-emerald-800/90 to-teal-800/90"></div>
-                        <!-- Subtle pattern overlay for texture -->
-                        <div class="absolute inset-0 mix-blend-soft-light opacity-30" style="background-image: url('data:image/svg+xml,%3Csvg width=\'20\' height=\'20\' viewBox=\'0 0 20 20\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M0 0h20v20H0V0zm10 17c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7z\' fill=\'%23ffffff\' fill-opacity=\'0.05\'/%3E%3C/svg%3E');"></div>
+                         <div class="absolute inset-0 bg-gradient-to-br from-teal-900/90 via-emerald-800/90 to-teal-800/90"></div>
+                         <div class="absolute inset-0 mix-blend-soft-light opacity-30" style="background-image: url('data:image/svg+xml,%3Csvg width=\'20\' height=\'20\' viewBox=\'0 0 20 20\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M0 0h20v20H0V0zm10 17c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7z\' fill=\'%23ffffff\' fill-opacity=\'0.05\'/%3E%3C/svg%3E');"></div>
                     </div>
 
-                    <!-- Main Content -->
-                    <div class="relative z-10">
+                     <div class="relative z-10">
                         <div class="pt-16 pb-20 md:pt-24 md:pb-28 lg:pt-24 lg:pb-28 px-6 sm:px-12 md:px-16 lg:px-20 xl:px-24">
                             <div class="max-w-screen-2xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                                <!-- Left Column - Text Content -->
-                                <div class="text-center lg:text-left">
+                                 <div class="text-center lg:text-left">
                                     <div class="inline-block mb-6 p-2 bg-teal-600 bg-opacity-30 rounded-lg backdrop-blur-sm">
                                         <div class="flex items-center space-x-2 px-3 py-1 bg-gradient-to-r from-teal-500 to-emerald-600 rounded-md">
                                             <i class="fas fa-shield-alt text-white"></i>
@@ -215,8 +194,7 @@
                                         </a>
                                     </div>
                                     
-                                    <!-- Trust Indicators -->
-                                    <div class="mt-8 pt-6 border-t border-teal-800/30 grid grid-cols-3 gap-4">
+                                     <div class="mt-8 pt-6 border-t border-teal-800/30 grid grid-cols-3 gap-4">
                                         <div class="text-center">
                                             <p class="text-3xl font-bold text-white">{{ count($allAnimalsReadyForAdoption) }}</p>
                                             <p class="text-teal-200 text-sm">Animals in Care</p>
@@ -232,39 +210,30 @@
                                     </div>
                                 </div>
                                 
-                                <!-- Right Column - Image Card Stack -->
-                                <div class="relative">
-                                    <!-- Decorative elements -->
-                                    <div class="absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br from-green-500 to-teal-500 opacity-20 rounded-full blur-3xl"></div>
+                                 <div class="relative">
+                                     <div class="absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br from-green-500 to-teal-500 opacity-20 rounded-full blur-3xl"></div>
                                     <div class="absolute -bottom-5 -left-5 w-28 h-28 bg-gradient-to-br from-teal-400 to-emerald-300 opacity-20 rounded-full blur-2xl"></div>
                                     
-                                    <!-- 3D Card Stack Effect -->
-                                    <div class="relative mx-auto max-w-lg lg:max-w-none">
-                                        <!-- Background Card -->
-                                        <div class="absolute top-8 -left-6 -right-6 bottom-0 bg-gradient-to-br from-teal-500/20 to-emerald-600/20 rounded-xl backdrop-blur-sm shadow-xl rotate-6 border border-white/10"></div>
+                                     <div class="relative mx-auto max-w-lg lg:max-w-none">
+                                         <div class="absolute top-8 -left-6 -right-6 bottom-0 bg-gradient-to-br from-teal-500/20 to-emerald-600/20 rounded-xl backdrop-blur-sm shadow-xl rotate-6 border border-white/10"></div>
                                         
-                                        <!-- Middle Card -->
-                                        <div class="absolute top-4 -left-3 -right-3 bottom-4 bg-gradient-to-br from-teal-500/30 to-emerald-600/30 rounded-xl backdrop-blur-sm shadow-xl -rotate-3 border border-white/20"></div>
+                                         <div class="absolute top-4 -left-3 -right-3 bottom-4 bg-gradient-to-br from-teal-500/30 to-emerald-600/30 rounded-xl backdrop-blur-sm shadow-xl -rotate-3 border border-white/20"></div>
                                         
-                                        <!-- Main Card with Image -->
-                                        <div class="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm p-3 rounded-xl shadow-2xl transform transition-transform hover:scale-[1.02] duration-500">
+                                         <div class="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm p-3 rounded-xl shadow-2xl transform transition-transform hover:scale-[1.02] duration-500">
                                             <img src="https://images.unsplash.com/photo-1601758125946-6ec2ef64daf8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" class="w-full h-auto rounded-lg" alt="Shelter staff with rescued animals">
                                             
-                                            <!-- Floating Info Badge -->
-                                            <div class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-white dark:bg-gray-800 px-4 py-2 rounded-lg shadow-lg flex items-center space-x-2">
+                                             <div class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-white dark:bg-gray-800 px-4 py-2 rounded-lg shadow-lg flex items-center space-x-2">
                                                 <i class="fas fa-heart text-red-500"></i>
                                                 <span class="font-medium text-gray-800">12 successful adoptions this month</span>
                                             </div>
                                             
-                                            <!-- Success Stories Badge -->
-                                            <div class="absolute -top-3 -right-3 bg-gradient-to-r from-teal-500 to-emerald-600 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg">
+                                             <div class="absolute -top-3 -right-3 bg-gradient-to-r from-teal-500 to-emerald-600 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg">
                                                 Shelter Spotlight
                                             </div>
                                         </div>
                                     </div>
                                     
-                                    <!-- Floating Paw Icons -->
-                                    <div class="absolute top-10 -left-4 bg-teal-600 p-2 rounded-full shadow-lg animate-bounce">
+                                     <div class="absolute top-10 -left-4 bg-teal-600 p-2 rounded-full shadow-lg animate-bounce">
                                         <i class="fas fa-paw text-white"></i>
                                     </div>
                                     <div class="absolute bottom-20 -right-2 bg-emerald-600 p-2 rounded-full shadow-lg animate-bounce" style="animation-delay: 0.5s">
@@ -275,8 +244,7 @@
                         </div>
                     </div>
                     
-                    <!-- Wave Shape Divider -->
-                    <div class="absolute bottom-0 left-0 right-0">
+                     <div class="absolute bottom-0 left-0 right-0">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" fill="#F3F4F6" class="w-full">
                             <path d="M0,64L48,64C96,64,192,64,288,53.3C384,43,480,21,576,16C672,11,768,21,864,37.3C960,53,1056,75,1152,75C1248,75,1344,53,1392,42.7L1440,32L1440,100L1392,100C1344,100,1248,100,1152,100C1056,100,960,100,864,100C768,100,672,100,576,100C480,100,384,100,288,100C192,100,96,100,48,100L0,100Z"></path>
                         </svg>
@@ -286,8 +254,7 @@
         </div>
 
         <div class="container mx-auto px-4">
-            <!-- Stats Section -->
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="bg-white rounded-2xl shadow-xl overflow-hidden mb-8">
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
                         <div class="p-6 border-b md:border-r md:border-b-0 lg:border-r border-gray-200 text-center">
@@ -326,12 +293,9 @@
                 </div>
             </div>
 
-            <!-- Main Grid -->
-            <div class="flex flex-col lg:flex-row gap-8">
-                <!-- Left Column - Main Content -->
-                <div class="w-full lg:w-3/4 space-y-8">
-                    <!-- Animals in Care Section -->
-                    <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+             <div class="flex flex-col lg:flex-row gap-8">
+                 <div class="w-full lg:w-3/4 space-y-8">
+                     <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
                         <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
                             <h2 class="text-lg font-bold text-gray-800">Animals in Care</h2>
                             <div class="flex space-x-2">
@@ -344,8 +308,7 @@
                         
                         <div class="p-6 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
                             @forelse ($allAnimalsReadyForAdoption as $animal)
-                                <!-- Animal Card -->
-                                <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 transition transform hover:shadow-md hover:-translate-y-1">
+                                 <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 transition transform hover:shadow-md hover:-translate-y-1">
                                     <div class="relative">
                                         <img src="{{ asset('storage/' . $animal->photoAnimal) }}" alt="{{ $animal->name }}" class="w-full h-48 object-cover">
                                         <div class="absolute top-3 right-3 bg-green-500 text-white text-xs px-2 py-1 rounded-full">{{ ucfirst($animal->status) }}</div>
@@ -389,8 +352,7 @@
                         </div>
                     </div>
 
-                    <!-- Adoption Requests Section -->
-                    <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                     <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
                         <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
                             <h2 class="text-lg font-bold text-gray-800">Pending Adoption Requests</h2>
                             <div class="flex items-center">
@@ -499,8 +461,7 @@
                         </div>
                     </div>
 
-              <!-- Recent Reports Section -->
-<div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+ <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
     <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
         <h2 class="text-lg font-bold text-gray-800">Recent Animal Reports</h2>
         <div class="flex items-center">
@@ -553,10 +514,8 @@
 
                 </div>
 
-                <!-- Right Column - Sidebar -->
-                <div class="w-full lg:w-1/4 space-y-8">
-                    <!-- Action Buttons -->
-                    <div class="bg-gradient-to-r from-teal-600 to-emerald-600 rounded-2xl shadow-xl p-6 text-white">
+                 <div class="w-full lg:w-1/4 space-y-8">
+                     <div class="bg-gradient-to-r from-teal-600 to-emerald-600 rounded-2xl shadow-xl p-6 text-white">
                         <h2 class="text-xl font-bold mb-4">Quick actions</h2>
                         <div class="space-y-3">
                             <a data-modal-target="add-animal-modal" class="flex items-center p-3 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-xl transition">
@@ -589,8 +548,7 @@
                         </div>
                     </div>
 
-                    <!-- Upcoming Events -->
-                    <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                     <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
                         <div class="px-6 py-4 border-b border-gray-200">
                             <h2 class="text-lg font-bold text-gray-800">Upcoming Events</h2>
                         </div>
@@ -636,39 +594,13 @@
                         </div>
                     </div>
 
-                    <!-- Recent Messages -->
-                    <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
-                        <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
-                            <h2 class="text-lg font-bold text-gray-800">Recent Messages</h2>
-                            <span class="bg-red-500 text-white text-xs px-2 py-1 rounded-full">3 unread</span>
-                        </div>
+                     <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                       
 
-                        <div class="divide-y">
-    @if (!empty($messages) && $messages->count())
-        @foreach ($messages as $message)
-            <div class="px-6 py-4 hover:bg-gray-50 cursor-pointer">
-                <div class="flex items-start gap-3">
-                    <img src="{{ asset('storage/' . $message['photo']) }}" alt="User Photo" class="w-10 h-10 rounded-full">
-                    <div class="flex-1 min-w-0">
-                        <div class="flex justify-between items-center mb-1">
-                            <h3 class="font-medium truncate">{{ $message['username'] }}</h3>
-                            <span class="text-xs text-gray-500">Just now</span>
-                        </div>
-                        <p class="text-sm text-gray-600 truncate">{{ $message['last_message'] }}</p>
-                    </div>
-                </div>
-            </div>
-        @endforeach
-    @else
-        <div class="px-6 py-4 text-center text-gray-400">
-            No messages yet.
-        </div>
-    @endif
-</div>
+     
 
 
-                    <!-- Shelter Stats -->
-                    <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                     <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
                         <div class="px-6 py-4 border-b border-gray-200">
                             <h2 class="text-lg font-bold text-gray-800">Shelter Statistics</h2>
                         </div>
@@ -721,8 +653,7 @@
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white">
+     <footer class="bg-gray-900 text-white">
         <div class="container mx-auto px-4 pt-12 pb-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div>
@@ -794,11 +725,9 @@
         </div>
     </footer>
 
-    <!-- Modal Overlay -->
-    <div id="modal-overlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50"></div>
+     <div id="modal-overlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50"></div>
 
-    <!-- Add Animal Modal -->
-    <div id="add-animal-modal" class="modal hidden fixed inset-0 z-50 flex items-center justify-center">
+     <div id="add-animal-modal" class="modal hidden fixed inset-0 z-50 flex items-center justify-center">
     <div class="bg-white rounded-xl shadow-2xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
         <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center sticky top-0 bg-white">
             <h3 class="text-xl font-bold text-gray-800">Add New Animal</h3>
@@ -875,8 +804,7 @@
         </div>
     </div>
 </div>
-    <!-- Animal Details Modal -->
-    <div id="animal-details-modal" class="modal hidden fixed inset-0 z-50 flex items-center justify-center">
+     <div id="animal-details-modal" class="modal hidden fixed inset-0 z-50 flex items-center justify-center">
         <div class="bg-white rounded-xl shadow-2xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
             <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center sticky top-0 bg-white">
                 <h3 class="text-xl font-bold text-gray-800">Animal Details</h3>
@@ -886,8 +814,7 @@
             </div>
             <div class="p-6">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Static content for the animal details modal -->
-                    <div class="md:col-span-1">
+                     <div class="md:col-span-1">
                         <div class="bg-gray-100 rounded-lg overflow-hidden mb-4">
                             <img src="/placeholder.svg?height=300&width=400" alt="Animal" class="w-full h-auto">
                         </div>
@@ -949,8 +876,7 @@
         </div>
     </div>
 
-    <!-- Report Details Modal -->
-    <div id="report-details-modal" class="modal hidden fixed inset-0 z-50 flex items-center justify-center">
+     <div id="report-details-modal" class="modal hidden fixed inset-0 z-50 flex items-center justify-center">
         <div class="bg-white rounded-xl shadow-2xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
             <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center sticky top-0 bg-white">
                 <h3 class="text-xl font-bold text-gray-800">Report Details</h3>
@@ -1041,8 +967,7 @@
         </div>
     </div>
 
-    <!-- Adoption Details Modal -->
-    <div id="adoption-details-modal" class="modal hidden fixed inset-0 z-50 flex items-center justify-center">
+     <div id="adoption-details-modal" class="modal hidden fixed inset-0 z-50 flex items-center justify-center">
         <div class="bg-white rounded-xl shadow-2xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
             <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center sticky top-0 bg-white">
                 <h3 class="text-xl font-bold text-gray-800">Adoption Request Details</h3>

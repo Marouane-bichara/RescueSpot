@@ -96,16 +96,14 @@
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Toggle mobile menu
-            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
             
             mobileMenuBtn.addEventListener('click', function() {
                 mobileMenu.classList.toggle('hidden');
             });
             
-            // Toggle profile dropdown
-            const profileBtn = document.getElementById('profile-btn');
+             const profileBtn = document.getElementById('profile-btn');
             const profileDropdown = document.getElementById('profile-dropdown');
             
             profileBtn.addEventListener('click', function(e) {
@@ -113,13 +111,11 @@
                 profileDropdown.classList.toggle('hidden');
             });
             
-            // Close dropdown when clicking outside
             document.addEventListener('click', function() {
                 profileDropdown.classList.add('hidden');
             });
 
-            // Handling image uploads
-            const profilePhotoInput = document.getElementById('profile-photo-input');
+             const profilePhotoInput = document.getElementById('profile-photo-input');
             const backgroundPhotoInput = document.getElementById('background-photo-input');
             const profilePhotoBtn = document.getElementById('change-profile-photo');
             const backgroundPhotoBtn = document.getElementById('change-background-photo');
@@ -137,8 +133,7 @@
                     const reader = new FileReader();
                     reader.onload = function(e) {
                         document.getElementById('profile-photo').src = e.target.result;
-                        // Here you would typically send the file to your server
-                        showToast('Profile photo updated successfully!');
+                         showToast('Profile photo updated successfully!');
                     };
                     reader.readAsDataURL(this.files[0]);
                 }
@@ -149,15 +144,13 @@
                     const reader = new FileReader();
                     reader.onload = function(e) {
                         document.getElementById('background-photo').style.backgroundImage = `url(${e.target.result})`;
-                        // Here you would typically send the file to your server
-                        showToast('Background photo updated successfully!');
+                         showToast('Background photo updated successfully!');
                     };
                     reader.readAsDataURL(this.files[0]);
                 }
             });
 
-            // Edit profile functionality
-            const editProfileBtn = document.getElementById('edit-profile-btn');
+             const editProfileBtn = document.getElementById('edit-profile-btn');
             const saveProfileBtn = document.getElementById('save-profile-btn');
             const cancelEditBtn = document.getElementById('cancel-edit-btn');
             const profileInfoSection = document.getElementById('profile-info-section');
@@ -174,11 +167,9 @@
             });
             
             saveProfileBtn.addEventListener('click', function() {
-                // Here you would typically send the form data to your server
-                const formData = new FormData(document.getElementById('edit-profile-form'));
+                 const formData = new FormData(document.getElementById('edit-profile-form'));
                 
-                // Update the profile info with the edited data
-                document.getElementById('profile-name').textContent = formData.get('name');
+                 document.getElementById('profile-name').textContent = formData.get('name');
                 document.getElementById('profile-bio').textContent = formData.get('bio') || 'No bio added yet';
                 document.getElementById('profile-birthday').textContent = formData.get('birthday') || 'Not specified';
                 document.getElementById('profile-phone').textContent = formData.get('phone') || 'Not specified';
@@ -193,8 +184,7 @@
                 showToast('Profile updated successfully!');
             });
 
-            // Toast functionality
-            function showToast(message) {
+             function showToast(message) {
                 const toast = document.getElementById('toast');
                 const toastMessage = document.getElementById('toast-message');
                 
@@ -208,14 +198,12 @@
                 }, 3000);
             }
 
-            // Close toast on click
-            document.getElementById('close-toast').addEventListener('click', function() {
+             document.getElementById('close-toast').addEventListener('click', function() {
                 document.getElementById('toast').classList.add('hidden');
                 document.getElementById('toast').classList.remove('flex');
             });
 
-            // Tab functionality for profile sections
-            const tabButtons = document.querySelectorAll('[data-tab-target]');
+             const tabButtons = document.querySelectorAll('[data-tab-target]');
             const tabContents = document.querySelectorAll('[data-tab-content]');
             
             tabButtons.forEach(button => {
@@ -237,8 +225,7 @@
                 });
             });
 
-            // Preview functions for profile photo and background photo
-            window.previewProfilePhoto = function(input) {
+             window.previewProfilePhoto = function(input) {
                 if (input.files && input.files[0]) {
                     const reader = new FileReader();
                     reader.onload = function(e) {
@@ -261,8 +248,7 @@
     </script>
 </head>
 <body class="bg-gray-50 font-sans">
-    <!-- Toast Notification -->
-    <div id="toast" class="hidden fixed top-5 right-5 z-50 items-center p-4 mb-4 w-full max-w-xs text-gray-500 bg-white rounded-xl shadow-lg border border-gray-100" role="alert">
+     <div id="toast" class="hidden fixed top-5 right-5 z-50 items-center p-4 mb-4 w-full max-w-xs text-gray-500 bg-white rounded-xl shadow-lg border border-gray-100" role="alert">
         <div class="inline-flex flex-shrink-0 justify-center items-center w-10 h-10 text-secondary-500 bg-secondary-100 rounded-full">
             <i class="fas fa-check"></i>
         </div>
@@ -272,12 +258,10 @@
         </button>
     </div>
 
-    <!-- Top Navigation -->
-    <nav class="bg-white shadow-md fixed w-full z-50">
+     <nav class="bg-white shadow-md fixed w-full z-50">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center h-16">
-                <!-- Logo -->
-                <div class="flex items-center">
+                 <div class="flex items-center">
                     <a href="#" class="flex items-center space-x-2">
                         <div class="profile-gradient text-white p-2 rounded-lg">
                             <i class="fas fa-paw text-xl"></i>
@@ -286,8 +270,7 @@
                     </a>
                 </div>
 
-                <!-- Main Navigation - Desktop -->
-                <div class="hidden md:flex items-center space-x-1">
+                 <div class="hidden md:flex items-center space-x-1">
                     <a href="HomeUser" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 transition duration-150">Home</a>
                     <a href="{{ route('user.UserAdoptions.index') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 transition duration-150">Adoption</a>
                     <a href="{{ route('user.AprovedRequests') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Requests</a>
@@ -295,18 +278,15 @@
 
                 </div>
 
-                <!-- Right Side Menu -->
-                <div class="flex items-center space-x-4">
+                 <div class="flex items-center space-x-4">
                     <button class="hidden md:block bg-gradient-to-r from-secondary-500 to-primary-500 hover:from-secondary-600 hover:to-primary-600 text-white py-2 px-4 rounded-lg shadow-md transition transform hover:scale-105 hover:shadow-lg">
                         <a href="{{ route('user.UserReports.index') }}" class="text-white text-sm font-medium">Report an animal</a>
                     </button>
                     
-                    <!-- Notifications -->
-
+ 
 
                     
-                    <!-- Profile Dropdown -->
-                    <div class="relative ml-3">
+                     <div class="relative ml-3">
                         <div>
                             <button type="button" id="profile-btn" class="flex text-sm bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition duration-150" aria-expanded="false" aria-haspopup="true">
                                 <img class="h-10 w-10 rounded-full object-cover border-2 border-primary-500" 
@@ -355,16 +335,14 @@
                         </div>
                     </div>
                     
-                    <!-- Mobile menu button -->
-                    <button type="button" id="mobile-menu-btn" class="md:hidden bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-primary-600 hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition duration-150" aria-controls="mobile-menu" aria-expanded="false">
+                     <button type="button" id="mobile-menu-btn" class="md:hidden bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-primary-600 hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition duration-150" aria-controls="mobile-menu" aria-expanded="false">
                         <i class="fas fa-bars text-xl"></i>
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- Mobile menu, show/hide based on menu state -->
-        <div class="md:hidden hidden" id="mobile-menu">
+         <div class="md:hidden hidden" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1 bg-white shadow-md">
                 <a href="HomeUser" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 transition duration-150">Home</a>
                 <a href="" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gradient-to-r from-primary-600 to-secondary-600">Profile</a>
@@ -379,24 +357,19 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main class="pt-16 pb-12">
-        <!-- Profile Header Section -->
-        <div class="relative">
-            <!-- Background Image -->
-            <div id="background-photo" 
+     <main class="pt-16 pb-12">
+         <div class="relative">
+             <div id="background-photo" 
                 class="h-72 md:h-96 bg-cover bg-center relative" 
                 style="background-image: url('{{ $userinfo->backgroundProfile ? asset('storage/' . $userinfo->backgroundProfile) : asset('images/backgrounddesfaultimage.jpg') }}');">
                 
-                <!-- Change Background Photo Button -->
-                <button id="change-background-photo" class="absolute bottom-4 right-4 bg-white bg-opacity-90 hover:bg-opacity-100 text-gray-700 py-2 px-4 rounded-lg shadow-md flex items-center transition duration-150 hover:shadow-lg">
+                 <button id="change-background-photo" class="absolute bottom-4 right-4 bg-white bg-opacity-90 hover:bg-opacity-100 text-gray-700 py-2 px-4 rounded-lg shadow-md flex items-center transition duration-150 hover:shadow-lg">
                     <i class="fas fa-camera mr-2 text-primary-500"></i>
                     Change Cover
                 </button>
                 <input type="file" id="background-photo-input" class="hidden" accept="image/*">
                 
-                <!-- Decorative Elements -->
-                <div class="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-b from-transparent to-black opacity-40 pointer-events-none"></div>
+                 <div class="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-b from-transparent to-black opacity-40 pointer-events-none"></div>
                 <div class="absolute top-10 left-10 bg-primary-500 p-2 rounded-full shadow-lg animate-float opacity-70">
                     <i class="fas fa-paw text-white"></i>
                 </div>
@@ -408,8 +381,7 @@
                 </div>
             </div>
 
-            <!-- Profile Photo -->
-            <div class="absolute -bottom-20 left-1/2 transform -translate-x-1/2 md:left-10 md:translate-x-0">
+             <div class="absolute -bottom-20 left-1/2 transform -translate-x-1/2 md:left-10 md:translate-x-0">
                 <div class="relative group">
                     <div class="absolute inset-0 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 animate-pulse blur-md opacity-70 group-hover:opacity-100 transition duration-300"></div>
                     <img id="profile-photo" 
@@ -424,8 +396,7 @@
             </div>
         </div>
         
-        <!-- Profile Content -->
-        <div class="container mx-auto px-4 mt-24">
+         <div class="container mx-auto px-4 mt-24">
             <div class="max-w-6xl mx-auto">
                 <div class="flex flex-col md:flex-row justify-between items-start mb-8">
                     <div class="mb-4 md:mb-0">
@@ -448,8 +419,7 @@
                     </div>
                 </div>
                 
-                <!-- Profile Navigation Tabs -->
-                <div class="relative border-b border-gray-200 mb-8">
+                 <div class="relative border-b border-gray-200 mb-8">
                     <div class="flex flex-wrap -mb-px">
                         <button data-tab-target="#tab-about" class="text-primary-600 border-b-2 border-primary-600 inline-block p-4 rounded-t-lg font-medium transition duration-150">
                             <i class="fas fa-user mr-2"></i>
@@ -466,12 +436,9 @@
                     </div>
                 </div>
                 
-                <!-- Tab Contents -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden mb-8 border border-gray-100">
-                    <!-- About Tab Content -->
-                    <div id="tab-about" data-tab-content class="p-8">
-                        <!-- Profile Info Display Section -->
-                        <div id="profile-info-section">
+                 <div class="bg-white rounded-2xl shadow-lg overflow-hidden mb-8 border border-gray-100">
+                     <div id="tab-about" data-tab-content class="p-8">
+                         <div id="profile-info-section">
                             <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
                                 <span class="profile-gradient w-10 h-10 rounded-full flex items-center justify-center mr-3 text-white shadow-md">
                                     <i class="fas fa-user"></i>
@@ -592,8 +559,7 @@
                                 </div>
                             </div>
                             
-                            <!-- Statistics Cards -->
-                            <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                             <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                                 <div class="bg-gradient-to-br from-primary-50 to-primary-100 p-6 rounded-xl border border-primary-200 shadow-sm hover:shadow-md transition duration-300 transform hover:-translate-y-1">
                                     <div class="flex items-center">
                                         <div class="p-3 bg-primary-500 text-white rounded-lg mr-4 shadow-md">
@@ -656,8 +622,7 @@
                             </div>
                         </div>
                         
-                        <!-- Profile Edit Form -->
-                        <div id="profile-edit-section" class="hidden">
+                         <div id="profile-edit-section" class="hidden">
                             <div class="flex justify-between items-center mb-6">
                                 <h2 class="text-2xl font-bold text-gray-800 flex items-center">
                                     <span class="profile-gradient w-10 h-10 rounded-full flex items-center justify-center mr-3 text-white shadow-md">
@@ -685,8 +650,7 @@
                                         Profile Images
                                     </h3>
                                     
-                                    <!-- Profile Photo Upload -->
-                                    <div class="mb-6">
+                                     <div class="mb-6">
                                         <label class="block text-sm font-medium text-gray-700 mb-2">Profile Photo</label>
                                         <div class="flex items-center space-x-4">
                                             <div class="relative group h-24 w-24">
@@ -711,8 +675,7 @@
                                         </div>
                                     </div>
                                     
-                                    <!-- Background Photo Upload -->
-                                    <div class="mb-6">
+                                     <div class="mb-6">
                                         <label class="block text-sm font-medium text-gray-700 mb-2">Background Image</label>
                                         <div class="relative bg-gray-100 rounded-lg overflow-hidden h-32 mb-2">
                                             <img id="background-photo-preview" 
@@ -836,8 +799,7 @@
                         </div>
                     </div>
                     
-                    <!-- Reports Tab Content -->
-                    <div id="tab-reports" data-tab-content class="p-8 hidden">
+                     <div id="tab-reports" data-tab-content class="p-8 hidden">
                         <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
                             <span class="profile-gradient w-10 h-10 rounded-full flex items-center justify-center mr-3 text-white shadow-md">
                                 <i class="fas fa-clipboard-list"></i>
@@ -848,8 +810,7 @@
                         <div class="max-h-[70vh] overflow-y-auto pr-2 scrollbar-hide">
                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 @if ($reportsCount > 0)
-                                    <!-- Loop through the reports and display each one -->
-                                    @foreach ($reportsUser as $report)
+                                     @foreach ($reportsUser as $report)
                                         <div class="bg-white rounded-xl overflow-hidden shadow-md border border-gray-100 transition transform hover:shadow-lg hover:-translate-y-2 duration-300">
                                             <div class="relative">
                                                 <img src="{{ $report->photo ? asset('storage/' . $report->photo) : '/api/placeholder/400/250' }}" alt="Reported animal" class="w-full h-48 object-cover">
@@ -895,8 +856,7 @@
                                         </div>
                                     @endforeach
                                 @else
-                                    <!-- Display message if there are no reports -->
-                                    <div class="col-span-full flex flex-col items-center justify-center py-12 bg-gray-50 rounded-xl border border-gray-200">
+                                     <div class="col-span-full flex flex-col items-center justify-center py-12 bg-gray-50 rounded-xl border border-gray-200">
                                         <div class="w-20 h-20 bg-primary-100 rounded-full flex items-center justify-center mb-4">
                                             <i class="fas fa-clipboard-list text-primary-500 text-2xl"></i>
                                         </div>
@@ -921,8 +881,7 @@
                         @endif
                     </div>
                     
-                    <!-- Adoptions Tab Content -->
-                    <div id="tab-adoptions" data-tab-content class="p-8 hidden">
+                     <div id="tab-adoptions" data-tab-content class="p-8 hidden">
                         <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
                             <span class="profile-gradient w-10 h-10 rounded-full flex items-center justify-center mr-3 text-white shadow-md">
                                 <i class="fas fa-heart"></i>
@@ -932,8 +891,7 @@
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             @if ($adoptionCount > 0)
-                                <!-- Loop through the adoptions and display each one -->
-                                @foreach ($adoptions as $adoption)
+                                 @foreach ($adoptions as $adoption)
                                     <div class="bg-white rounded-xl overflow-hidden shadow-md border border-gray-100 transition transform hover:shadow-lg hover:-translate-y-2 duration-300">
                                         <div class="relative">
                                             <img src="{{ $adoption->animal && $adoption->animal->image ? asset('storage/' . $adoption->animal->image) : '/api/placeholder/400/250' }}" 
@@ -970,8 +928,7 @@
                                     </div>
                                 @endforeach
                             @else
-                                <!-- Display message if there are no adoptions -->
-                                <div class="col-span-full flex flex-col items-center justify-center py-12 bg-gray-50 rounded-xl border border-gray-200">
+                                 <div class="col-span-full flex flex-col items-center justify-center py-12 bg-gray-50 rounded-xl border border-gray-200">
                                     <div class="w-20 h-20 bg-secondary-100 rounded-full flex items-center justify-center mb-4">
                                         <i class="fas fa-heart text-secondary-500 text-2xl"></i>
                                     </div>
@@ -999,8 +956,7 @@
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white">
+     <footer class="bg-gray-900 text-white">
         <div class="container mx-auto px-4 pt-12 pb-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div>

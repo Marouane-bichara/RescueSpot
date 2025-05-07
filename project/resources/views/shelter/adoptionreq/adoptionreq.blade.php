@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Toggle mobile menu
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
             
@@ -16,7 +15,6 @@
                 mobileMenu.classList.toggle('hidden');
             });
             
-            // Toggle profile dropdown
             const profileBtn = document.getElementById('profile-btn');
             const profileDropdown = document.getElementById('profile-dropdown');
             
@@ -25,12 +23,10 @@
                 profileDropdown.classList.toggle('hidden');
             });
             
-            // Close dropdown when clicking outside
             document.addEventListener('click', function() {
                 profileDropdown.classList.add('hidden');
             });
 
-            // Simplified Modal functionality - just toggle visibility
             const modalTriggers = document.querySelectorAll('[data-modal-target]');
             const closeModalButtons = document.querySelectorAll('[data-close-modal]');
             const overlay = document.getElementById('modal-overlay');
@@ -40,10 +36,8 @@
                     const modalId = trigger.getAttribute('data-modal-target');
                     const modal = document.getElementById(modalId);
                     
-                    // Get the request ID from the trigger's data attribute
                     const requestId = trigger.getAttribute('data-request-id');
                     
-                    // Set the request ID in the modal forms
                     if (requestId) {
                         const rejectInput = document.getElementById('reject_request_id');
                         const approveInput = document.getElementById('approve_request_id');
@@ -72,30 +66,25 @@
 
             overlay.addEventListener('click', closeModal);
             
-            // Helper function to simulate Laravel's asset function
             function asset(path) {
                 return path;
             }
 
-            // Filter functionality
             const filterButtons = document.querySelectorAll('[data-filter]');
             const requestCards = document.querySelectorAll('[data-status]');
             
             filterButtons.forEach(button => {
                 button.addEventListener('click', () => {
-                    // Remove active class from all buttons
                     filterButtons.forEach(btn => {
                         btn.classList.remove('bg-teal-100', 'text-teal-700');
                         btn.classList.add('bg-gray-100', 'text-gray-700');
                     });
                     
-                    // Add active class to clicked button
                     button.classList.remove('bg-gray-100', 'text-gray-700');
                     button.classList.add('bg-teal-100', 'text-teal-700');
                     
                     const filter = button.getAttribute('data-filter');
                     
-                    // Show/hide cards based on filter
                     requestCards.forEach(card => {
                         if (filter === 'all' || card.getAttribute('data-status') === filter) {
                             card.classList.remove('hidden');
@@ -109,11 +98,9 @@
     </script>
 </head>
 <body class="bg-gray-100 font-sans min-h-screen flex flex-col">
-    <!-- Top Navigation -->
     <nav class="bg-white shadow-md fixed w-full z-50">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center h-16">
-                <!-- Logo -->
                 <div class="flex items-center">
                     <a href="#" class="flex items-center space-x-2">
                         <div class="bg-gradient-to-r from-teal-600 to-emerald-600 text-white p-2 rounded-lg">
@@ -124,7 +111,6 @@
                     </a>
                 </div>
 
-                <!-- Main Navigation - Desktop -->
                 <div class="hidden md:flex items-center space-x-1">
                     <a href="HomeShelter" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Dashboard</a>
                     <a href="animalsShelter" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Animals</a>
@@ -132,9 +118,7 @@
                     <a href="reportsShelter" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Reports</a>
                 </div>
 
-                <!-- Right Side Menu -->
                 <div class="flex items-center space-x-4">
-                    <!-- Add New Animal Button in Header -->
                     <button 
                         type="button" 
                         data-modal-target="add-animal-modal" 
@@ -143,7 +127,6 @@
                         <span>Add Animal</span>
                     </button>
                     
-                    <!-- Profile Dropdown -->
                     <div class="relative ml-3">
                     <div>
                           <button type="button" id="profile-btn" class="flex text-sm bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition duration-150" aria-expanded="false" aria-haspopup="true">
@@ -178,7 +161,6 @@
                         </div>
                     </div>
                     
-                    <!-- Mobile menu button -->
                     <button type="button" id="mobile-menu-btn" class="md:hidden bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500" aria-controls="mobile-menu" aria-expanded="false">
                         <i class="fas fa-bars text-xl"></i>
                     </button>
@@ -186,7 +168,6 @@
             </div>
         </div>
 
-        <!-- Mobile menu, show/hide based on menu state -->
         <div class="md:hidden hidden" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1 bg-white shadow-md">
                 <a href="HomeShelter" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Dashboard</a>
@@ -198,10 +179,8 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
     <main class="pt-20 pb-12 flex-grow">
         <div class="container mx-auto px-4">
-            <!-- Page Header -->
             <div class="mb-8">
                 <div class="flex flex-col md:flex-row md:items-center md:justify-between">
                     <div class="mb-4 md:mb-0">
@@ -227,7 +206,6 @@
                 </div>
             </div>
 
-            <!-- Status Filters -->
             <div class="bg-white rounded-xl shadow-md p-4 mb-6">
                 <div class="flex flex-wrap gap-2">
                     <button data-filter="all" class="py-1.5 px-4 text-sm rounded-md bg-teal-100 text-teal-700 hover:bg-teal-200">
@@ -256,13 +234,11 @@
                 </div>
             </div>
 
-            <!-- Scrollable Container for Adoption Requests Cards -->
             <div class="bg-white rounded-xl shadow-md p-4 mb-6">
                 <div class="h-[calc(100vh-300px)] overflow-y-auto pr-2">
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         @forelse ($adoptionRequests as $request)
                             <div data-status="{{ $request->status }}" class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 transition hover:shadow-lg">
-                                <!-- Card Header with Status -->
                                 <div class="px-4 py-3 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
                                     <div class="flex items-center">
                                         <span class="text-sm font-medium text-gray-800">Request #{{ $request->id }}</span>
@@ -281,7 +257,6 @@
                                     </span>
                                 </div>
                                 
-                                <!-- Applicant Info -->
                                 <div class="p-4 border-b border-gray-200">
                                     <div class="flex items-center">
                                         <div class="flex-shrink-0 h-12 w-12">
@@ -294,7 +269,6 @@
                                     </div>
                                 </div>
                                 
-                                <!-- Animal Info -->
                                 <div class="p-4 border-b border-gray-200">
                                     <div class="flex items-center">
                                         <div class="flex-shrink-0 h-16 w-16">
@@ -311,7 +285,6 @@
                                     </div>
                                 </div>
                                 
-                                <!-- Request Details -->
                                 <div class="p-4 border-b border-gray-200">
                                     <div class="grid grid-cols-2 gap-4 text-sm">
                                         <div>
@@ -333,7 +306,6 @@
                                     </div>
                                 </div>
                                 
-                                <!-- Actions -->
                                 <div class="p-4 bg-gray-50 flex justify-between items-center">
                                     <button 
                                         type="button" 
@@ -389,12 +361,9 @@
         </div>
     </main>
 
-    <!-- Footer -->
     <footer class="bg-gray-900 w-full mt-auto">
     <div class="container mx-auto px-4">
-        <!-- Main Footer -->
         <div class="py-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <!-- Brand Column -->
             <div>
                 <div class="flex items-center space-x-2 mb-5">
                     <div class="bg-gradient-to-r from-teal-600 to-emerald-600 text-white p-2 rounded-lg">
@@ -421,7 +390,6 @@
                 </div>
             </div>
             
-            <!-- Quick Links -->
             <div>
                 <h3 class="text-white text-lg font-semibold mb-5">Quick Links</h3>
                 <ul class="space-y-3">
@@ -455,7 +423,6 @@
                 </ul>
             </div>
             
-            <!-- Contact Info -->
             <div>
                 <h3 class="text-white text-lg font-semibold mb-5">Contact Us</h3>
                 <ul class="space-y-3">
@@ -486,7 +453,6 @@
                 </ul>
             </div>
             
-            <!-- Newsletter -->
             <div>
                 <h3 class="text-white text-lg font-semibold mb-5">Newsletter</h3>
                 <p class="text-gray-400 text-sm mb-4">Stay updated with our latest news and animal care tips.</p>
@@ -502,7 +468,6 @@
             </div>
         </div>
         
-        <!-- Copyright Bar -->
         <div class="py-4 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
             <p class="text-gray-500 text-sm mb-2 md:mb-0">
                 &copy; 2024 RescueSpot. All rights reserved.
@@ -516,10 +481,8 @@
     </div>
 </footer>
 
-    <!-- Modal Overlay -->
     <div id="modal-overlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50"></div>
 
-    <!-- Adoption Details Modal -->
     <div id="adoption-details-modal" class="modal hidden fixed inset-0 z-50 flex items-center justify-center">
         <div class="bg-white rounded-xl shadow-2xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
             <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center sticky top-0 bg-white">
@@ -672,7 +635,6 @@
         </div>
     </div>
 
-    <!-- Add New Animal Modal -->
     <div id="add-animal-modal" class="modal hidden fixed inset-0 z-50 flex items-center justify-center">
         <div class="bg-white rounded-xl shadow-2xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
             <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center sticky top-0 bg-white">

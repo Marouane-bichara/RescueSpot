@@ -96,38 +96,18 @@ class  SheltersRepository{
             ]);
         }
 
-public function getMessages()
-{
-    $user = auth()->user(); 
-    return Message::where('sender_id', $user->id)
-        ->orWhere('receiver_id', $user->id)
-        ->latest()
-        ->get()
-        ->groupBy(function ($message) use ($user) {
-            return $message->sender_id == $user->id ? $message->receiver_id : $message->sender_id;
-        })
-        ->map(function ($messages) {
-            $lastMessage = $messages->first(); 
-            $otherUser = $lastMessage->sender_id == auth()->id() ? $lastMessage->receiver : $lastMessage->sender;
 
-            return [
-                'user_id' => $otherUser->id,
-                'username' => $otherUser->name,
-                'photo' => $otherUser->profilePhoto,
-                'last_message' => $lastMessage->message,
-            ];
-        })->values();
-}
 
 public function rejectAdoptionRequest($id)
 {
     $adoptionRequest = Adoption::find($id);
+
     if ($adoptionRequest) {
         $adoptionRequest->status = 'rejected';
         $adoptionRequest->save();
         return $adoptionRequest;
     }
-    return null; // or handle the case where the request is not found
+    return null;
 }
 public function aproveAdoptionRequest($id)
 {
@@ -149,7 +129,6 @@ public function getallAnimalsOfShelter()
     $shelter = Shelter::where('user_id', $userId)->first(); 
 
     $animals = Animal::where('shelter_id', $shelter->id)->get(); 
-
     return $animals;
 }
 }

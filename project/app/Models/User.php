@@ -30,7 +30,7 @@ class User extends Authenticatable
         'role_id',
         'birthday',
         'backgroundProfile',
-        'phone',
+        'phone', 
         'address',
         'city',
         'country',
@@ -74,29 +74,20 @@ class User extends Authenticatable
     }
 
 
-    public function sentMessages()
-    {
-        return $this->hasMany(Message::class, 'sender_id');
-    }
-
-    public function receivedMessages()
-    {
-        return $this->hasMany(Message::class, 'receiver_id');
-    }
-
+  
 
     public function adoptions()
     {
         return $this->hasMany(Adoption::class, 'adopterId');
     }
 
-    public function followers()
-    {
-        return $this->belongsToMany(User::class, 'followers', 'followed_id', 'follower_id');
-    }
+ 
 
-    public function followedUsers()
+ 
+
+    public function hasPermission($permission)
     {
-        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'followed_id');
+        return $this->role && $this->role->permissions()->where('name', $permission)->exists();
     }
+    
 }

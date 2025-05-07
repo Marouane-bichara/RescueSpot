@@ -113,8 +113,7 @@ html >
           opacity: 1;
       }
       
-      /* Custom scrollbar styles */
-      .scrollbar-thin::-webkit-scrollbar {
+       .scrollbar-thin::-webkit-scrollbar {
           width: 6px;
       }
       
@@ -132,24 +131,21 @@ html >
           background: #9ca3af;
       }
       
-      /* For Firefox */
-      .scrollbar-thin {
+       .scrollbar-thin {
           scrollbar-width: thin;
           scrollbar-color: #d1d5db #f1f1f1;
       }
   </style>
   <script>
       document.addEventListener('DOMContentLoaded', function() {
-          // Toggle mobile menu
-          const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+           const mobileMenuBtn = document.getElementById('mobile-menu-btn');
           const mobileMenu = document.getElementById('mobile-menu');
           
           mobileMenuBtn.addEventListener('click', function() {
               mobileMenu.classList.toggle('hidden');
           });
           
-          // Toggle profile dropdown
-          const profileBtn = document.getElementById('profile-btn');
+           const profileBtn = document.getElementById('profile-btn');
           const profileDropdown = document.getElementById('profile-dropdown');
           
           profileBtn.addEventListener('click', function(e) {
@@ -157,13 +153,11 @@ html >
               profileDropdown.classList.toggle('hidden');
           });
           
-          // Close dropdown when clicking outside
-          document.addEventListener('click', function() {
+           document.addEventListener('click', function() {
               profileDropdown.classList.add('hidden');
           });
 
-          // Handling image uploads
-          const profilePhotoInput = document.getElementById('profile-photo-input');
+           const profilePhotoInput = document.getElementById('profile-photo-input');
           const backgroundPhotoInput = document.getElementById('background-photo-input');
           const profilePhotoBtn = document.getElementById('change-profile-photo');
           const backgroundPhotoBtn = document.getElementById('change-background-photo');
@@ -181,8 +175,7 @@ html >
                   const reader = new FileReader();
                   reader.onload = function(e) {
                       document.getElementById('profile-photo').src = e.target.result;
-                      // Here you would typically send the file to your server
-                      showToast('Profile photo updated successfully!');
+                       showToast('Profile photo updated successfully!');
                   };
                   reader.readAsDataURL(this.files[0]);
               }
@@ -193,15 +186,13 @@ html >
                   const reader = new FileReader();
                   reader.onload = function(e) {
                       document.getElementById('background-photo').style.backgroundImage = `url(${e.target.result})`;
-                      // Here you would typically send the file to your server
-                      showToast('Background photo updated successfully!');
+                       showToast('Background photo updated successfully!');
                   };
                   reader.readAsDataURL(this.files[0]);
               }
           });
 
-          // Edit profile modal functionality
-          const editProfileBtn = document.getElementById('edit-profile-btn');
+           const editProfileBtn = document.getElementById('edit-profile-btn');
           const editProfileModal = document.getElementById('edit-profile-modal');
           const closeModalBtns = document.querySelectorAll('[data-close-modal]');
           const modalOverlay = document.getElementById('modal-overlay');
@@ -224,28 +215,22 @@ html >
           
           modalOverlay.addEventListener('click', closeModal);
           
-          // Prevent modal content clicks from closing the modal
-          document.querySelector('.modal-content').addEventListener('click', function(e) {
+           document.querySelector('.modal-content').addEventListener('click', function(e) {
               e.stopPropagation();
           });
           
-          // Save profile changes
-          const saveProfileBtn = document.getElementById('save-profile-btn');
+           const saveProfileBtn = document.getElementById('save-profile-btn');
 
           saveProfileBtn.addEventListener('click', function() {
-              // Get the form element
-              const form = document.getElementById('edit-profile-form');
+               const form = document.getElementById('edit-profile-form');
               
-              // Submit the form to the server
-              form.submit();
+               form.submit();
               
-              // Note: The page will refresh after form submission, so the following code
-              // will only execute if there's an issue with the form submission
+              
               showToast('Submitting form...');
           });
 
-          // Toast functionality
-          function showToast(message) {
+           function showToast(message) {
               const toast = document.getElementById('toast');
               const toastMessage = document.getElementById('toast-message');
               
@@ -259,14 +244,12 @@ html >
               }, 3000);
           }
 
-          // Close toast on click
-          document.getElementById('close-toast').addEventListener('click', function() {
+           document.getElementById('close-toast').addEventListener('click', function() {
               document.getElementById('toast').classList.add('hidden');
               document.getElementById('toast').classList.remove('flex');
           });
 
-          // Tab functionality for profile sections
-          const tabButtons = document.querySelectorAll('[data-tab-target]');
+           const tabButtons = document.querySelectorAll('[data-tab-target]');
           const tabContents = document.querySelectorAll('[data-tab-content]');
           
           tabButtons.forEach(button => {
@@ -288,8 +271,7 @@ html >
               });
           });
 
-          // Preview functions for profile photo and background photo
-          window.previewProfilePhoto = function(input) {
+           window.previewProfilePhoto = function(input) {
               if (input.files && input.files[0]) {
                   const reader = new FileReader();
                   reader.onload = function(e) {
@@ -309,24 +291,21 @@ html >
               }
           };
 
-          // Filter animals by species
-          const animalFilterButtons = document.querySelectorAll('[data-animal-filter]');
+           const animalFilterButtons = document.querySelectorAll('[data-animal-filter]');
           const animalCards = document.querySelectorAll('[data-animal-card]');
           
           animalFilterButtons.forEach(button => {
               button.addEventListener('click', () => {
                   const filter = button.dataset.animalFilter;
                   
-                  // Update active filter button
-                  animalFilterButtons.forEach(btn => {
+                   animalFilterButtons.forEach(btn => {
                       btn.classList.remove('bg-teal-100', 'text-teal-700');
                       btn.classList.add('bg-gray-100', 'text-gray-700');
                   });
                   button.classList.remove('bg-gray-100', 'text-gray-700');
                   button.classList.add('bg-teal-100', 'text-teal-700');
                   
-                  // Filter animal cards
-                  animalCards.forEach(card => {
+                   animalCards.forEach(card => {
                       if (filter === 'all' || card.dataset.animalSpecies === filter) {
                           card.classList.remove('hidden');
                       } else {
@@ -336,8 +315,7 @@ html >
               });
           });
 
-          // Search animals functionality
-          const animalSearchInput = document.getElementById('animal-search');
+           const animalSearchInput = document.getElementById('animal-search');
           
           if (animalSearchInput) {
               animalSearchInput.addEventListener('input', function() {
@@ -356,8 +334,7 @@ html >
               });
           }
 
-          // Confirm delete animal
-          const deleteButtons = document.querySelectorAll('.delete-animal-btn');
+           const deleteButtons = document.querySelectorAll('.delete-animal-btn');
           
           deleteButtons.forEach(button => {
               button.addEventListener('click', (e) => {
@@ -367,8 +344,7 @@ html >
               });
           });
 
-          // Toggle edit animal forms
-          const editAnimalButtons = document.querySelectorAll('.edit-animal-btn');
+           const editAnimalButtons = document.querySelectorAll('.edit-animal-btn');
           const animalInfoSections = document.querySelectorAll('.animal-info-section');
           const animalEditForms = document.querySelectorAll('.animal-edit-form');
           
@@ -377,8 +353,7 @@ html >
                   e.preventDefault();
                   const animalId = this.getAttribute('data-animal-id');
                   
-                  // Toggle visibility of info and edit form for this animal
-                  const infoSection = document.getElementById(`animal-info-${animalId}`);
+                   const infoSection = document.getElementById(`animal-info-${animalId}`);
                   const editForm = document.getElementById(`animal-edit-form-${animalId}`);
                   
                   if (infoSection && editForm) {
@@ -388,16 +363,14 @@ html >
               });
           });
 
-          // Cancel edit buttons
-          const cancelEditButtons = document.querySelectorAll('.cancel-edit-btn');
+           const cancelEditButtons = document.querySelectorAll('.cancel-edit-btn');
           
           cancelEditButtons.forEach(button => {
               button.addEventListener('click', function(e) {
                   e.preventDefault();
                   const animalId = this.getAttribute('data-animal-id');
                   
-                  // Hide edit form and show info section
-                  const infoSection = document.getElementById(`animal-info-${animalId}`);
+                   const infoSection = document.getElementById(`animal-info-${animalId}`);
                   const editForm = document.getElementById(`animal-edit-form-${animalId}`);
                   
                   if (infoSection && editForm) {
@@ -407,8 +380,7 @@ html >
               });
           });
 
-          // Preview animal photo
-          window.previewAnimalPhoto = function(input, previewId) {
+           window.previewAnimalPhoto = function(input, previewId) {
               if (input.files && input.files[0]) {
                   const reader = new FileReader();
                   reader.onload = function(e) {
@@ -421,8 +393,7 @@ html >
   </script>
 </head>
 <body class="bg-gray-50 font-sans">
-  <!-- Toast Notification -->
-  <div id="toast" class="hidden fixed top-5 right-5 z-50 items-center p-4 mb-4 w-full max-w-xs text-gray-500 bg-white rounded-xl shadow-lg border border-gray-100" role="alert">
+   <div id="toast" class="hidden fixed top-5 right-5 z-50 items-center p-4 mb-4 w-full max-w-xs text-gray-500 bg-white rounded-xl shadow-lg border border-gray-100" role="alert">
       <div class="inline-flex flex-shrink-0 justify-center items-center w-10 h-10 text-secondary-500 bg-secondary-100 rounded-full">
           <i class="fas fa-check"></i>
       </div>
@@ -432,8 +403,7 @@ html >
       </button>
   </div>
 
-  <!-- Edit Profile Modal -->
-  <div id="edit-profile-modal" class="modal hidden fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 justify-center items-center">
+   <div id="edit-profile-modal" class="modal hidden fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 justify-center items-center">
       <div id="modal-overlay" class="absolute inset-0"></div>
       <div class="modal-content relative bg-white rounded-2xl shadow-xl max-w-6xl w-full max-h-[90vh] overflow-auto mx-4 my-8">
           <div class="sticky top-0 z-10 bg-white px-6 py-4 border-b border-gray-200 rounded-t-2xl flex justify-between items-center">
@@ -457,8 +427,7 @@ html >
                           Shelter Images
                       </h3>
                       
-                      <!-- Profile Photo Upload -->
-                      <div class="mb-6">
+                       <div class="mb-6">
                           <label class="block text-sm font-medium text-gray-700 mb-2">Shelter Logo</label>
                           <div class="flex items-center space-x-4">
                               <div class="relative group h-24 w-24">
@@ -483,8 +452,7 @@ html >
                           </div>
                       </div>
                       
-                      <!-- Background Photo Upload -->
-                      <div class="mb-6">
+                       <div class="mb-6">
                           <label class="block text-sm font-medium text-gray-700 mb-2">Cover Image</label>
                           <div class="relative bg-gray-100 rounded-lg overflow-hidden h-32 mb-2">
                               <img id="background-photo-preview" 
@@ -637,12 +605,10 @@ html >
       </div>
   </div>
 
-  <!-- Top Navigation -->
-  <nav class="bg-white shadow-md fixed w-full z-50">
+   <nav class="bg-white shadow-md fixed w-full z-50">
       <div class="container mx-auto px-4">
           <div class="flex justify-between items-center h-16">
-              <!-- Logo -->
-              <div class="flex items-center">
+               <div class="flex items-center">
                   <a href="#" class="flex items-center space-x-2">
                       <div class="profile-gradient text-white p-2 rounded-lg">
                           <i class="fas fa-paw text-xl"></i>
@@ -652,8 +618,7 @@ html >
                   </a>
               </div>
 
-              <!-- Main Navigation - Desktop -->
-              <div class="hidden md:flex items-center space-x-1">
+               <div class="hidden md:flex items-center space-x-1">
                   <a href="HomeShelter" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 transition duration-150">Dashboard</a>
                   <a href="animalsShelter" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 transition duration-150">Animals</a>
                   <a href="AdoptionsRequests" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 transition duration-150">Adoption Requests</a>
@@ -661,16 +626,14 @@ html >
 
               </div>
 
-              <!-- Right Side Menu -->
-              <div class="flex items-center space-x-4">
+               <div class="flex items-center space-x-4">
                   <button class="hidden md:block bg-gradient-to-r from-secondary-500 to-primary-500 hover:from-secondary-600 hover:to-primary-600 text-white py-2 px-4 rounded-lg shadow-md transition transform hover:scale-105 hover:shadow-lg">
                       <span class="text-white text-sm font-medium">Add Animal</span>
                   </button>
                   
              
                   
-                  <!-- Profile Dropdown -->
-                  <div class="relative ml-3">
+                   <div class="relative ml-3">
                       <div>
                           <button type="button" id="profile-btn" class="flex text-sm bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition duration-150" aria-expanded="false" aria-haspopup="true">
                               <img class="h-10 w-10 rounded-full object-cover border-2 border-primary-500" 
@@ -719,16 +682,14 @@ html >
                       </div>
                   </div>
                   
-                  <!-- Mobile menu button -->
-                  <button type="button" id="mobile-menu-btn" class="md:hidden bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-primary-600 hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition duration-150" aria-controls="mobile-menu" aria-expanded="false">
+                   <button type="button" id="mobile-menu-btn" class="md:hidden bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-primary-600 hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition duration-150" aria-controls="mobile-menu" aria-expanded="false">
                       <i class="fas fa-bars text-xl"></i>
                   </button>
               </div>
           </div>
       </div>
 
-      <!-- Mobile menu, show/hide based on menu state -->
-      <div class="md:hidden hidden" id="mobile-menu">
+       <div class="md:hidden hidden" id="mobile-menu">
           <div class="px-2 pt-2 pb-3 space-y-1 bg-white shadow-md">
               <a href="HomeShelter" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 transition duration-150">Dashboard</a>
               <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gradient-to-r from-primary-600 to-secondary-600">Profile</a>
@@ -742,24 +703,19 @@ html >
       </div>
   </nav>
 
-  <!-- Main Content -->
-  <main class="pt-16 pb-12">
-      <!-- Profile Header Section -->
-      <div class="relative">
-          <!-- Background Image -->
-          <div id="background-photo" 
+   <main class="pt-16 pb-12">
+       <div class="relative">
+           <div id="background-photo" 
               class="h-72 md:h-96 bg-cover bg-center relative" 
               style="background-image: url('{{ $user->backgroundProfile ? asset('storage/'.$user->backgroundProfile) : 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80' }}');">
               
-              <!-- Change Background Photo Button -->
-              <button id="change-background-photo" class="absolute bottom-4 right-4 bg-white bg-opacity-90 hover:bg-opacity-100 text-gray-700 py-2 px-4 rounded-lg shadow-md flex items-center transition duration-150 hover:shadow-lg">
+               <button id="change-background-photo" class="absolute bottom-4 right-4 bg-white bg-opacity-90 hover:bg-opacity-100 text-gray-700 py-2 px-4 rounded-lg shadow-md flex items-center transition duration-150 hover:shadow-lg">
                   <i class="fas fa-camera mr-2 text-primary-500"></i>
                   Change Cover
               </button>
               <input type="file" id="background-photo-input" class="hidden" accept="image/*">
               
-              <!-- Decorative Elements -->
-              <div class="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-b from-transparent to-black opacity-40 pointer-events-none"></div>
+               <div class="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-b from-transparent to-black opacity-40 pointer-events-none"></div>
               <div class="absolute top-10 left-10 bg-primary-500 p-2 rounded-full shadow-lg animate-float opacity-70">
                   <i class="fas fa-paw text-white"></i>
               </div>
@@ -771,8 +727,7 @@ html >
               </div>
           </div>
 
-          <!-- Profile Photo -->
-          <div class="absolute -bottom-20 left-1/2 transform -translate-x-1/2 md:left-10 md:translate-x-0">
+           <div class="absolute -bottom-20 left-1/2 transform -translate-x-1/2 md:left-10 md:translate-x-0">
               <div class="relative group">
                   <div class="absolute inset-0 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 animate-pulse blur-md opacity-70 group-hover:opacity-100 transition duration-300"></div>
                   <img id="profile-photo" 
@@ -787,8 +742,7 @@ html >
           </div>
       </div>
       
-      <!-- Profile Content -->
-      <div class="container mx-auto px-4 mt-24">
+       <div class="container mx-auto px-4 mt-24">
           <div class="max-w-6xl mx-auto">
               <div class="flex flex-col md:flex-row justify-between items-start mb-8">
                   <div class="mb-4 md:mb-0">
@@ -811,8 +765,7 @@ html >
                   </div>
               </div>
               
-              <!-- Profile Navigation Tabs -->
-              <div class="relative border-b border-gray-200 mb-8">
+               <div class="relative border-b border-gray-200 mb-8">
                   <div class="flex flex-wrap -mb-px">
                       <button data-tab-target="#tab-about" class="text-primary-600 border-b-2 border-primary-600 inline-block p-4 rounded-t-lg font-medium transition duration-150">
                           <i class="fas fa-info-circle mr-2"></i>
@@ -833,12 +786,9 @@ html >
                   </div>
               </div>
               
-              <!-- Tab Contents -->
-              <div class="bg-white rounded-2xl shadow-lg overflow-hidden mb-8 border border-gray-100">
-                  <!-- About Tab Content -->
-                  <div id="tab-about" data-tab-content class="p-8">
-                      <!-- Profile Info Display Section -->
-                      <div id="profile-info-section">
+               <div class="bg-white rounded-2xl shadow-lg overflow-hidden mb-8 border border-gray-100">
+                   <div id="tab-about" data-tab-content class="p-8">
+                       <div id="profile-info-section">
                           <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
                               <span class="profile-gradient w-10 h-10 rounded-full flex items-center justify-center mr-3 text-white shadow-md">
                                   <i class="fas fa-building"></i>
@@ -967,8 +917,7 @@ html >
                               </div>
                           </div>
                           
-                          <!-- Statistics Cards -->
-                          <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                           <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                               <div class="bg-gradient-to-br from-primary-50 to-primary-100 p-6 rounded-xl border border-primary-200 shadow-sm hover:shadow-md transition duration-300 transform hover:-translate-y-1">
                                   <div class="flex items-center">
                                       <div class="p-3 bg-primary-500 text-white rounded-lg mr-4 shadow-md">
@@ -1030,8 +979,7 @@ html >
                       </div>
                   </div>
                   
-                  <!-- Animals Tab Content -->
-                  <div id="tab-animals" data-tab-content class="p-8 hidden">
+                   <div id="tab-animals" data-tab-content class="p-8 hidden">
                       <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
                           <span class="profile-gradient w-10 h-10 rounded-full flex items-center justify-center mr-3 text-white shadow-md">
                               <i class="fas fa-paw"></i>
@@ -1056,12 +1004,10 @@ html >
                           </div>
                       </div>
                       
-                      <!-- Scrollable container for animals -->
-                      <div class="h-[500px] overflow-y-auto pr-2 mb-6 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+                       <div class="h-[500px] overflow-y-auto pr-2 mb-6 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
                           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                               @forelse($animals as $animal)
-                              <!-- Animal Card -->
-                              <div data-animal-card data-animal-species="{{ $animal->species }}" data-animal-name="{{ $animal->name }}" data-animal-breed="{{ $animal->breed }}" class="bg-white rounded-xl overflow-hidden shadow-md border border-gray-100 transition transform hover:shadow-lg hover:-translate-y-1 duration-300">
+                               <div data-animal-card data-animal-species="{{ $animal->species }}" data-animal-name="{{ $animal->name }}" data-animal-breed="{{ $animal->breed }}" class="bg-white rounded-xl overflow-hidden shadow-md border border-gray-100 transition transform hover:shadow-lg hover:-translate-y-1 duration-300">
                                   <div class="relative">
                                       <img src="{{ asset('storage/'.$animal->photoAnimal) }}" alt="{{ $animal->name }}" class="w-full h-48 object-cover">
                                       <div class="absolute top-3 right-3 
@@ -1075,8 +1021,7 @@ html >
                                       </div>
                                   </div>
                                   
-                                  <!-- Animal Info Section (Default View) -->
-                                  <div id="animal-info-{{ $animal->id }}" class="animal-info-section p-5">
+                                   <div id="animal-info-{{ $animal->id }}" class="animal-info-section p-5">
                                       <div class="flex justify-between items-start mb-2">
                                           <h3 class="font-semibold text-gray-800 text-lg">{{ $animal->name }}</h3>
                                           <div class="flex space-x-1">
@@ -1109,8 +1054,7 @@ html >
                                       </div>
                                   </div>
                                   
-                                  <!-- Animal Edit Form (Hidden by Default) -->
-                                  <div id="animal-edit-form-{{ $animal->id }}" class="animal-edit-form p-5 hidden">
+                                   <div id="animal-edit-form-{{ $animal->id }}" class="animal-edit-form p-5 hidden">
                                       <form action="{{ route('shelter.ShelterProfile.update', $animal->id) }}" method="POST" enctype="multipart/form-data">
                                           @csrf
                                           @method('PUT')
@@ -1209,8 +1153,7 @@ html >
                       @endif
                   </div>
                   
-                  <!-- Team Tab Content -->
-                  <div id="tab-team" data-tab-content class="p-8 hidden">
+                   <div id="tab-team" data-tab-content class="p-8 hidden">
                       <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
                           <span class="profile-gradient w-10 h-10 rounded-full flex items-center justify-center mr-3 text-white shadow-md">
                               <i class="fas fa-users"></i>
@@ -1221,8 +1164,7 @@ html >
                       <div class="mb-8">
                           <h3 class="text-xl font-semibold text-gray-800 mb-4">Leadership</h3>
                           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                              <!-- Team Member -->
-                              <div class="flex space-x-4">
+                               <div class="flex space-x-4">
                                   <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Dr. Emily Chen" class="w-24 h-24 rounded-lg object-cover">
                                   <div>
                                       <h3 class="text-lg font-semibold text-gray-800">Dr. Emily Chen</h3>
@@ -1231,8 +1173,7 @@ html >
                                   </div>
                               </div>
                               
-                              <!-- Team Member -->
-                              <div class="flex space-x-4">
+                               <div class="flex space-x-4">
                                   <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Mark Johnson" class="w-24 h-24 rounded-lg object-cover">
                                   <div>
                                       <h3 class="text-lg font-semibold text-gray-800">Mark Johnson</h3>
@@ -1246,8 +1187,7 @@ html >
                       <div class="mb-8">
                           <h3 class="text-xl font-semibold text-gray-800 mb-4">Staff</h3>
                           <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                              <!-- Staff Member -->
-                              <div class="text-center">
+                               <div class="text-center">
                                   <div class="w-20 h-20 mx-auto rounded-full overflow-hidden mb-2">
                                       <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Staff Member" class="w-full h-full object-cover">
                                   </div>
@@ -1255,8 +1195,7 @@ html >
                                   <p class="text-xs text-gray-500">Animal Care</p>
                               </div>
                               
-                              <!-- Staff Member -->
-                              <div class="text-center">
+                               <div class="text-center">
                                   <div class="w-20 h-20 mx-auto rounded-full overflow-hidden mb-2">
                                       <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Staff Member" class="w-full h-full object-cover">
                                   </div>
@@ -1264,8 +1203,7 @@ html >
                                   <p class="text-xs text-gray-500">Trainer</p>
                               </div>
                               
-                              <!-- Staff Member -->
-                              <div class="text-center">
+                               <div class="text-center">
                                   <div class="w-20 h-20 mx-auto rounded-full overflow-hidden mb-2">
                                       <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Staff Member" class="w-full h-full object-cover">
                                   </div>
@@ -1273,8 +1211,7 @@ html >
                                   <p class="text-xs text-gray-500">Vet Assistant</p>
                               </div>
                               
-                              <!-- Staff Member -->
-                              <div class="text-center">
+                               <div class="text-center">
                                   <div class="w-20 h-20 mx-auto rounded-full overflow-hidden mb-2">
                                       <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Staff Member" class="w-full h-full object-cover">
                                   </div>
@@ -1282,8 +1219,7 @@ html >
                                   <p class="text-xs text-gray-500">Admin</p>
                               </div>
                               
-                              <!-- Staff Member -->
-                              <div class="text-center">
+                               <div class="text-center">
                                   <div class="w-20 h-20 mx-auto rounded-full overflow-hidden mb-2">
                                       <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Staff Member" class="w-full h-full object-cover">
                                   </div>
@@ -1324,8 +1260,7 @@ html >
                       </div>
                   </div>
                   
-                  <!-- Reviews Tab Content -->
-                  <div id="tab-reviews" data-tab-content class="p-8 hidden">
+                   <div id="tab-reviews" data-tab-content class="p-8 hidden">
                       <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
                           <span class="profile-gradient w-10 h-10 rounded-full flex items-center justify-center mr-3 text-white shadow-md">
                               <i class="fas fa-star"></i>
@@ -1352,8 +1287,7 @@ html >
                       </div>
                       
                       <div class="space-y-6">
-                          <!-- Review -->
-                          <div class="bg-gray-50 p-6 rounded-xl border border-gray-100">
+                           <div class="bg-gray-50 p-6 rounded-xl border border-gray-100">
                               <div class="flex items-start">
                                   <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="Reviewer" class="w-12 h-12 rounded-full mr-4">
                                   <div class="flex-1">
@@ -1373,8 +1307,7 @@ html >
                               </div>
                           </div>
                           
-                          <!-- Review -->
-                          <div class="bg-gray-50 p-6 rounded-xl border border-gray-100">
+                           <div class="bg-gray-50 p-6 rounded-xl border border-gray-100">
                               <div class="flex items-start">
                                   <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="Reviewer" class="w-12 h-12 rounded-full mr-4">
                                   <div class="flex-1">
@@ -1394,8 +1327,7 @@ html >
                               </div>
                           </div>
                           
-                          <!-- Review -->
-                          <div class="bg-gray-50 p-6 rounded-xl border border-gray-100">
+                           <div class="bg-gray-50 p-6 rounded-xl border border-gray-100">
                               <div class="flex items-start">
                                   <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="Reviewer" class="w-12 h-12 rounded-full mr-4">
                                   <div class="flex-1">
@@ -1428,8 +1360,7 @@ html >
       </div>
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-white">
+   <footer class="bg-gray-900 text-white">
       <div class="container mx-auto px-4 pt-12 pb-8">
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               <div>

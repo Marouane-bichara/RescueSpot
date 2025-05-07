@@ -23,7 +23,7 @@ class SheltersController extends Controller
         $user = auth()->user();
         $user = User::where('id', $user->id)->first();
         $adoptionRequests = $this->sheltersService->getallTheAdoptionRequests();
-        $messages = $this->sheltersService->getMessages();
+        $messages = null;
         $allthereports = $this->sheltersService->getLatestReports(); 
         $allAnimalsReadyForAdoption = $this->sheltersService->sheltAnimalsForAdoption();
         $shelterid = auth()->user()->id;

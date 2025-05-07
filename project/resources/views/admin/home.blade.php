@@ -9,8 +9,8 @@
 </head>
 <body class="bg-gray-50">
     <div class="relative min-h-screen">
-        <!-- Mobile menu button -->
-        <div class="fixed top-0 left-0 right-0 z-20 flex items-center justify-between px-4 py-3 bg-white border-b md:hidden">
+
+    <div class="fixed top-0 left-0 right-0 z-20 flex items-center justify-between px-4 py-3 bg-white border-b md:hidden">
             <button id="mobile-menu-button" class="p-2 text-gray-600 rounded-md focus:outline-none">
                 <i class="fas fa-bars text-xl"></i>
             </button>
@@ -26,7 +26,7 @@
             </div>
         </div>
 
-        <!-- Mobile menu (hidden by default) -->
+
         <div id="mobile-menu" class="fixed inset-0 z-30 hidden bg-white">
             <div class="flex flex-col h-full">
                 <div class="flex items-center justify-between px-4 py-3 border-b">
@@ -75,7 +75,7 @@
                             <p class="text-xs text-gray-500">admin@rescuespot.com</p>
                         </div>
                     </div>
-                    <!-- Mobile Logout Button -->
+
                     <form method="POST" action="{{ route('admin.logout') }}">
     @csrf
     <button type="submit"
@@ -90,7 +90,7 @@
             </div>
         </div>
 
-        <!-- Sidebar (hidden on mobile) -->
+
         <div class="fixed inset-y-0 left-0 z-10 hidden w-64 bg-white border-r md:block">
             <div class="flex flex-col h-full">
                 <div class="flex items-center justify-center h-16 px-4 border-b">
@@ -133,7 +133,7 @@
                             <p class="text-xs text-gray-500">admin@rescuespot.com</p>
                         </div>
                     </div>
-                    <!-- Desktop Logout Button -->
+
                     <form method="POST" action="{{ route('admin.logout') }}">
     @csrf
     <button type="submit"
@@ -148,10 +148,10 @@
             </div>
         </div>
 
-        <!-- Main Content -->
+
         <div class="md:pl-64 pt-14 md:pt-0">
-            <!-- Top Navigation (visible on desktop) -->
-            <header class="hidden md:flex items-center justify-between h-16 px-6 bg-white border-b">
+
+        <header class="hidden md:flex items-center justify-between h-16 px-6 bg-white border-b">
                 <h2 class="text-xl font-semibold text-gray-800">Dashboard</h2>
                 <div class="flex items-center">
                     <div class="relative mr-4">
@@ -167,10 +167,10 @@
                 </div>
             </header>
 
-            <!-- Dashboard Content -->
+
             <main class="px-4 py-6 md:px-6 md:py-8">
-                <!-- Welcome Banner with Image -->
-                <div class="mb-6 bg-white rounded-lg shadow overflow-hidden">
+
+            <div class="mb-6 bg-white rounded-lg shadow overflow-hidden">
                     <div class="md:flex">
                         <div class="p-6 md:w-1/2">
                             <h2 class="text-xl md:text-2xl font-bold text-gray-800">Welcome to RescueSpot</h2>
@@ -189,7 +189,7 @@
                     </div>
                 </div>
 
-                <!-- Stats Cards -->
+
                 <div class="grid grid-cols-1 gap-4 mb-8 sm:grid-cols-2 lg:grid-cols-4 md:gap-6">
                     <div class="p-4 md:p-6 bg-white rounded-lg shadow">
                         <div class="flex items-center">
@@ -264,7 +264,7 @@
                     </div>
                 </div>
 
-                <!-- Featured Animals Gallery -->
+
                 <div class="mb-8">
                     <h3 class="text-lg font-medium text-gray-800 mb-4">Featured Animals</h3>
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -287,10 +287,10 @@
                     </div>
                 </div>
 
-                <!-- Recent Reports and Adoption Requests -->
+
                 <div class="grid grid-cols-1 gap-6 mb-8 lg:grid-cols-2">
-                    <!-- Recent Reports -->
-                    <div class="bg-white rounded-lg shadow">
+
+                <div class="bg-white rounded-lg shadow">
                         <div class="px-4 py-3 md:px-6 md:py-4 border-b">
                             <h3 class="text-base md:text-lg font-semibold text-gray-800">Recent Animal Reports</h3>
                         </div>
@@ -325,7 +325,7 @@
                         </div>
                     </div>
 
-                    <!-- Adoption Requests -->
+
                     <div class="bg-white rounded-lg shadow">
                         <div class="px-4 py-3 md:px-6 md:py-4 border-b">
                             <h3 class="text-base md:text-lg font-semibold text-gray-800">Recent Adoption Requests</h3>
@@ -378,7 +378,7 @@
         </div>
     </div>
 
-    <!-- JavaScript for mobile menu toggle -->
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuButton = document.getElementById('mobile-menu-button');

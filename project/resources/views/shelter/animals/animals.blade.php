@@ -11,8 +11,7 @@
         background: linear-gradient(to right, #10b981, #059669);
     }
     
-    /* Custom scrollbar styles */
-    .scrollbar-thin::-webkit-scrollbar {
+     .scrollbar-thin::-webkit-scrollbar {
         width: 8px;
     }
     
@@ -30,16 +29,14 @@
         background: #9ca3af;
     }
     
-    /* Ensure the animal container takes up available space */
-    .animal-container {
+     .animal-container {
         height: calc(100vh - 250px);
         min-height: 500px;
     }
 </style>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Toggle edit forms
-        document.querySelectorAll('.edit-animal-btn').forEach(button => {
+         document.querySelectorAll('.edit-animal-btn').forEach(button => {
             button.addEventListener('click', function() {
                 const animalId = this.getAttribute('data-animal-id');
                 document.getElementById(`animal-info-${animalId}`).classList.add('hidden');
@@ -47,8 +44,7 @@
             });
         });
         
-        // Cancel edit
-        document.querySelectorAll('.cancel-edit-btn').forEach(button => {
+         document.querySelectorAll('.cancel-edit-btn').forEach(button => {
             button.addEventListener('click', function() {
                 const animalId = this.getAttribute('data-animal-id');
                 document.getElementById(`animal-edit-form-${animalId}`).classList.add('hidden');
@@ -56,11 +52,9 @@
             });
         });
         
-        // Filter animals
-        document.querySelectorAll('[data-animal-filter]').forEach(button => {
+         document.querySelectorAll('[data-animal-filter]').forEach(button => {
             button.addEventListener('click', function() {
-                // Update active filter button
-                document.querySelectorAll('[data-animal-filter]').forEach(btn => {
+                 document.querySelectorAll('[data-animal-filter]').forEach(btn => {
                     btn.classList.remove('bg-teal-100', 'text-teal-700');
                     btn.classList.add('bg-gray-100', 'text-gray-700');
                 });
@@ -84,8 +78,7 @@
             });
         });
         
-        // Search animals
-        const searchInput = document.getElementById('animal-search');
+         const searchInput = document.getElementById('animal-search');
         searchInput.addEventListener('input', function() {
             const searchTerm = this.value.toLowerCase();
             
@@ -102,8 +95,7 @@
             });
         });
         
-        // Preview uploaded animal photo
-        window.previewAnimalPhoto = function(input, previewId) {
+         window.previewAnimalPhoto = function(input, previewId) {
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
@@ -113,8 +105,7 @@
             }
         };
         
-        // Confirm delete
-        document.querySelectorAll('.delete-animal-btn').forEach(button => {
+         document.querySelectorAll('.delete-animal-btn').forEach(button => {
             button.addEventListener('click', function(e) {
                 if (!confirm('Are you sure you want to delete this animal?')) {
                     e.preventDefault();
@@ -122,8 +113,7 @@
             });
         });
         
-        // Modal functionality
-        const modalTriggers = document.querySelectorAll('[data-modal-target]');
+         const modalTriggers = document.querySelectorAll('[data-modal-target]');
         const closeModalButtons = document.querySelectorAll('[data-close-modal]');
         const overlay = document.getElementById('modal-overlay');
 
@@ -152,8 +142,7 @@
 
         overlay.addEventListener('click', closeModal);
         
-        // File upload preview
-        const photoInput = document.getElementById('photoAnimal');
+         const photoInput = document.getElementById('photoAnimal');
         const photoPreview = document.getElementById('photo-preview');
         
         if (photoInput && photoPreview) {
@@ -175,7 +164,6 @@
 <body class="bg-gray-100 font-sans">
 <div class="container mx-auto px-4 py-8">
     <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-        <!-- Page Header -->
         <div class="bg-gradient-to-r from-teal-600 to-emerald-600 px-8 py-6 text-white">
             <div class="flex justify-between items-center">
                 <h1 class="text-2xl font-bold flex items-center">
@@ -190,7 +178,6 @@
             </div>
         </div>
         
-        <!-- Main Content -->
         <div class="p-8">
             <div class="flex justify-between items-center mb-6">
                 <div class="flex space-x-2 overflow-x-auto pb-2">
@@ -213,11 +200,9 @@
                 </div>
             </div>
             
-            <!-- Scrollable container for animals -->
             <div class="animal-container overflow-y-auto pr-2 mb-6 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     @forelse($animals as $animal)
-                    <!-- Animal Card -->
                     <div data-animal-card data-animal-species="{{ $animal->species }}" data-animal-name="{{ $animal->name }}" data-animal-breed="{{ $animal->breed }}" class="bg-white rounded-xl overflow-hidden shadow-md border border-gray-100 transition transform hover:shadow-lg hover:-translate-y-1 duration-300">
                         <div class="relative">
                             <img src="{{ asset('storage/' . $animal->photoAnimal) }}" alt="{{ $animal->name }}" class="w-full h-48 object-cover">
@@ -232,7 +217,6 @@
                             </div>
                         </div>
                         
-                        <!-- Animal Info Section (Default View) -->
                         <div id="animal-info-{{ $animal->id }}" class="animal-info-section p-5">
                             <div class="flex justify-between items-start mb-2">
                                 <h3 class="font-semibold text-gray-800 text-lg">{{ $animal->name }}</h3>
@@ -265,7 +249,6 @@
                             </div>
                         </div>
                         
-                        <!-- Animal Edit Form (Hidden by Default) -->
                         <div id="animal-edit-form-{{ $animal->id }}" class="animal-edit-form p-5 hidden">
                             <form action="{{ route('shelter.ShelterProfile.update', $animal->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
@@ -368,10 +351,8 @@
     </div>
 </div>
 
-<!-- Modal Overlay -->
 <div id="modal-overlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50"></div>
 
-<!-- Add Animal Modal -->
 <div id="add-animal-modal" class="modal hidden fixed inset-0 z-50 flex items-center justify-center">
     <div class="bg-white rounded-xl shadow-2xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
         <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center sticky top-0 bg-white">

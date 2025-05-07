@@ -21,8 +21,7 @@
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
         
-        /* Status badge styles */
-        .status-badge {
+         .status-badge {
             display: inline-block;
             padding: 0.25rem 0.75rem;
             border-radius: 9999px;
@@ -50,17 +49,15 @@
             color: #2563EB;
         }
         
-        /* Scrollable container styles */
-        .scrollable-container {
-            height: 600px; /* Fixed height for the container */
+         .scrollable-container {
+            height: 600px;  
             overflow-y: auto;
             overflow-x: hidden;
             padding: 1.5rem;
             position: relative;
         }
         
-        /* Custom scrollbar for the container */
-        .scrollable-container::-webkit-scrollbar {
+         .scrollable-container::-webkit-scrollbar {
             width: 8px;
         }
         
@@ -78,8 +75,7 @@
             background: #a0a0a0;
         }
         
-        /* Scroll indicator inside container */
-        .scroll-indicator {
+         .scroll-indicator {
             position: absolute;
             bottom: 20px;
             left: 50%;
@@ -102,8 +98,7 @@
             }
         }
         
-        /* Modal styles */
-        .modal-overlay {
+         .modal-overlay {
             background-color: rgba(0, 0, 0, 0.5);
             transition: opacity 0.3s ease;
         }
@@ -125,12 +120,10 @@
     </style>
 </head>
 <body class="bg-gray-100 font-sans">
-    <!-- Top Navigation -->
-    <nav class="bg-white shadow-md fixed w-full z-50">
+     <nav class="bg-white shadow-md fixed w-full z-50">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center h-16">
-                <!-- Logo -->
-                <div class="flex items-center">
+                 <div class="flex items-center">
                     <a href="#" class="flex items-center space-x-2">
                         <div class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-2 rounded-lg">
                             <i class="fas fa-paw text-xl"></i>
@@ -139,22 +132,19 @@
                     </a>
                 </div>
 
-                <!-- Main Navigation - Desktop -->
-                <div class="hidden md:flex items-center space-x-1">
+                 <div class="hidden md:flex items-center space-x-1">
                     <a href="HomeUser" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Home</a>
                     <a href="{{ route('user.UserAdoptions.index') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Adoption</a>
                     <a href="{{ route('user.AprovedRequests') }}" class="px-3 py-2 rounded-md text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-600">Requests</a>
                     <a href="{{ route('user.UserReports.index') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Reports</a>
                 </div>
 
-                <!-- Right Side Menu -->
-                <div class="flex items-center space-x-4">
+                 <div class="flex items-center space-x-4">
                     <button class="hidden md:block bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white py-2 px-4 rounded-lg shadow-md transition transform hover:scale-105">
                         <a href="{{ route('user.UserReports.index') }}" class="text-white text-sm font-medium">Report an animal</a>
                     </button>
                     
-                    <!-- Profile Dropdown -->
-                    <div class="relative ml-3">
+                     <div class="relative ml-3">
                         <div>
                             <button type="button" id="profile-btn" class="flex text-sm bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" aria-expanded="false" aria-haspopup="true">
                                 <img class="h-10 w-10 rounded-full object-cover border-2 border-blue-500" 
@@ -203,16 +193,14 @@
                         </div>
                     </div>
                     
-                    <!-- Mobile menu button -->
-                    <button type="button" id="mobile-menu-btn" class="md:hidden bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" aria-controls="mobile-menu" aria-expanded="false">
+                     <button type="button" id="mobile-menu-btn" class="md:hidden bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" aria-controls="mobile-menu" aria-expanded="false">
                         <i class="fas fa-bars text-xl"></i>
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- Mobile menu, show/hide based on menu state -->
-        <div class="md:hidden hidden" id="mobile-menu">
+         <div class="md:hidden hidden" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1 bg-white shadow-md">
                 <a href="HomeUser" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Home</a>
                 <a href="{{ route('user.UserAdoptions.index') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-600">Adoption</a>
@@ -225,10 +213,8 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main class="pt-20 pb-12">
-        <!-- Adoption Details Section -->
-        <section class="py-8 md:py-12">
+     <main class="pt-20 pb-12">
+         <section class="py-8 md:py-12">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-12">
                     <div class="inline-block px-4 py-1 rounded-full bg-blue-100 text-blue-600 text-sm font-semibold mb-4">
@@ -240,8 +226,7 @@
                     </p>
                 </div>
 
-                <!-- Adoption Cards Container with Scrollable Area -->
-                <div class="bg-white rounded-2xl shadow-xl overflow-hidden mb-8">
+                 <div class="bg-white rounded-2xl shadow-xl overflow-hidden mb-8">
                     <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
                         <h2 class="text-lg font-bold text-gray-800">My Adoption Applications</h2>
                         <div class="flex items-center">
@@ -254,16 +239,14 @@
                         </div>
                     </div>
                     
-                    <!-- Scrollable container for adoption cards -->
-                    <div class="scrollable-container">
+                     <div class="scrollable-container">
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             @forelse($adoptionDetails as $adoption)
                             <div class="adoption-card bg-white rounded-xl overflow-hidden shadow-md border border-gray-200">
                                 <div class="relative">
                                     <img src="{{ asset('storage/' . $adoption['animal_image']) }}" alt="{{ $adoption['animal_name'] }}" class="w-full h-48 object-cover">
                                     
-                                    <!-- Status Badge -->
-                                    @php
+                                     @php
                                         $statusClass = 'status-pending';
                                         if($adoption['status'] == 'approved') {
                                             $statusClass = 'status-approved';
@@ -308,7 +291,7 @@
                                             <p class="text-sm text-gray-600">{{$adoption['shelter_address']}}</p>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> 
                                     
                                     <div class="mb-4">
                                         <h4 class="text-sm font-semibold text-gray-700 mb-2">Timeline</h4>
@@ -396,8 +379,7 @@
                                 </div>
                             </div>
                             @empty
-                            <!-- Empty state - No adoptions -->
-                            <div class="col-span-full p-8 text-center">
+                             <div class="col-span-full p-8 text-center">
                                 <div class="inline-flex items-center justify-center bg-gray-100 rounded-full p-8 mb-6">
                                     <i class="fas fa-paw text-gray-400 text-5xl"></i>
                                 </div>
@@ -411,8 +393,7 @@
                             @endforelse
                         </div>
                         
-                        <!-- Scroll indicator - only show if there are enough adoptions to scroll -->
-                        @if(count($adoptionDetails) > 3)
+                         @if(count($adoptionDetails) > 3)
                         <div class="scroll-indicator">
                             <i class="fas fa-chevron-down text-xl animate-bounce"></i>
                         </div>
@@ -423,8 +404,7 @@
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white">
+     <footer class="bg-gray-900 text-white">
         <div class="container mx-auto px-4 pt-12 pb-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div>
@@ -496,20 +476,16 @@
         </div>
     </footer>
 
-    <!-- JavaScript for UI interactions -->
-    <script>
-        // JavaScript for UI interactions
-        document.addEventListener('DOMContentLoaded', function() {
-            // Toggle mobile menu
-            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+     <script>
+         document.addEventListener('DOMContentLoaded', function() {
+             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
             
             mobileMenuBtn.addEventListener('click', function() {
                 mobileMenu.classList.toggle('hidden');
             });
             
-            // Toggle profile dropdown
-            const profileBtn = document.getElementById('profile-btn');
+             const profileBtn = document.getElementById('profile-btn');
             const profileDropdown = document.getElementById('profile-dropdown');
             
             profileBtn.addEventListener('click', function(e) {
@@ -517,13 +493,11 @@
                 profileDropdown.classList.toggle('hidden');
             });
             
-            // Close dropdown when clicking outside
-            document.addEventListener('click', function() {
+             document.addEventListener('click', function() {
                 profileDropdown.classList.add('hidden');
             });
             
-            // Hide scroll indicator after scrolling
-            const scrollContainer = document.querySelector('.scrollable-container');
+             const scrollContainer = document.querySelector('.scrollable-container');
             const scrollIndicator = document.querySelector('.scroll-indicator');
             
             if (scrollContainer && scrollIndicator) {
@@ -538,24 +512,21 @@
             }
         });
         
-        // Modal functions
-        function openAdoptionModal(modalId) {
-            // Show the modal
-            const modal = document.getElementById(modalId);
+         function openAdoptionModal(modalId) {
+             const modal = document.getElementById(modalId);
             modal.classList.remove('hidden');
             modal.classList.add('modal-active');
-            document.body.classList.add('modal-open'); // Prevent scrolling when modal is open
+            document.body.classList.add('modal-open');  
         }
 
         function closeAdoptionModal(modalId) {
             const modal = document.getElementById(modalId);
             modal.classList.add('hidden');
             modal.classList.remove('modal-active');
-            document.body.classList.remove('modal-open'); // Re-enable scrolling
+            document.body.classList.remove('modal-open');  
         }
 
-        // Close modal when clicking outside
-        document.addEventListener('click', function(event) {
+         document.addEventListener('click', function(event) {
             const modals = document.querySelectorAll('[id^="modal-"]');
             
             modals.forEach(function(modal) {

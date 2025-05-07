@@ -8,15 +8,29 @@ use App\Models\Shelter;
 class ReportsShelterRepository
 {
     public function getAllReports()
-    {
-        $user = auth()->user();
-        $shelter = Shelter::where('user_id', $user->id)->first();
+{
+    $user = auth()->user();
+    $shelter = Shelter::where('user_id', $user->id)->first();
+    
+    $reportss = Report::where('shelter_status', '!=', 'resolved')->get();
+    $userAddress = strtolower($user->address);
+    
+    $reports = [];
 
-
-        $reports = Report::where('shelter_status', '!=', 'resolved')->get();
-        
-        return $reports;
+    foreach ($reportss as $report) {
+        $locationWords = preg_split('/\s+/', strtolower($report->location)); 
+        foreach ($locationWords as $word) {
+            if (stripos($userAddress, $word) !== false) {
+                $reports[] = $report;
+                break; 
+            }
+        }
     }
+    $reports = collect($reports);
+
+    return $reports;
+}
+
 
     public function countReports()
     {

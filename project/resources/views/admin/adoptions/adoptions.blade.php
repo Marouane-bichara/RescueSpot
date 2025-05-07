@@ -9,8 +9,8 @@
 </head>
 <body class="bg-gray-50">
 <div class="relative min-h-screen">
-    <!-- Mobile menu button -->
-    <div class="fixed top-0 left-0 right-0 z-20 flex items-center justify-between px-4 py-3 bg-white border-b md:hidden">
+
+<div class="fixed top-0 left-0 right-0 z-20 flex items-center justify-between px-4 py-3 bg-white border-b md:hidden">
         <button id="mobile-menu-button" class="p-2 text-gray-600 rounded-md focus:outline-none">
             <i class="fas fa-bars text-xl"></i>
         </button>
@@ -26,7 +26,6 @@
         </div>
     </div>
 
-    <!-- Mobile menu (hidden by default) -->
     <div id="mobile-menu" class="fixed inset-0 z-30 hidden bg-white">
         <div class="flex flex-col h-full">
             <div class="flex items-center justify-between px-4 py-3 border-b">
@@ -75,7 +74,7 @@
                         <p class="text-xs text-gray-500">admin@rescuespot.com</p>
                     </div>
                 </div>
-                <!-- Mobile Logout Button -->
+
                 <form method="POST" action="{{ route('admin.logout') }}">
     @csrf
     <button type="submit"
@@ -89,7 +88,6 @@
         </div>
     </div>
 
-    <!-- Sidebar (hidden on mobile) -->
     <div class="fixed inset-y-0 left-0 z-10 hidden w-64 bg-white border-r md:block">
         <div class="flex flex-col h-full">
             <div class="flex items-center justify-center h-16 px-4 border-b">
@@ -133,7 +131,7 @@
                         <p class="text-xs text-gray-500">admin@rescuespot.com</p>
                     </div>
                 </div>
-                <!-- Desktop Logout Button -->
+
                 <form method="POST" action="{{ route('admin.logout') }}">
     @csrf
     <button type="submit"
@@ -147,10 +145,9 @@
         </div>
     </div>
 
-    <!-- Main Content -->
     <div class="md:pl-64 pt-14 md:pt-0">
-        <!-- Top Navigation (visible on desktop) -->
-        <header class="hidden md:flex items-center justify-between h-16 px-6 bg-white border-b">
+
+    <header class="hidden md:flex items-center justify-between h-16 px-6 bg-white border-b">
             <h2 class="text-xl font-semibold text-gray-800">Adoptions</h2>
             <div class="flex items-center">
                 <div class="relative mr-4">
@@ -166,21 +163,20 @@
             </div>
         </header>
 
-        <!-- Dashboard Content -->
         <main class="px-4 py-6 md:px-6 md:py-8">
-            <!-- Adoptions Overview -->
-            <div class="mb-6 bg-white rounded-lg shadow overflow-hidden">
+
+        <div class="mb-6 bg-white rounded-lg shadow overflow-hidden">
                 <div class="md:flex">
                     <div class="p-6 md:w-1/2">
                         <h2 class="text-xl md:text-2xl font-bold text-gray-800">Adoption Requests</h2>
                         <p class="mt-2 text-sm md:text-base text-gray-600">View and manage animal adoption requests from the community.</p>
                         <div class="mt-4 flex flex-wrap gap-3">
                             <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-emerald-100 text-emerald-800">
-                                <i class="fas fa-heart mr-1"></i> <span id="total-count">{{ count($adoptions) }}</span> Total Adoptions
+                                <i class="fas fa-heart mr-1"></i> <span id="total-count">{{ $adoptions ? count($adoptions) : 0 }}</span> Total Adoptions
                             </span>
                             <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
                                 <i class="fas fa-check-circle mr-1"></i> 
-                                <span id="approved-count">{{ $adoptions->where('status', 'approved')->count() }}</span> Approved
+                                <span id="approved-count">{{ $adoptions ? $adoptions->where('status', 'approved')->count() : 0 }}</span> Approved
                             </span>
                         </div>
                     </div>
@@ -197,7 +193,6 @@
                 </div>
             </div>
 
-            <!-- Filter Controls -->
             <div class="mb-6 flex flex-col md:flex-row gap-4 items-center justify-between">
                 <div class="w-full md:w-auto flex flex-wrap gap-2">
                     <button id="filter-all" class="filter-btn px-3 py-2 bg-emerald-600 text-white rounded-md text-sm font-medium hover:bg-emerald-700 focus:outline-none" data-status="all">
@@ -223,11 +218,10 @@
                 </div>
             </div>
 
-            <!-- Adoptions Cards Container (Scrollable) -->
             <div class="mb-8">
-                <!-- Increased height for the scrollable container -->
-                <div class="h-[calc(100vh-250px)] overflow-y-auto pr-2 pb-4 rounded-lg border border-gray-200">
-                    @if(count($adoptions) > 0)
+
+            <div class="h-[calc(100vh-250px)] overflow-y-auto pr-2 pb-4 rounded-lg border border-gray-200">
+                    @if($adoptions && count($adoptions) > 0)
                         <div id="adoptions-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
                             @foreach($adoptions as $adoption)
                             <div class="adoption-card bg-white rounded-lg shadow overflow-hidden" 
@@ -289,7 +283,7 @@
                             </div>
                             @endforeach
                         </div>
-                        <!-- No results message (hidden by default) -->
+
                         <div id="no-results" class="hidden flex flex-col items-center justify-center h-full py-16">
                             <div class="bg-gray-100 p-4 rounded-full mb-4">
                                 <i class="fas fa-search text-gray-400 text-5xl"></i>
@@ -301,8 +295,8 @@
                             </button>
                         </div>
                     @else
-                        <!-- Empty state -->
-                        <div class="flex flex-col items-center justify-center h-full py-16">
+
+                    <div class="flex flex-col items-center justify-center h-full py-16">
                             <div class="bg-gray-100 p-4 rounded-full mb-4">
                                 <i class="fas fa-heart text-gray-400 text-5xl"></i>
                             </div>
@@ -316,7 +310,6 @@
                 </div>
             </div>
 
-            <!-- Quick Actions -->
             <div class="bg-white rounded-lg shadow p-4">
                 <h3 class="text-lg font-medium text-gray-800 mb-3">Quick Actions</h3>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -342,10 +335,8 @@
     </div>
 </div>
 
-<!-- JavaScript for mobile menu toggle and filtering/sorting -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Mobile menu toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const closeMobileMenuButton = document.getElementById('close-mobile-menu');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -358,7 +349,6 @@
             mobileMenu.classList.add('hidden');
         });
 
-        // Filter and sort functionality
         const filterButtons = document.querySelectorAll('.filter-btn');
         const sortSelect = document.getElementById('sort-select');
         const searchInput = document.getElementById('search-input');
@@ -371,7 +361,6 @@
         let currentSort = 'newest';
         let searchTerm = '';
 
-        // Function to update filter button styles
         function updateFilterButtons(activeButton) {
             filterButtons.forEach(button => {
                 if (button === activeButton) {
@@ -384,7 +373,6 @@
             });
         }
 
-        // Function to filter and sort adoptions
         function filterAndSortAdoptions() {
             let visibleCount = 0;
             let approvedCount = 0;
@@ -394,20 +382,16 @@
                 const animalName = card.getAttribute('data-animal').toLowerCase();
                 const adopterName = card.getAttribute('data-adopter').toLowerCase();
                 
-                // Count approved adoptions
                 if (status === 'approved') {
                     approvedCount++;
                 }
                 
-                // Filter by status
                 const statusMatch = currentFilter === 'all' || status === currentFilter;
                 
-                // Filter by search term
                 const searchMatch = searchTerm === '' || 
                                    animalName.includes(searchTerm) || 
                                    adopterName.includes(searchTerm);
                 
-                // Show/hide based on filters
                 if (statusMatch && searchMatch) {
                     card.classList.remove('hidden');
                     visibleCount++;
@@ -416,7 +400,6 @@
                 }
             });
 
-            // Show/hide no results message
             if (visibleCount === 0 && adoptionCards.length > 0) {
                 adoptionsContainer.classList.add('hidden');
                 noResults.classList.remove('hidden');
@@ -425,15 +408,12 @@
                 noResults.classList.add('hidden');
             }
 
-            // Update the visible count
             document.getElementById('total-count').textContent = visibleCount;
             document.getElementById('approved-count').textContent = approvedCount;
             
-            // Sort visible cards
             sortAdoptions();
         }
 
-        // Function to sort adoptions
         function sortAdoptions() {
             const cards = Array.from(adoptionCards).filter(card => !card.classList.contains('hidden'));
             
@@ -450,13 +430,11 @@
                 return 0;
             });
             
-            // Reorder the cards in the DOM
             cards.forEach(card => {
                 adoptionsContainer.appendChild(card);
             });
         }
 
-        // Event listeners for filter buttons
         filterButtons.forEach(button => {
             button.addEventListener('click', function() {
                 currentFilter = this.getAttribute('data-status');
@@ -465,37 +443,29 @@
             });
         });
 
-        // Event listener for sort select
         sortSelect.addEventListener('change', function() {
             currentSort = this.value;
             filterAndSortAdoptions();
         });
 
-        // Event listener for search input
         searchInput.addEventListener('input', function() {
             searchTerm = this.value.toLowerCase();
             filterAndSortAdoptions();
         });
 
-        // Event listener for reset filters button
         resetFiltersBtn.addEventListener('click', function() {
-            // Reset filter
             currentFilter = 'all';
             updateFilterButtons(document.getElementById('filter-all'));
             
-            // Reset sort
             sortSelect.value = 'newest';
             currentSort = 'newest';
             
-            // Reset search
             searchInput.value = '';
             searchTerm = '';
             
-            // Apply reset
             filterAndSortAdoptions();
         });
 
-        // Initialize with default filter and sort
         filterAndSortAdoptions();
     });
 </script>

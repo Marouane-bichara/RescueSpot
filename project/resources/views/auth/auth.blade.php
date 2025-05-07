@@ -14,15 +14,15 @@
     </a>
 
     <div class="w-full max-w-4xl bg-white shadow-2xl rounded-3xl flex flex-col md:flex-row overflow-hidden">
-        <!-- Illustration Section -->
-        <div class="md:w-1/2 bg-gradient-to-br from-blue-500 to-green-400 flex flex-col items-center justify-center p-8 relative overflow-hidden">
-            <!-- Decorative Elements -->
-            <div class="absolute top-0 left-0 w-full h-full opacity-10">
+
+    <div class="md:w-1/2 bg-gradient-to-br from-blue-500 to-green-400 flex flex-col items-center justify-center p-8 relative overflow-hidden">
+
+    <div class="absolute top-0 left-0 w-full h-full opacity-10">
                 <div class="absolute -top-10 -left-10 w-48 h-48 bg-white/20 rounded-full"></div>
                 <div class="absolute bottom-0 right-0 w-64 h-64 bg-white/20 rounded-full"></div>
             </div>
 
-            <!-- Logo and Text -->
+
             <div class="absolute top-6 left-6 flex items-center text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-2" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M10.5 18.5c0 0.5-0.5 1-1 1s-1-0.5-1-1 0.5-1 1-1 1 0.5 1 1zM15.5 18.5c0 0.5-0.5 1-1 1s-1-0.5-1-1 0.5-1 1-1 1 0.5 1 1zM17.8 12c-0.5-2.2-2.2-4-4.5-4.5 0.3-0.5 0.5-1 0.5-1.6 0-1.7-1.3-3-3-3s-3 1.3-3 3c0 0.6 0.2 1.1 0.5 1.6-2.2 0.5-4 2.2-4.5 4.5-1.7 0.3-3 1.7-3 3.5 0 2 1.6 3.6 3.6 3.6h0.2c0.4 1.7 2 3 3.9 3 0.9 0 1.7-0.3 2.4-0.8 0.7 0.5 1.5 0.8 2.4 0.8 1.9 0 3.4-1.3 3.9-3h0.2c2 0 3.6-1.6 3.6-3.6 0-1.8-1.3-3.3-3-3.5zM10.8 4.9c0-0.7 0.6-1.3 1.3-1.3s1.3 0.6 1.3 1.3c0 0.7-0.6 1.3-1.3 1.3s-1.3-0.6-1.3-1.3zM15.1 18.2c-0.4 1.2-1.5 2-2.7 2-0.7 0-1.3-0.2-1.8-0.6-0.3-0.2-0.8-0.2-1.1 0-0.5 0.4-1.2 0.6-1.8 0.6-1.3 0-2.4-0.8-2.7-2h10.2zM19.4 15.5c0 1.1-0.9 2-2 2h-0.1c0-0.1 0-0.2 0-0.3 0-2.2-1.8-4-4-4h-2.5c-0.3 0-0.5 0.2-0.5 0.5s0.2 0.5 0.5 0.5h2.5c1.7 0 3 1.3 3 3 0 0.1 0 0.2 0 0.3h-10c0-0.1 0-0.2 0-0.3 0-1.7 1.3-3 3-3h0.9c0.3 0 0.5-0.2 0.5-0.5s-0.2-0.5-0.5-0.5h-0.9c-2.2 0-4 1.8-4 4 0 0.1 0 0.2 0 0.3h-0.1c-1.1 0-2-0.9-2-2s0.9-2 2-2h0.1c0.3 0 0.5-0.2 0.5-0.5s-0.2-0.5-0.5-0.5h-0.1c-0.8 0-1.4 0.3-1.9 0.9 0.5-2.3 2.5-4 4.9-4h6c2.4 0 4.4 1.7 4.9 4-0.5-0.5-1.2-0.9-1.9-0.9h-0.1c-0.3 0-0.5 0.2-0.5 0.5s0.2 0.5 0.5 0.5h0.1c1.1 0 2 0.9 2 2z"></path>
@@ -30,10 +30,10 @@
                 <span class="font-bold text-lg">RescueSpot</span>
             </div>
 
-            <!-- Animal Logo/Illustration -->
+
             <div class="text-center relative z-10">
-                <!-- Animal Logo SVG -->
-                <svg class="mx-auto mb-6 h-48 md:h-64 w-auto text-white animate-pulse" viewBox="0 0 512 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+
+            <svg class="mx-auto mb-6 h-48 md:h-64 w-auto text-white animate-pulse" viewBox="0 0 512 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path d="M256 224c-79.41 0-192 122.76-192 200.25 0 34.9 26.81 55.75 71.74 55.75 48.84 0 81.09-25.08 120.26-25.08 39.51 0 71.85 25.08 120.26 25.08 44.93 0 71.74-20.85 71.74-55.75C448 346.76 335.41 224 256 224zm-147.28-12.61c-10.4-34.65-42.44-57.09-71.56-50.13-29.12 6.96-44.29 40.69-33.89 75.34 10.4 34.65 42.44 57.09 71.56 50.13 29.12-6.96 44.29-40.69 33.89-75.34zm84.72-20.78c30.94-8.14 46.42-49.94 34.58-93.36s-46.52-72.01-77.46-63.87-46.42 49.94-34.58 93.36c11.84 43.42 46.53 72.02 77.46 63.87zm281.39-29.34c-29.12-6.96-61.15 15.48-71.56 50.13-10.4 34.65 4.77 68.38 33.89 75.34 29.12 6.96 61.15-15.48 71.56-50.13 10.4-34.65-4.77-68.38-33.89-75.34zm-156.27 29.34c30.94 8.14 65.62-20.45 77.46-63.87 11.84-43.42-3.64-85.21-34.58-93.36s-65.62 20.45-77.46 63.87c-11.84 43.42 3.64 85.22 34.58 93.36z"/>
                 </svg>
                 <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">Welcome Back!</h2>
@@ -43,11 +43,11 @@
             </div>
         </div>
 
-        <!-- Form Section -->
+
         <div class="md:w-1/2 p-6 md:p-12 flex flex-col justify-center relative">
 
-            <!-- Error Message Display -->
-            @if(session('error'))
+
+        @if(session('error'))
             <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6 rounded-md" role="alert">
                 <div class="flex items-center">
                     <div class="flex-shrink-0">
@@ -60,7 +60,7 @@
             </div>
             @endif
 
-            <!-- Success Message Display -->
+
             @if(session('success'))
             <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6 rounded-md" role="alert">
                 <div class="flex items-center">
@@ -74,7 +74,7 @@
             </div>
             @endif
 
-            <!-- Validation Errors -->
+
             @if ($errors->any())
             <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6 rounded-md" role="alert">
                 <div class="flex">
@@ -93,7 +93,7 @@
             </div>
             @endif
 
-            <!-- Login Form -->
+
             <form id="loginForm" action="{{ route('login') }}" method="POST" class="space-y-6">
                 @csrf
 
@@ -195,7 +195,7 @@
                     >
                 </div>
 
-                <!-- Account Type Selection -->
+
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-3">
                         Account Type
@@ -294,8 +294,8 @@
         </div>
     </div>
     <script>
-        // Form Toggle
-        const loginForm = document.getElementById('loginForm');
+
+const loginForm = document.getElementById('loginForm');
         const registerForm = document.getElementById('registerForm');
         const switchToRegister = document.getElementById('switchToRegister');
         const switchToLogin = document.getElementById('switchToLogin');
@@ -310,7 +310,7 @@
             loginForm.classList.remove('hidden');
         });
 
-        // Password Visibility Toggle
+
         const passwordToggles = [
             { 
                 toggle: document.getElementById('passwordToggle'), 
@@ -341,7 +341,7 @@
             });
         });
 
-        // Form Validation
+
         document.getElementById('registerForm').addEventListener('submit', function(event) {
             const password = document.getElementById('registerPassword').value;
             const confirmPassword = document.getElementById('confirmPassword').value;
@@ -352,7 +352,7 @@
             }
         });
 
-        // Show the registration form if there are validation errors on it
+
         @if ($errors->any() && old('role_id'))
             document.addEventListener('DOMContentLoaded', function() {
                 loginForm.classList.add('hidden');

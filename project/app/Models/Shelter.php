@@ -17,7 +17,7 @@ class Shelter extends Model
         'address',
         'city',
         'state',
-        'zip_code',
+        'zip_code', 
         'country',
         'description',
         'website',

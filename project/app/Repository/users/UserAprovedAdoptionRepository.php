@@ -24,7 +24,7 @@ public function getAllAdoptionRequestAproved()
             'animal_image' => $adoption->animal->photoAnimal,
             'shelter_id' => $adoption->animal->shelter_id,
             'shelter_image' => $adoption->animal->shelters->first()->photo ?? null, 
-            'shelter_address' => $adoption->animal->shelters->first()->address ?? 'No address available', 
+            'shelter_address' => $adoption->animal->shelters()->first()->address ?? 'No address available', 
         ];
     });
 }

@@ -8,16 +8,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Toggle mobile menu
-            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
             
             mobileMenuBtn.addEventListener('click', function() {
                 mobileMenu.classList.toggle('hidden');
             });
             
-            // Toggle profile dropdown
-            const profileBtn = document.getElementById('profile-btn');
+             const profileBtn = document.getElementById('profile-btn');
             const profileDropdown = document.getElementById('profile-dropdown');
             
             profileBtn.addEventListener('click', function(e) {
@@ -25,30 +23,26 @@
                 profileDropdown.classList.toggle('hidden');
             });
             
-            // Close dropdown when clicking outside
-            document.addEventListener('click', function() {
+             document.addEventListener('click', function() {
                 profileDropdown.classList.add('hidden');
             });
         });
         
-// Updated modal functions
-function openAdoptionModal(modalId) {
-    // Show the modal
-    const modal = document.getElementById(modalId);
+ function openAdoptionModal(modalId) {
+     const modal = document.getElementById(modalId);
     modal.classList.remove('hidden');
     modal.classList.add('modal-active');
-    document.body.classList.add('modal-open'); // Prevent scrolling when modal is open
+    document.body.classList.add('modal-open'); 
 }
 
 function closeAdoptionModal(modalId) {
     const modal = document.getElementById(modalId);
     modal.classList.add('hidden');
     modal.classList.remove('modal-active');
-    document.body.classList.remove('modal-open'); // Re-enable scrolling
+    document.body.classList.remove('modal-open'); 
 }
 
-// Close modal when clicking outside
-document.addEventListener('click', function(event) {
+ document.addEventListener('click', function(event) {
     const modals = document.querySelectorAll('[id^="modal-"]');
     
     modals.forEach(function(modal) {
@@ -65,12 +59,10 @@ document.addEventListener('click', function(event) {
     </script>
 </head>
 <body class="bg-gray-100 font-sans">
-    <!-- Top Navigation -->
-    <nav class="bg-white shadow-md fixed w-full z-50">
+     <nav class="bg-white shadow-md fixed w-full z-50">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center h-16">
-                <!-- Logo -->
-                <div class="flex items-center">
+                 <div class="flex items-center">
                     <a href="#" class="flex items-center space-x-2">
                         <div class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-2 rounded-lg">
                             <i class="fas fa-paw text-xl"></i>
@@ -79,8 +71,7 @@ document.addEventListener('click', function(event) {
                     </a>
                 </div>
 
-                <!-- Main Navigation - Desktop -->
-                <div class="hidden md:flex items-center space-x-1">
+                 <div class="hidden md:flex items-center space-x-1">
                     <a href="HomeUser" class="px-3 py-2 rounded-md text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-600">Home</a>
                     <a href="{{ route('user.UserAdoptions.index') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Adoption</a>
                     <a href="{{ route('user.AprovedRequests') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Requests</a>
@@ -88,8 +79,7 @@ document.addEventListener('click', function(event) {
 
                 </div>
  
-                <!-- Right Side Menu -->
-                <div class="flex items-center space-x-4">
+                 <div class="flex items-center space-x-4">
                     <button class="hidden md:block bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white py-2 px-4 rounded-lg shadow-md transition transform hover:scale-105">
                         <a href="{{ route('user.UserReports.index') }}" class="text-white text-sm font-medium">Report an animal</a>
                     </button>
@@ -98,8 +88,7 @@ document.addEventListener('click', function(event) {
                     
            
                     
-                    <!-- Profile Dropdown -->
-                    <div class="relative ml-3">
+                     <div class="relative ml-3">
                         <div>
                             <button type="button" id="profile-btn" class="flex text-sm bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" aria-expanded="false" aria-haspopup="true">
                             <img class="h-10 w-10 rounded-full object-cover border-2 border-blue-500" 
@@ -149,16 +138,14 @@ document.addEventListener('click', function(event) {
 
                     </div>
                     
-                    <!-- Mobile menu button -->
-                    <button type="button" id="mobile-menu-btn" class="md:hidden bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" aria-controls="mobile-menu" aria-expanded="false">
+                     <button type="button" id="mobile-menu-btn" class="md:hidden bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" aria-controls="mobile-menu" aria-expanded="false">
                         <i class="fas fa-bars text-xl"></i>
                     </button>
                 </div>
             </div>
         </div>
  
-        <!-- Mobile menu, show/hide based on menu state -->
-        <div class="md:hidden hidden" id="mobile-menu">
+         <div class="md:hidden hidden" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1 bg-white shadow-md">
                 <a href="HomeUser" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-600">Home</a>
                 <a href="{{ route('user.UserAdoptions.index') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">Adoption</a>
@@ -173,13 +160,10 @@ document.addEventListener('click', function(event) {
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main class="pt-20 pb-12">
-        <!-- Hero Section -->
-        <div class="relative bg-white overflow-hidden mb-8">
+     <main class="pt-20 pb-12">
+         <div class="relative bg-white overflow-hidden mb-8">
             <div class="max-w-7xl mx-auto">
-<!-- Truly Full-width Hero Section with No Side Margins -->
-<style>
+ <style>
   .full-bleed {
     width: 100vw;
     margin-left: calc(50% - 50vw);
@@ -188,22 +172,16 @@ document.addEventListener('click', function(event) {
 </style>
 
 <div class="full-bleed relative overflow-hidden bg-gradient-to-br from-indigo-900 to-blue-900 border-0">
-    <!-- Background Image with Overlay -->
-    <div class="absolute inset-0 z-0">
-        <!-- Use your own image here instead of the placeholder -->
-        <img src="/api/placeholder/1920/1080" alt="" class="w-full h-full object-cover opacity-40">
-        <!-- Strong overlay to hide any watermarks completely -->
-        <div class="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-indigo-800/90 to-blue-800/90"></div>
-        <!-- Subtle pattern overlay for texture -->
-        <div class="absolute inset-0 mix-blend-soft-light opacity-30" style="background-image: url('data:image/svg+xml,%3Csvg width=\'20\' height=\'20\' viewBox=\'0 0 20 20\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M0 0h20v20H0V0zm10 17c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7z\' fill=\'%23ffffff\' fill-opacity=\'0.05\'/%3E%3C/svg%3E');"></div>
+     <div class="absolute inset-0 z-0">
+         <img src="/api/placeholder/1920/1080" alt="" class="w-full h-full object-cover opacity-40">
+         <div class="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-indigo-800/90 to-blue-800/90"></div>
+         <div class="absolute inset-0 mix-blend-soft-light opacity-30" style="background-image: url('data:image/svg+xml,%3Csvg width=\'20\' height=\'20\' viewBox=\'0 0 20 20\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M0 0h20v20H0V0zm10 17c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7z\' fill=\'%23ffffff\' fill-opacity=\'0.05\'/%3E%3C/svg%3E');"></div>
     </div>
 
-    <!-- Main Content -->
-    <div class="relative z-10">
+     <div class="relative z-10">
         <div class="pt-16 pb-20 md:pt-24 md:pb-28 lg:pt-32 lg:pb-36 px-6 sm:px-12 md:px-16 lg:px-20 xl:px-24">
             <div class="max-w-screen-2xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <!-- Left Column - Text Content -->
-                <div class="text-center lg:text-left">
+                 <div class="text-center lg:text-left">
                     <div class="inline-block mb-6 p-2 bg-blue-600 bg-opacity-30 rounded-lg backdrop-blur-sm">
                         <div class="flex items-center space-x-2 px-3 py-1 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-md">
                             <i class="fas fa-paw text-white"></i>
@@ -231,8 +209,7 @@ document.addEventListener('click', function(event) {
                         </a>
                     </div>
                     
-                    <!-- Trust Indicators -->
-                    <div class="mt-8 pt-6 border-t border-blue-800/30 grid grid-cols-3 gap-4">
+                     <div class="mt-8 pt-6 border-t border-blue-800/30 grid grid-cols-3 gap-4">
                         <div class="text-center">
                             <p class="text-3xl font-bold text-white">250+</p>
                             <p class="text-blue-200 text-sm">Animals Saved</p>
@@ -248,39 +225,30 @@ document.addEventListener('click', function(event) {
                     </div>
                 </div>
                 
-                <!-- Right Column - Image Card Stack -->
-                <div class="relative">
-                    <!-- Decorative elements -->
-                    <div class="absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br from-purple-500 to-indigo-500 opacity-20 rounded-full blur-3xl"></div>
+                 <div class="relative">
+                     <div class="absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br from-purple-500 to-indigo-500 opacity-20 rounded-full blur-3xl"></div>
                     <div class="absolute -bottom-5 -left-5 w-28 h-28 bg-gradient-to-br from-blue-400 to-cyan-300 opacity-20 rounded-full blur-2xl"></div>
                     
-                    <!-- 3D Card Stack Effect -->
-                    <div class="relative mx-auto max-w-lg lg:max-w-none">
-                        <!-- Background Card -->
-                        <div class="absolute top-8 -left-6 -right-6 bottom-0 bg-gradient-to-br from-indigo-500/20 to-blue-600/20 rounded-xl backdrop-blur-sm shadow-xl rotate-6 border border-white/10"></div>
+                     <div class="relative mx-auto max-w-lg lg:max-w-none">
+                         <div class="absolute top-8 -left-6 -right-6 bottom-0 bg-gradient-to-br from-indigo-500/20 to-blue-600/20 rounded-xl backdrop-blur-sm shadow-xl rotate-6 border border-white/10"></div>
                         
-                        <!-- Middle Card -->
-                        <div class="absolute top-4 -left-3 -right-3 bottom-4 bg-gradient-to-br from-indigo-500/30 to-blue-600/30 rounded-xl backdrop-blur-sm shadow-xl -rotate-3 border border-white/20"></div>
+                         <div class="absolute top-4 -left-3 -right-3 bottom-4 bg-gradient-to-br from-indigo-500/30 to-blue-600/30 rounded-xl backdrop-blur-sm shadow-xl -rotate-3 border border-white/20"></div>
                         
-                        <!-- Main Card with Image -->
-                        <div class="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm p-3 rounded-xl shadow-2xl transform transition-transform hover:scale-[1.02] duration-500">
+                         <div class="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm p-3 rounded-xl shadow-2xl transform transition-transform hover:scale-[1.02] duration-500">
                             <img src="{{ asset('images/catimage.jpg') }}" class="w-full h-auto rounded-lg" alt="Happy rescued dog with owner">
                             
-                            <!-- Floating Info Badge -->
-                            <div class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-white dark:bg-gray-800 px-4 py-2 rounded-lg shadow-lg flex items-center space-x-2">
+                             <div class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-white dark:bg-gray-800 px-4 py-2 rounded-lg shadow-lg flex items-center space-x-2">
                                 <i class="fas fa-heart text-red-500"></i>
                                 <span class="font-medium text-white">120 adoptions this month</span>
                                 </div>
                             
-                            <!-- Success Stories Badge -->
-                            <div class="absolute -top-3 -right-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg">
+                             <div class="absolute -top-3 -right-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg">
                                 Success stories
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Floating Paw Icons -->
-                    <div class="absolute top-10 -left-4 bg-blue-600 p-2 rounded-full shadow-lg animate-bounce">
+                     <div class="absolute top-10 -left-4 bg-blue-600 p-2 rounded-full shadow-lg animate-bounce">
                         <i class="fas fa-paw text-white"></i>
                     </div>
                     <div class="absolute bottom-20 -right-2 bg-indigo-600 p-2 rounded-full shadow-lg animate-bounce" style="animation-delay: 0.5s">
@@ -291,8 +259,7 @@ document.addEventListener('click', function(event) {
         </div>
     </div>
     
-    <!-- Wave Shape Divider -->
-    <div class="absolute bottom-0 left-0 right-0">
+     <div class="absolute bottom-0 left-0 right-0">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" fill="#F3F4F6" class="w-full">
             <path d="M0,64L48,64C96,64,192,64,288,53.3C384,43,480,21,576,16C672,11,768,21,864,37.3C960,53,1056,75,1152,75C1248,75,1344,53,1392,42.7L1440,32L1440,100L1392,100C1344,100,1248,100,1152,100C1056,100,960,100,864,100C768,100,672,100,576,100C480,100,384,100,288,100C192,100,96,100,48,100L0,100Z"></path>
         </svg>
@@ -300,13 +267,11 @@ document.addEventListener('click', function(event) {
 </div>
             </div>
             <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-                <!-- <img class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" src="/api/placeholder/800/600" > -->
-            </div>
+             </div>
         </div>
 
         <div class="container mx-auto px-4">
-            <!-- Stats Section -->
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="bg-white rounded-2xl shadow-xl overflow-hidden mb-8">
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
                         <div class="p-6 border-b md:border-r md:border-b-0 lg:border-r border-gray-200 text-center">
@@ -345,10 +310,8 @@ document.addEventListener('click', function(event) {
                 </div>
             </div>
 
-            <!-- Main Grid -->
-            <div class="flex flex-col lg:flex-row gap-8">
-                <!-- Left Column - Main Content -->
-                <div class="w-full lg:w-3/4 space-y-8">
+             <div class="flex flex-col lg:flex-row gap-8">
+                 <div class="w-full lg:w-3/4 space-y-8">
                 <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
     <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
         <h2 class="text-lg font-bold text-gray-800">Recently reported animals</h2>
@@ -421,8 +384,7 @@ document.addEventListener('click', function(event) {
     <div class="p-6">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         @forelse($readyAnimals->where('status', 'ready') as $animal)
-        <!-- Animal Card -->
-        <div class="animal-card bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 group transition transform hover:shadow-md hover:-translate-y-1 cursor-pointer" 
+         <div class="animal-card bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 group transition transform hover:shadow-md hover:-translate-y-1 cursor-pointer" 
              onclick="openAdoptionModal('modal-{{ $animal->id }}')">
             <div class="relative">
                 <img src="{{ asset('storage/' . $animal->photoAnimal) }}" alt="{{ $animal->name }}" class="w-full h-48 object-cover">
@@ -460,8 +422,7 @@ document.addEventListener('click', function(event) {
             </div>
         </div>
 
-        <!-- Adoption Modal for this specific animal -->
-        <div id="modal-{{ $animal->id }}" class="fixed inset-0 z-50 overflow-y-auto hidden">
+         <div id="modal-{{ $animal->id }}" class="fixed inset-0 z-50 overflow-y-auto hidden">
             <div class="modal-overlay fixed inset-0"></div>
             
             <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
@@ -473,8 +434,7 @@ document.addEventListener('click', function(event) {
                     </div>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2">
-                        <!-- Animal Details -->
-                        <div class="p-8 bg-gradient-to-br from-blue-50 to-white">
+                         <div class="p-8 bg-gradient-to-br from-blue-50 to-white">
                             <div class="mb-6">
                                 <img class="w-full h-64 object-cover rounded-2xl shadow-md" src="{{ asset('storage/' . $animal->photoAnimal) }}" alt="{{ $animal->name }}">
                             </div>
@@ -497,14 +457,12 @@ document.addEventListener('click', function(event) {
                             </div>
                         </div>
                         
-                        <!-- Adoption Form -->
-                        <div class="p-8 bg-white">
+                         <div class="p-8 bg-white">
                             <h3 class="text-2xl font-bold text-gray-900 mb-6">Adoption Application</h3>
                             
                             <form action="{{ route('user.UserAdoptions.store') }}" method="POST">
                                 @csrf
-                                <!-- Changed field name to match what the controller expects -->
-                                <input type="hidden" name="animalId" value="{{ $animal->id }}">
+                                 <input type="hidden" name="animalId" value="{{ $animal->id }}">
                                 <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white py-3 px-6 rounded-xl font-medium shadow-lg transition transform hover:scale-105">
                                     <i class="fas fa-paper-plane mr-2"></i> Send Adoption Request
                                 </button>
@@ -535,9 +493,7 @@ document.addEventListener('click', function(event) {
 </div>
                 </div>
 
-                <!-- Right Column - Sidebar -->
-                <div class="w-full lg:w-1/4 space-y-8">
-                    <!-- Action Buttons -->
+                 <div class="w-full lg:w-1/4 space-y-8">
                     <div class="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl shadow-xl p-6 text-white">
                         <h2 class="text-xl font-bold mb-4">Quick actions</h2>
                         <div class="space-y-3">
@@ -571,7 +527,6 @@ document.addEventListener('click', function(event) {
                         </div>
                     </div>
 
-                    <!-- Your Activity -->
                     <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
     <div class="px-6 py-4 border-b border-gray-200">
         <h2 class="text-lg font-bold text-gray-800">Your activity</h2>
@@ -616,56 +571,13 @@ document.addEventListener('click', function(event) {
             @endif
         </div>
 
-        <!-- Your adoption requests section can stay below -->
     </div>
 </div>
 
 
-                    <!-- Recent Messages -->
-                    <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
-    <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
-        <h2 class="text-lg font-bold text-gray-800">Recent messages</h2>
-        @php $unreadCount = 0; @endphp
-        @foreach($conversations as $conv)
-            @php
-                // Assume you later extend this with 'is_read' to handle real unread logic
-                // For now, let's simulate all messages as read
-            @endphp
-        @endforeach
-        <span class="bg-red-500 text-white text-xs px-2 py-1 rounded-full">{{ $unreadCount }} unread</span>
-    </div>
-
-    <div class="divide-y">
-        @forelse($conversations as $conversation)
-            <div class="px-6 py-4 hover:bg-gray-50 cursor-pointer">
-                <div class="flex items-start gap-3">
-                    <img src="{{ asset('storage/photos/' . $conversation['photo']) }}" alt="User Photo" class="w-10 h-10 rounded-full">
-                    <div class="flex-1 min-w-0">
-                        <div class="flex justify-between items-center mb-1">
-                            <h3 class="font-medium truncate">User #{{ $conversation['user_id'] }}</h3>
-                            <span class="text-xs text-gray-500">Now</span> {{-- You can add timestamps later --}}
-                        </div>
-                        <p class="text-sm text-gray-600 truncate">{{ $conversation['last_message'] }}</p>
-                    </div>
-                </div>
-            </div>
-        @empty
-            <div class="px-6 py-4 text-center text-gray-500">
-                There are no messages yet.
-            </div>
-        @endforelse
-    </div>
-
-    <div class="px-6 py-4 border-t border-gray-200 text-center">
-        <a href="#" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium">
-            View all messages
-            <i class="fas fa-chevron-right ml-2 text-xs"></i>
-        </a>
-    </div>
-</div>
+           
 
 
-                    <!-- Mission & Info -->
                     <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
                         <div class="px-6 py-4 border-b border-gray-200">
                             <h2 class="text-lg font-bold text-gray-800">Our mission</h2>
@@ -700,8 +612,7 @@ document.addEventListener('click', function(event) {
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white">
+     <footer class="bg-gray-900 text-white">
         <div class="container mx-auto px-4 pt-12 pb-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div>

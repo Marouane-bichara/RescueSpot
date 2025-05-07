@@ -25,26 +25,9 @@ class UsersController extends Controller
         $userinfo = User::where('id', $user->id)->first();
 
 
-        $conversations = Message::where('sender_id', $user->id)
-        ->orWhere('receiver_id', $user->id)
-        ->latest()
-        ->get()
-        ->groupBy(function ($message) use ($user) {
-            return $message->sender_id == $user->id ? $message->receiver_id : $message->sender_id;
-        })
-        ->map(function ($messages) {
-            $lastMessage = $messages->first(); 
-            $otherUser = $lastMessage->sender_id == auth()->id() ? $lastMessage->receiver : $lastMessage->sender;
-
-            return [
-                'user_id' => $otherUser->id,
-                'photo' => $otherUser->profilePhoto,
-                'last_message' => $lastMessage->message,
-            ];
-        });
             
 
-        return view('user.home', compact('reports', 'readyAnimals' , 'reportsUser' , 'conversations' , 'userinfo'));
+        return view('user.home', compact('reports', 'readyAnimals' , 'reportsUser'  , 'userinfo'));
     }
 
 

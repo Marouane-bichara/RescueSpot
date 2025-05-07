@@ -30,13 +30,13 @@ class UserProfileController extends Controller
         $reportsCount = Report::where('reporter_id', $user->id)->count();
         $reportsUser = Report::where('reporter_id', $user->id)->get();
         $adoptionCount = Adoption::where('adopterId', $user->id)->where('status', 'accepted')->count();
-        $followersCount = Follower::where('followed_id', $user->id)->count();
         $adoptions = Adoption::with('animal')
         ->where('adopterId', $user->id)
         ->where('status', 'approved') 
         ->get();
 
         // dd($reportsCount);
+        $followersCount = 0;
         return view('user.profile.profile' , compact('userinfo' , 'reportsCount', 'adoptionCount' , 'followersCount' , 'reportsUser' , 'adoptions'));
     }
 

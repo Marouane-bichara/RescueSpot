@@ -34,6 +34,7 @@ class AdoptionReqController extends Controller
     } 
     public function aproveAdoptionRequest(Request $request)
     {
+
         $id = $request->input('adoption_request_id');
         $adoptionRequest = $this->sheltersService->aproveAdoptionRequest($id);
         return redirect()->back()->with('success', 'Adoption request rejected successfully.');

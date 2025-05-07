@@ -11,7 +11,6 @@ class AdoptionsRepository
     {
     
         $adoptions = Adoption::with('animal' , 'adopter')
-        ->where('status', 'approved') 
         ->get();
         if ($adoptions->isEmpty()) {
             return null; 

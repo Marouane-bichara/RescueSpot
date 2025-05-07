@@ -25,7 +25,7 @@ class ValidateRejectAdoptionReq extends FormRequest
     {
         return [
             //
-            'adoption_request_id' => 'required|exists:adoption_requests,id',
+            'adoption_request_id' => 'required|integer',
         ];
     }
 }
